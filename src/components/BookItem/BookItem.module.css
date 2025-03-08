@@ -1,0 +1,249 @@
+/* ... existing styles ... */
+
+.bookItem {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.95) 100%);
+  border-radius: 15px;
+  padding: 1rem;
+  box-shadow: 0 4px 15px rgba(83, 46, 59, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 0.8rem;
+}
+
+.bookItem:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(83, 46, 59, 0.15);
+}
+
+.bookContent {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.bookCover {
+  width: 60px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(83, 46, 59, 0.1);
+}
+
+.defaultCover {
+  width: 60px;
+  height: 90px;
+  background: linear-gradient(135deg, var(--accent-color-1) 0%, var(--accent-color-2) 100%);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  color: white;
+  text-align: center;
+  font-family: var(--font-primary);
+}
+
+.defaultCover h3 {
+  font-size: 0.8rem;
+  margin-bottom: 0.3rem;
+}
+
+.defaultCover p {
+  font-size: 0.7rem;
+  opacity: 0.9;
+}
+
+.bookInfo {
+  flex: 1;
+}
+
+.bookTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: var(--text-color-primary);
+  margin-bottom: 0.2rem;
+}
+
+.bookAuthor {
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  color: var(--text-color-secondary);
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+.rating {
+  margin-bottom: 0.5rem;
+}
+
+.star {
+  color: #d1d1d1;
+  font-size: 1.2rem;
+  margin-right: 0.2rem;
+  cursor: default;
+}
+
+.star.filled {
+  color: var(--accent-color-1);
+}
+
+.star.clickable {
+  cursor: pointer;
+}
+
+.reviewToggle {
+  background: none;
+  border: none;
+  color: var(--accent-color-2);
+  font-family: var(--font-primary);
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.reviewText {
+  font-family: var(--font-primary);
+  color: var(--text-color-primary);
+  font-style: italic;
+  background: rgba(255, 179, 193, 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.reviewSection {
+  margin-top: 0.5rem;
+  padding: 0.8rem;
+  background: rgba(255, 179, 193, 0.1);
+  border-radius: 8px;
+}
+
+.reviewInput {
+  width: 100%;
+  min-height: 80px;
+  padding: 0.8rem;
+  border: 2px solid var(--secondary-color);
+  border-radius: 8px;
+  font-family: var(--font-primary);
+  margin-bottom: 0.8rem;
+  background: white;
+  resize: vertical;
+  font-size: 0.9rem;
+}
+
+.reviewInput:focus {
+  outline: none;
+  border-color: var(--accent-color-2);
+}
+
+.editActions {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.editButton, .saveButton, .cancelButton {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 15px;
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.editButton, .saveButton {
+  background: linear-gradient(135deg, #ffb3c1, #ffd6e0);
+  color: #532e3b;
+  box-shadow: 0 4px 15px rgba(255, 179, 193, 0.2);
+}
+
+.editButton:hover, .saveButton:hover {
+  background: linear-gradient(135deg, #ffd6e0, #ffb3c1);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 179, 193, 0.4);
+}
+
+.cancelButton {
+  background: rgba(255, 179, 193, 0.1);
+  color: #532e3b;
+}
+
+.cancelButton:hover {
+  background: rgba(255, 179, 193, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 179, 193, 0.1);
+}
+
+.bookActions {
+  border-top: 1px solid rgba(83, 46, 59, 0.1);
+  padding-top: 1rem;
+}
+
+.goodreadsLink {
+  display: inline-block;
+  color: var(--accent-color-2);
+  text-decoration: none;
+  font-family: var(--font-primary);
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.quote {
+  font-style: italic;
+  color: var(--text-color-primary);
+  background: rgba(255, 179, 193, 0.1);
+  padding: 0.8rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-family: var(--font-primary);
+}
+
+.moveButtons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 0.5rem 0;
+}
+
+.moveButtons button {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+}
+
+.deleteButton {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 15px;
+  background: rgba(255, 179, 193, 0.1);
+  color: #532e3b;
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.deleteButton:hover {
+  background: rgba(255, 179, 193, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 179, 193, 0.1);
+}
+
+@media (max-width: 768px) {
+  .bookContent {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .bookCover, .defaultCover {
+    margin-bottom: 1rem;
+  }
+
+  .moveButtons {
+    flex-direction: column;
+  }
+}
