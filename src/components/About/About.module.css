@@ -1,0 +1,180 @@
+.aboutContainer {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    font-family: sans-serif;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+  }
+  
+  .aboutTitle {
+    text-align: center;
+    margin-bottom: 30px; /* More space */
+    color: #333;
+  }
+  
+  .whyTitle{
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+  .contentWrapper {
+    display: flex;
+    gap: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  .profilePhoto {
+    width: 180px;  /* 3:4 ratio */
+    height: 240px; /* 3:4 ratio */
+    border-radius: 20px;
+    object-fit: cover;
+    object-position: center;
+    box-shadow: 0 8px 20px rgba(83, 46, 59, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .profilePhoto:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(83, 46, 59, 0.2);
+  }
+  
+  .textContent {
+    flex: 1;
+  }
+  
+  .aboutText {
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-color-primary);
+    margin-bottom: 1.5rem;
+    text-align: justify;
+  }
+  
+  .dropCap {
+    float: left;
+    font-family: 'Playfair Display', serif;
+    font-size: 4em;
+    line-height: 0.8em;
+    padding-right: 0.1em;
+    color: var(--accent-color-2);
+  }
+  
+  .whyTitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--accent-color-2);
+    margin: 2rem 0 1.5rem;
+    position: relative;
+  }
+  
+  .whyTitle::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(to right, var(--accent-color-1), var(--accent-color-2));
+    border-radius: 2px;
+  }
+  
+  .featureList {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+    text-align: left;
+  }
+  
+  .featureList li {
+    font-family: var(--font-primary);
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+    position: relative;
+    line-height: 1.6;
+    color: var(--text-color-primary);
+  }
+  
+  .featureList li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background: linear-gradient(135deg, var(--accent-color-1), var(--accent-color-2));
+    border-radius: 50%;
+  }
+  
+  .featureList li a {
+    color: var(--text-color-primary);
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+  }
+  
+  .featureList li a:hover {
+    color: var(--accent-color-2);
+  }
+  
+  .featureList li span {
+    color: var(--accent-color-2);
+    font-weight: 600;
+  }
+  
+  .finalText {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--accent-color-2);
+    text-align: center;
+    margin-top: 2.5rem;
+    font-weight: 500;
+  }
+  
+  .titleLogo {
+    height: 40px;
+    vertical-align: middle;
+    margin: 0 5px;
+    transition: all 0.3s ease;
+  }
+  
+  .titleLogo:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 4px 10px rgba(83, 46, 59, 0.15));
+  }
+  
+  @media (max-width: 768px) {
+    .contentWrapper {
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+  
+    .profilePhoto {
+      width: 150px;
+      height: 200px;
+    }
+  
+    .whyTitle {
+      font-size: 1.8rem;
+    }
+  
+    .aboutText {
+      font-size: 0.95rem;
+    }
+  
+    .featureList {
+      text-align: left;
+    }
+  
+    .featureList li {
+      padding-right: 0;
+      padding-left: 2rem;
+    }
+  
+    .featureList li::after {
+      right: auto;
+      left: 0;
+    }
+  }
