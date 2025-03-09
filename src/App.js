@@ -36,6 +36,12 @@ function AppContent() {
     });
   };
 
+  // Add logging to check auth state
+  console.log('AppContent: Rendering with auth state:', { 
+    isAuthenticated: !!currentUser,
+    userExists: currentUser ? 'Yes' : 'No'
+  });
+
   return (
     <div className="App">
       <Sidebar />
@@ -45,11 +51,7 @@ function AppContent() {
           <div className="navLinks">
             <Link to="/vision-board">Vision Board</Link>
             <Link to="/journal">Journal</Link>
-            {!currentUser ? (
-              <Link to="/auth" className="joinButton">Join Us</Link>
-            ) : (
-              <Link to="/dashboard" className="dashboardButton">Dashboard</Link>
-            )}
+            <Link to="/auth" className="joinButton">Join Us</Link>
             <Link to="/about">About</Link>
           </div>
           <Link to="/" className="logoLink">
