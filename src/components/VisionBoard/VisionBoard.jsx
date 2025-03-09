@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './VisionBoard.module.css';
 import '../../styles/shared.css';
+import { db } from '../../firebase';
+import { collection, addDoc, getDocs } from "firebase/firestore";
 
 const VisionBoard = () => {
     const [items, setItems] = useState([]);
@@ -11,6 +13,31 @@ const VisionBoard = () => {
     const dragItem = useRef(null);
     const dragOverItem = useRef(null);
     const [showBackground, setShowBackground] = useState(false);
+
+    // Test Firebase connection
+    useEffect(() => {
+        const testFirebase = async () => {
+            try {
+                // Add a test document to Firestore
+                const docRef = await addDoc(collection(db, "testCollection"), {
+                    testField: "Hello from VisionBoard!",
+                    timestamp: new Date(),
+                });
+                console.log("Document written with ID: ", docRef.id);
+
+                // Read the test documents from Firestore
+                const querySnapshot = await getDocs(collection(db, "testCollection"));
+                querySnapshot.forEach((doc) => {
+                    console.log("Test Document:", doc.id, " => ", doc.data());
+                });
+
+            } catch (error) {
+                console.error("Error interacting with Firestore:", error);
+            }
+        };
+
+        testFirebase();
+    }, []); // Empty dependency array: runs only once on mount
 
     // Load items from localStorage on component mount
     useEffect(() => {
