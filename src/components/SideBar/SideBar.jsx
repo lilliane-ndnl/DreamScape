@@ -31,7 +31,7 @@ function Sidebar() {
       </button>
       <div className={styles.links}>
         <Link to="/dashboard" className={styles.link}>Dashboard</Link>
-        <Link to="/" className={styles.link}>Vision Board</Link>
+        <Link to="/vision-board" className={styles.link}>Vision Board</Link>
         <Link to="/goals" className={styles.link}>Goals</Link>
         <Link to="/habits" className={styles.link}>Habits</Link>
         <Link to="/reading" className={styles.link}>Reading List</Link>
