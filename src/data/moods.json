@@ -1,0 +1,50 @@
+{
+  "moods": [
+    {
+      "name": "Happy",
+      "emoji": "😊",
+      "color": "#FFD93D"
+    },
+    {
+      "name": "Excited",
+      "emoji": "🤗",
+      "color": "#FF8FB1"
+    },
+    {
+      "name": "Peaceful",
+      "emoji": "😌",
+      "color": "#98DDCA"
+    },
+    {
+      "name": "Grateful",
+      "emoji": "🥰",
+      "color": "#FF9B9B"
+    },
+    {
+      "name": "Tired",
+      "emoji": "😴",
+      "color": "#B4B4B8"
+    },
+    {
+      "name": "Stressed",
+      "emoji": "😓",
+      "color": "#A084DC"
+    },
+    {
+      "name": "Anxious",
+      "emoji": "😰",
+      "color": "#9BA4B5"
+    },
+    {
+      "name": "Sad",
+      "emoji": "😢",
+      "color": "#7286D3"
+    },
+    {
+      "name": "Other",
+      "emoji": "✨",
+      "color": "#FFB5E8",
+      "isCustom": true
+    }
+  ]
+} 
