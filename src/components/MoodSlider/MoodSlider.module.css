@@ -30,6 +30,7 @@
 
 .slider {
     -webkit-appearance: none;
+    appearance: none;
     width: 100%;
     height: 8px;
     border-radius: 10px;
@@ -89,6 +90,7 @@
     margin-bottom: 5px;
     background: linear-gradient(90deg, #ff8da1, #ffd6e0);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 0 2px 5px rgba(255, 141, 161, 0.1);
 }
