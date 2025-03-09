@@ -1,64 +1,71 @@
 import React, { useState, useEffect } from 'react';
-import HabitItem from '../HabitItem/HabitItem';
-import styles from './HabitList.module.css';
-import '../../styles/shared.css';
+import styles from './Dashboard.module.css';
+import affirmationsData from '../../data/affirmations.json';
+import quotesData from '../../data/quotes.json';
 
-function HabitList() {
-  const [habits, setHabits] = useState([]);
-  const [newHabitName, setNewHabitName] = useState('');
-  const [newHabitTime, setNewHabitTime] = useState('');
+function Dashboard() {
+  const [currentAffirmation, setCurrentAffirmation] = useState(() => {
+    const saved = localStorage.getItem('currentAffirmation');
+    return saved || '';
+  });
+  
+  const [currentQuote, setCurrentQuote] = useState(() => {
+    const saved = localStorage.getItem('currentQuote');
+    return saved ? JSON.parse(saved) : { text: '', author: '' };
+  });
+  
+  const [isAnimating, setIsAnimating] = useState(false);
   const [showBackground, setShowBackground] = useState(false);
 
-  // Load habits from localStorage
-  useEffect(() => {
-    const savedHabits = localStorage.getItem('habits');
-    if (savedHabits) {
-      setHabits(JSON.parse(savedHabits));
-    }
-  }, []);
+  // Helper function to get random item from array
+  const getRandomItem = (array) => array[Math.floor(Math.random() * array.length)];
 
-  // Save habits to localStorage
-  useEffect(() => {
-    localStorage.setItem('habits', JSON.stringify(habits));
-  }, [habits]);
+  // Helper function to get all affirmations from all categories
+  const getAllAffirmations = () => {
+    return Object.values(affirmationsData.categories).flat();
+  };
+
+  // Helper function to get all quotes from all categories
+  const getAllQuotes = () => {
+    return Object.values(quotesData.categories).flat();
+  };
+
+  const handleNewAffirmation = () => {
+    setIsAnimating(true);
+    const allAffirmations = getAllAffirmations();
+    const newAffirmation = getRandomItem(allAffirmations);
+    const affirmationText = `${newAffirmation.text} ${newAffirmation.emoji}`;
+    
+    setTimeout(() => {
+      setCurrentAffirmation(affirmationText);
+      localStorage.setItem('currentAffirmation', affirmationText);
+      setIsAnimating(false);
+    }, 500);
+  };
+
+  const handleNewQuote = () => {
+    const allQuotes = getAllQuotes();
+    const newQuote = getRandomItem(allQuotes);
+    setCurrentQuote(newQuote);
+    localStorage.setItem('currentQuote', JSON.stringify(newQuote));
+  };
 
   useEffect(() => {
     // Show background with delay
-    setTimeout(() => setShowBackground(true), 500);
-  }, []);
+    const backgroundTimer = setTimeout(() => setShowBackground(true), 500);
 
-  const handleAddHabit = () => {
-    if (newHabitName.trim() !== '') {
-      const newHabit = {
-        id: Date.now() + Math.random(),
-        name: newHabitName,
-        time: newHabitTime || null,
-        completions: [], // Array to store completion dates
-      };
-      setHabits([...habits, newHabit]);
-      setNewHabitName('');
-      setNewHabitTime('');
+    // Only get new affirmation and quote if none exist
+    if (!currentAffirmation) {
+      handleNewAffirmation();
     }
-  };
+    if (!currentQuote.text) {
+      handleNewQuote();
+    }
 
-  const handleToggleHabit = (habitId) => {
-    const today = new Date().toISOString().split('T')[0];
-    setHabits(habits.map(habit => {
-      if (habit.id === habitId) {
-        const isCompletedToday = habit.completions.includes(today);
-        const updatedCompletions = isCompletedToday
-          ? habit.completions.filter(date => date !== today)
-          : [...habit.completions, today];
-
-        return { ...habit, completions: updatedCompletions };
-      }
-      return habit;
-    }));
-  };
-
-  const handleDeleteHabit = (habitId) => {
-    setHabits(habits.filter(habit => habit.id !== habitId));
-  };
+    return () => {
+      clearTimeout(backgroundTimer);
+    };
+  }, [currentAffirmation, currentQuote.text]);
 
   return (
     <div className={`pageContainer ${showBackground ? 'showBackground' : ''}`}>
@@ -68,69 +75,34 @@ function HabitList() {
         ))}
       </div>
 
-      <h1 className="pageTitle">My Habits</h1>
-      
-      <div className="wideContainer">
-        <div className="gradientCard" style={{ padding: '2rem', borderRadius: '20px', position: 'relative', zIndex: 1 }}>
-          <div className="inputArea" style={{ 
-            display: 'flex', 
-            gap: '1rem', 
-            marginBottom: '2rem',
-            flexWrap: 'wrap'
-          }}>
-            <input
-              type="text"
-              value={newHabitName}
-              onChange={(e) => setNewHabitName(e.target.value)}
-              placeholder="Enter a new habit..."
-              className="gradientInput"
-              style={{ 
-                flex: '1 1 300px',
-                padding: '0.8rem', 
-                borderRadius: '15px', 
-                fontSize: '1rem' 
-              }}
-            />
-            <input
-              type="time"
-              value={newHabitTime}
-              onChange={(e) => setNewHabitTime(e.target.value)}
-              className="gradientInput"
-              style={{ 
-                padding: '0.8rem', 
-                borderRadius: '15px', 
-                fontSize: '1rem',
-                minWidth: '150px'
-              }}
-            />
-            <button 
-              onClick={handleAddHabit} 
-              className="gradientButton" 
-              style={{ 
-                padding: '0.8rem 1.5rem', 
-                borderRadius: '15px', 
-                fontSize: '1rem',
-                whiteSpace: 'nowrap'
-              }}
-            >
-              Add Habit
-            </button>
-          </div>
+      <div className={styles.logoContainer}>
+        <img src="/images/dreamscape-logo.png" alt="DreamScape" className={styles.mainLogo} />
+      </div>
 
-          <div className="gridLayout" style={{ gap: '1.5rem' }}>
-            {habits.map(habit => (
-              <HabitItem
-                key={habit.id}
-                habit={habit}
-                onToggle={handleToggleHabit}
-                onDelete={handleDeleteHabit}
-              />
-            ))}
+      <div className={styles.dashboardContainer}>
+        <h2 className={styles.dashboardTitle}>Daily Affirmation</h2>
+        
+        <div className={styles.affirmationCard}>
+          <div className={`${styles.affirmationText} ${isAnimating ? styles.fadeOut : styles.fadeIn}`} style={{ fontSize: '1.2rem' }}>
+            {currentAffirmation}
           </div>
+          
+          <button 
+            className={styles.newAffirmationButton}
+            onClick={handleNewAffirmation}
+            disabled={isAnimating}
+          >
+            New Affirmation ✦
+          </button>
+        </div>
+
+        <div className={styles.inspirationalQuote}>
+          "{currentQuote.text}"
+          <span className={styles.quoteAuthor}>- {currentQuote.author}</span>
         </div>
       </div>
     </div>
   );
 }
 
-export default HabitList;
+export default Dashboard;
