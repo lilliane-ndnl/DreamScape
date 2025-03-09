@@ -30,19 +30,20 @@ function Dashboard() {
     return Object.values(quotesData.categories).flat();
   };
 
-  const getNewAffirmation = () => {
+  const handleNewAffirmation = () => {
     setIsAnimating(true);
+    const allAffirmations = getAllAffirmations();
+    const newAffirmation = getRandomItem(allAffirmations);
+    const affirmationText = `${newAffirmation.text} ${newAffirmation.emoji}`;
+    
     setTimeout(() => {
-      const allAffirmations = getAllAffirmations();
-      const newAffirmation = getRandomItem(allAffirmations);
-      const affirmationText = `${newAffirmation.text} ${newAffirmation.emoji}`;
       setCurrentAffirmation(affirmationText);
       localStorage.setItem('currentAffirmation', affirmationText);
       setIsAnimating(false);
     }, 500);
   };
 
-  const getNewQuote = () => {
+  const handleNewQuote = () => {
     const allQuotes = getAllQuotes();
     const newQuote = getRandomItem(allQuotes);
     setCurrentQuote(newQuote);
@@ -50,16 +51,21 @@ function Dashboard() {
   };
 
   useEffect(() => {
-    // Only get new affirmation and quote if none exist in localStorage
+    // Show background with delay
+    const backgroundTimer = setTimeout(() => setShowBackground(true), 500);
+
+    // Only get new affirmation and quote if none exist
     if (!currentAffirmation) {
-      getNewAffirmation();
+      handleNewAffirmation();
     }
     if (!currentQuote.text) {
-      getNewQuote();
+      handleNewQuote();
     }
-    // Show background with delay
-    setTimeout(() => setShowBackground(true), 500);
-  }, []);
+
+    return () => {
+      clearTimeout(backgroundTimer);
+    };
+  }, [currentAffirmation, currentQuote.text]);
 
   return (
     <div className={`pageContainer ${showBackground ? 'showBackground' : ''}`}>
@@ -83,7 +89,7 @@ function Dashboard() {
           
           <button 
             className={styles.newAffirmationButton}
-            onClick={getNewAffirmation}
+            onClick={handleNewAffirmation}
             disabled={isAnimating}
           >
             New Affirmation ✦
