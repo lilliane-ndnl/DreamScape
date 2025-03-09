@@ -1,0 +1,24 @@
+.footer {
+  padding: 20px;
+  text-align: center;
+  font-family: var(--font-primary);
+  margin-top: auto;
+  background: transparent;
+}
+
+.footer p {
+  margin: 0;
+  font-style: italic;
+  color: var(--text-color-primary);
+  font-size: 0.9rem;
+}
+
+.footer a {
+  color: var(--accent-color-2);
+  text-decoration: none;
+  transition: color var(--transition-speed) ease;
+}
+
+.footer a:hover {
+  color: var(--accent-color-1);
+} 
