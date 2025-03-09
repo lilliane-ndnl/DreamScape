@@ -107,9 +107,6 @@ const Signup = () => {
             // Create user account
             const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
             const user = userCredential.user;
-            
-            // Send email verification
-            await sendEmailVerification(user);
 
             // Create user document in Firestore
             const userDocRef = doc(db, "users", user.uid);
@@ -121,14 +118,13 @@ const Signup = () => {
                 fullName: formData.fullName,
                 createdAt: new Date().toISOString(),
                 bio: '',
-                profilePicture: '',
-                emailVerified: false
+                profilePicture: ''
             };
             
             await setDoc(userDocRef, userData);
 
-            // Navigate to a verification page or show a message
-            navigate('/verification-sent');
+            // Navigate to the welcome page/dashboard
+            navigate('/dashboard');
         } catch (error) {
             console.error('Signup error:', error);
 
