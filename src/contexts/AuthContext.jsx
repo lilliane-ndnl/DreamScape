@@ -13,8 +13,13 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log('AuthProvider: Setting up auth state listener');
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      console.log('AuthProvider: Auth state changed', { user: user ? 'User exists' : 'No user' });
       setCurrentUser(user);
+      setLoading(false);
+    }, (error) => {
+      console.error('AuthProvider: Error in auth state change:', error);
       setLoading(false);
     });
 
