@@ -1,0 +1,393 @@
+{
+  "categories": {
+    "motivation": [
+      {
+        "text": "Every dream begins with a dreamer. Always remember, you have within you the strength, the patience, and the passion to reach for the stars to change the world.",
+        "author": "Harriet Tubman",
+        "category": "motivation"
+      }
+    ],
+    "success": [
+      {
+        "text": "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+        "author": "Winston Churchill",
+        "category": "success"
+      }
+    ],
+    "wisdom": [
+      {
+        "text": "The only way to do great work is to love what you do.",
+        "author": "Steve Jobs",
+        "category": "wisdom"
+      }
+    ],
+    "life_and_purpose": [
+      {
+        "text": "Tell me, what is it you plan to do with your one wild and precious life?",
+        "author": "Mary Oliver",
+        "category": "life_and_purpose"
+      },
+      {
+        "text": "Normality is a paved road: It's comfortable to walk, but no flowers grow on it.",
+        "author": "Vincent van Gogh",
+        "category": "life_and_purpose"
+      },
+      {
+        "text": "The purpose of life is to live it, to taste experience to the utmost, to reach out eagerly and without fear for newer and richer experience.",
+        "author": "Eleanor Roosevelt",
+        "category": "life_and_purpose"
+      },
+      {
+        "text": "You were born with wings, why prefer to crawl through life?",
+        "author": "Rumi",
+        "category": "life_and_purpose"
+      },
+      {
+        "text": "You must give everything to make your life as beautiful as the dreams that dance in your imagination.",
+        "author": "Roman Payne",
+        "category": "life_and_purpose"
+      }
+    ],
+    "art_and_creativity": [
+      {
+        "text": "Art should comfort the disturbed and disturb the comfortable.",
+        "author": "César Cruz",
+        "category": "art_and_creativity"
+      },
+      {
+        "text": "Every artist was first an amateur.",
+        "author": "Ralph Waldo Emerson",
+        "category": "art_and_creativity"
+      },
+      {
+        "text": "An artist is a dreamer consenting to dream of the actual world.",
+        "author": "George Santayana",
+        "category": "art_and_creativity"
+      },
+      {
+        "text": "Art enables us to find ourselves and lose ourselves at the same time.",
+        "author": "Thomas Merton",
+        "category": "art_and_creativity"
+      },
+      {
+        "text": "Painting is poetry that is seen rather than felt, and poetry is painting that is felt rather than seen.",
+        "author": "Leonardo da Vinci",
+        "category": "art_and_creativity"
+      }
+    ],
+    "love": [
+      {
+        "text": "Whatever our souls are made of, his and mine are the same.",
+        "author": "Emily Brontë",
+        "category": "love"
+      },
+      {
+        "text": "Have enough courage to trust love one more time and always one more time.",
+        "author": "Maya Angelou",
+        "category": "love"
+      },
+      {
+        "text": "Do not seek the because—in love, there is no because, no reason, no explanation, no solutions.",
+        "author": "Anaïs Nin",
+        "category": "love"
+      },
+      {
+        "text": "The very essence of romance is uncertainty.",
+        "author": "Oscar Wilde",
+        "category": "love"
+      },
+      {
+        "text": "To love and be loved is to feel the sun from both sides.",
+        "author": "David Viscott",
+        "category": "love"
+      }
+    ],
+    "strength_and_resilience": [
+      {
+        "text": "Do not go gentle into that good night. Rage, rage against the dying of the light.",
+        "author": "Dylan Thomas",
+        "category": "strength_and_resilience"
+      },
+      {
+        "text": "I am not afraid of storms, for I am learning how to sail my ship.",
+        "author": "Louisa May Alcott",
+        "category": "strength_and_resilience"
+      },
+      {
+        "text": "She was powerful not because she wasn't scared but because she went on so strongly, despite the fear.",
+        "author": "Atticus Poetry",
+        "category": "strength_and_resilience"
+      },
+      {
+        "text": "I can be changed by what happens to me, but I refuse to be reduced by it.",
+        "author": "Maya Angelou",
+        "category": "strength_and_resilience"
+      },
+      {
+        "text": "Sometimes, carrying on, just carrying on, is the superhuman achievement.",
+        "author": "Albert Camus",
+        "category": "strength_and_resilience"
+      }
+    ],
+    "nature": [
+      {
+        "text": "And forget not that the earth delights to feel your bare feet and the winds long to play with your hair.",
+        "author": "Kahlil Gibran",
+        "category": "nature"
+      },
+      {
+        "text": "Look deep into nature, and then you will understand everything better.",
+        "author": "Albert Einstein",
+        "category": "nature"
+      },
+      {
+        "text": "If you truly love nature, you will find beauty everywhere.",
+        "author": "Vincent van Gogh",
+        "category": "nature"
+      },
+      {
+        "text": "The clearest way into the Universe is through a forest wilderness.",
+        "author": "John Muir",
+        "category": "nature"
+      },
+      {
+        "text": "To sit in the shade on a fine day and look upon verdure is the most perfect refreshment.",
+        "author": "Jane Austen",
+        "category": "nature"
+      }
+    ],
+    "writing_and_literature": [
+      {
+        "text": "A reader lives a thousand lives before he dies. The man who never reads lives only one.",
+        "author": "George R.R. Martin",
+        "category": "writing_and_literature"
+      },
+      {
+        "text": "You can never get a cup of tea large enough or a book long enough to suit me.",
+        "author": "C.S. Lewis",
+        "category": "writing_and_literature"
+      },
+      {
+        "text": "There is no friend as loyal as a book.",
+        "author": "Ernest Hemingway",
+        "category": "writing_and_literature"
+      },
+      {
+        "text": "We write to taste life twice, in the moment and in retrospect.",
+        "author": "Anaïs Nin",
+        "category": "writing_and_literature"
+      },
+      {
+        "text": "That's the thing about books. They let you travel without moving your feet.",
+        "author": "Jhumpa Lahiri",
+        "category": "writing_and_literature"
+      }
+    ],
+    "happiness": [
+      {
+        "text": "Happiness depends upon ourselves.",
+        "author": "Aristotle",
+        "category": "happiness"
+      },
+      {
+        "text": "Sometimes your joy is the source of your smile, but sometimes your smile can be the source of your joy.",
+        "author": "Thích Nhất Hạnh",
+        "category": "happiness"
+      },
+      {
+        "text": "Joy does not simply happen to us. We have to choose joy and keep choosing it every day.",
+        "author": "Henri Nouwen",
+        "category": "happiness"
+      },
+      {
+        "text": "Be so happy that when others look at you, they become happy too.",
+        "author": "Unknown",
+        "category": "happiness"
+      },
+      {
+        "text": "Keep your face always toward the sunshine, and shadows will fall behind you.",
+        "author": "Walt Whitman",
+        "category": "happiness"
+      }
+    ],
+    "dreams": [
+      {
+        "text": "Do not dare not to dare.",
+        "author": "C.S. Lewis",
+        "category": "dreams"
+      },
+      {
+        "text": "It always seems impossible until it's done.",
+        "author": "Nelson Mandela",
+        "category": "dreams"
+      },
+      {
+        "text": "You can, you should, and if you're brave enough to start, you will.",
+        "author": "Stephen King",
+        "category": "dreams"
+      },
+      {
+        "text": "Throw your dreams into space like a kite, and you do not know what it will bring back—a new life, a new friend, a new love, a new country.",
+        "author": "Anaïs Nin",
+        "category": "dreams"
+      },
+      {
+        "text": "Imagination is the only weapon in the war against reality.",
+        "author": "Lewis Carroll",
+        "category": "dreams"
+      }
+    ],
+    "life": [
+      {
+        "text": "Be yourself; everyone else is already taken.",
+        "author": "Oscar Wilde",
+        "category": "life"
+      },
+      {
+        "text": "I'm selfish, impatient and a little insecure. I make mistakes, I am out of control and at times hard to handle. But if you can't handle me at my worst, then you sure as hell don't deserve me at my best.",
+        "author": "Marilyn Monroe",
+        "category": "life"
+      },
+      {
+        "text": "So many books, so little time.",
+        "author": "Frank Zappa",
+        "category": "life"
+      },
+      {
+        "text": "Two things are infinite: the universe and human stupidity; and I'm not sure about the universe.", 
+        "author": "Albert Einstein",
+        "category": "life"
+      },
+      {
+        "text": "A room without books is like a body without a soul.",
+        "author": "Marcus Tullius Cicero",
+        "category": "life"
+      },
+      {
+        "text": "Be who you are and say what you feel, because those who mind don't matter, and those who matter don't mind.",
+        "author": "Bernard M. Baruch",
+        "category": "life"
+      },
+      {
+        "text": "You've gotta dance like there's nobody watching, Love like you'll never be hurt, Sing like there's nobody listening, And live like it's heaven on earth.",
+        "author": "William W. Purkey",
+        "category": "life"
+      },
+      {
+        "text": "You know you're in love when you can't fall asleep because reality is finally better than your dreams.",
+        "author": "Dr. Seuss",
+        "category": "life"
+      },
+      {
+        "text": "You only live once, but if you do it right, once is enough.",
+        "author": "Mae West",
+        "category": "life"
+      },
+      {
+        "text": "Be the change that you wish to see in the world.",
+        "author": "Mahatma Gandhi",
+        "category": "life"
+      },
+      {
+        "text": "In three words I can sum up everything I've learned about life: it goes on.",
+        "author": "Robert Frost",
+        "category": "life"
+      },
+      {
+        "text": "If you want to know what a man's like, take a good look at how he treats his inferiors, not his equals.",
+        "author": "J.K. Rowling",
+        "category": "life"
+      },
+      {
+        "text": "Don't walk in front of me… I may not follow. Don't walk behind me… I may not lead. Walk beside me… just be my friend.",
+        "author": "Albert Camus",
+        "category": "life"
+      },
+      {
+        "text": "If you tell the truth, you don't have to remember anything.",
+        "author": "Mark Twain",
+        "category": "life"
+      },
+      {
+        "text": "I've learned that people will forget what you said, people will forget what you did, but people will never forget how you made them feel.",
+        "author": "Maya Angelou",
+        "category": "life"
+      },
+      {
+        "text": "Friendship ... is born at the moment when one man says to another 'What! You too? I thought that no one but myself ...'",
+        "author": "C.S. Lewis",
+        "category": "life"
+      },
+      {
+        "text": "To live is the rarest thing in the world. Most people exist, that is all.",
+        "author": "Oscar Wilde",
+        "category": "life"
+      },
+      {
+        "text": "A friend is someone who knows all about you and still loves you.",
+        "author": "Elbert Hubbard",
+        "category": "life"
+      },
+      {
+        "text": "Always forgive your enemies; nothing annoys them so much.",
+        "author": "Oscar Wilde",
+        "category": "life"
+      },
+      {
+        "text": "Darkness cannot drive out darkness: only light can do that. Hate cannot drive out hate: only love can do that.",
+        "author": "Martin Luther King Jr.",
+        "category": "life"
+      },
+      {
+        "text": "Live as if you were to die tomorrow. Learn as if you were to live forever.",
+        "author": "Mahatma Gandhi",
+        "category": "life"
+      },
+      {
+        "text": "We accept the love we think we deserve.",
+        "author": "Stephen Chbosky",
+        "category": "life"
+      },
+      {
+        "text": "Without music, life would be a mistake.",
+        "author": "Friedrich Nietzsche",
+        "category": "life"
+      },
+      {
+        "text": "I am so clever that sometimes I don't understand a single word of what I am saying.",
+        "author": "Oscar Wilde",
+        "category": "life"
+      },
+      {
+        "text": "To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment.",
+        "author": "Ralph Waldo Emerson",
+        "category": "life"
+      },
+      {
+        "text": "Here's to the crazy ones. The misfits. The rebels. The troublemakers. The round pegs in the square holes. The ones who see things differently. They're not fond of rules. And they have no respect for the status quo. You can quote them, disagree with them, glorify or vilify them. About the only thing you can't do is ignore them. Because they change things. They push the human race forward. And while some may see them as the crazy ones, we see genius. Because the people who are crazy enough to think they can change the world, are the ones who do.",
+        "author": "Steve Jobs",
+        "category": "life"
+      },
+      {
+        "text": "Insanity is doing the same thing, over and over again, but expecting different results.",
+        "author": "Narcotics Anonymous",
+        "category": "life"
+      },
+      {
+        "text": "I believe that everything happens for a reason. People change so that you can learn to let go, things go wrong so that you appreciate them when they're right, you believe lies so you eventually learn to trust no one but yourself, and sometimes good things fall apart so better things can fall together.",
+        "author": "Marilyn Monroe",
+        "category": "life"
+      },
+      {
+        "text": "It is better to be hated for what you are than to be loved for what you are not.",
+        "author": "Andre Gide",
+        "category": "life"
+      },
+      {
+        "text": "Twenty years from now you will be more disappointed by the things that you didn't do than by the ones you did do. So throw off the bowlines. Sail away from the safe harbor. Catch the trade winds in your sails. Explore. Dream. Discover.",
+        "author": "H. Jackson Brown Jr.",
+        "category": "life"
+      }
+    ]
+  }
+}
