@@ -1,0 +1,146 @@
+.dashboardContainer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  opacity: 1;
+  transform: none;
+}
+
+.logoContainer {
+  text-align: center;
+  margin: 2rem auto 3rem;
+  max-width: 400px;
+}
+
+.mainLogo {
+  width: 100%;
+  height: auto;
+  transition: all 0.5s ease;
+  filter: drop-shadow(0 4px 15px rgba(83, 46, 59, 0.1));
+}
+
+.mainLogo:hover {
+  transform: scale(1.02);
+  filter: drop-shadow(0 8px 25px rgba(83, 46, 59, 0.2));
+}
+
+.dashboardTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: #532e3b;
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.dashboardTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 4px;
+  background: linear-gradient(to right, #ffb3c1, #ffd6e0);
+  border-radius: 2px;
+}
+
+.affirmationCard {
+  background: linear-gradient(135deg, rgba(255, 179, 193, 0.9) 0%, rgba(255, 214, 224, 0.9) 100%);
+  border-radius: 12px;
+  padding: 2rem;
+  color: #532e3b;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(255, 179, 193, 0.2);
+  backdrop-filter: blur(10px);
+  margin-bottom: 2rem;
+}
+
+.affirmationText {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 4px rgba(83, 46, 59, 0.1);
+  transition: all 0.5s ease;
+}
+
+.newAffirmationButton {
+  background: linear-gradient(45deg, #ffb3c1, #ffd6e0);
+  color: #532e3b;
+  border: none;
+  border-radius: 30px;
+  padding: 1rem 2rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 179, 193, 0.3);
+}
+
+.newAffirmationButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 179, 193, 0.4);
+  background: linear-gradient(45deg, #ffd6e0, #ffb3c1);
+}
+
+.newAffirmationButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.inspirationalQuote {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  color: #532e3b;
+  max-width: 700px;
+  margin: 3rem auto;
+  line-height: 1.8;
+  position: relative;
+  z-index: 1;
+  font-style: italic;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 30px;
+  box-shadow: 0 4px 15px rgba(255, 179, 193, 0.1);
+}
+
+.quoteAuthor {
+  display: block;
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #ff8da1;
+  font-style: normal;
+}
+
+.fadeOut {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.fadeIn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .dashboardContainer {
+    padding: 1rem;
+  }
+
+  .affirmationCard {
+    padding: 1.8rem;
+  }
+
+  .affirmationText {
+    font-size: 1.3rem;
+  }
+
+  .inspirationalQuote {
+    font-size: 1.1rem;
+    padding: 1.5rem;
+    margin: 2rem auto;
+  }
+} 
