@@ -25,17 +25,18 @@
   }
   
   .profilePhoto {
-    width: 180px;  /* 3:4 ratio */
-    height: 240px; /* 3:4 ratio */
-    border-radius: 20px;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
     object-fit: cover;
     object-position: center;
     box-shadow: 0 8px 20px rgba(83, 46, 59, 0.15);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform: rotate(35deg);
   }
   
   .profilePhoto:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px) rotate(35deg);
     box-shadow: 0 12px 25px rgba(83, 46, 59, 0.2);
   }
   
@@ -133,15 +134,35 @@
   }
   
   .titleLogo {
-    height: 40px;
-    vertical-align: middle;
+    height: 80px;
+    vertical-align: baseline;
     margin: 0 5px;
     transition: all 0.3s ease;
+    transform: translateY(5px); /* Fine-tune this value as needed */
   }
   
   .titleLogo:hover {
     transform: scale(1.05);
     filter: drop-shadow(0 4px 10px rgba(83, 46, 59, 0.15));
+  }
+  
+  .pageTitle {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 2rem;
+  }
+  
+  .pageTitle span {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--accent-color-1), var(--accent-color-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   }
   
   @media (max-width: 768px) {
@@ -152,7 +173,7 @@
     }
   
     .profilePhoto {
-      width: 150px;
+      width: 200px;
       height: 200px;
     }
   
@@ -176,5 +197,9 @@
     .featureList li::after {
       right: auto;
       left: 0;
+    }
+  
+    .titleLogo {
+      height: 60px;
     }
   }
