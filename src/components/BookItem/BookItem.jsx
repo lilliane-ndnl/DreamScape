@@ -215,10 +215,44 @@ function BookItem({ book, onUpdate, onDelete, onMove }) {
                 </div>
             </div>
 
+            {/* Add Quotes Section */}
+            <div className={styles.quotesSection}>
+                <h4>Memorable Quotes</h4>
+                {book.quotes && book.quotes.map(quote => (
+                    <div key={quote.id} className={styles.quote}>
+                        <p>{quote.text}</p>
+                        <button 
+                            onClick={() => handleDeleteQuote(quote.id)}
+                            className={styles.deleteQuoteButton}
+                        >
+                            Delete
+                        </button>
+                    </div>
+                ))}
+                <div className={styles.addQuote}>
+                    <input
+                        type="text"
+                        value={newQuote}
+                        onChange={(e) => setNewQuote(e.target.value)}
+                        placeholder="Add a new quote..."
+                        className={styles.quoteInput}
+                    />
+                    <button 
+                        onClick={handleAddQuote}
+                        className={styles.addQuoteButton}
+                    >
+                        Add Quote
+                    </button>
+                </div>
+            </div>
+
             <div className={styles.bookActions}>
                 {isEditing ? (
                     <div className={styles.editActions}>
-                        <button onClick={handleSave} className={styles.saveButton}>
+                        <button 
+                            onClick={book.status === "Finished" ? handleSaveReview : handleSave} 
+                            className={styles.saveButton}
+                        >
                             Save
                         </button>
                         <button onClick={handleCancel} className={styles.cancelButton}>
