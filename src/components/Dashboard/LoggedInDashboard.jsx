@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { db, storage } from '../../firebase';
@@ -29,17 +29,17 @@ function LoggedInDashboard() {
   const getAllAffirmations = () => Object.values(affirmationsData.categories).flat();
   const getAllQuotes = () => Object.values(quotesData.categories).flat();
 
-  const handleNewAffirmation = () => {
+  const handleNewAffirmation = useCallback(() => {
     const allAffirmations = getAllAffirmations();
     const newAffirmation = getRandomItem(allAffirmations);
     setCurrentAffirmation(`${newAffirmation.text} ${newAffirmation.emoji}`);
-  };
+  }, []);
 
-  const handleNewQuote = () => {
+  const handleNewQuote = useCallback(() => {
     const allQuotes = getAllQuotes();
     const newQuote = getRandomItem(allQuotes);
     setCurrentQuote(newQuote);
-  };
+  }, []);
 
   // Profile picture upload handler
   const handleProfilePictureUpload = async (event) => {
@@ -164,7 +164,7 @@ function LoggedInDashboard() {
       unsubscribeVisionBoard();
       unsubscribeMood();
     };
-  }, [currentUser]);
+  }, [currentUser, handleNewAffirmation, handleNewQuote]);
 
   if (isLoading) {
     return (
