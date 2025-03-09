@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { auth, createUserWithEmailAndPassword, db } from '../../firebase';
 import { doc, setDoc } from 'firebase/firestore';
+import { sendEmailVerification } from 'firebase/auth';
 import styles from '../Auth/AuthShared.module.css';
 
 const Signup = () => {
@@ -29,18 +30,22 @@ const Signup = () => {
             newErrors.email = 'Email is invalid';
         }
 
-        // Username validation
+        // Username validation (letters, numbers, periods, and underscores only, max 30 chars)
         if (!formData.username) {
             newErrors.username = 'Username is required';
+        } else if (formData.username.length > 30) {
+            newErrors.username = 'Username must be 30 characters or less';
+        } else if (!/^[a-zA-Z0-9._]+$/.test(formData.username)) {
+            newErrors.username = 'Username can only contain letters, numbers, periods, and underscores';
         }
 
-        // Password validation
+        // Password validation (at least 8 chars, 1 uppercase, 1 number)
         if (!formData.password) {
             newErrors.password = 'Password is required';
         } else if (formData.password.length < 8) {
             newErrors.password = 'Password must be at least 8 characters';
-        } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(formData.password)) {
-            newErrors.password = 'Password must contain at least one special character';
+        } else if (!/[A-Z]/.test(formData.password)) {
+            newErrors.password = 'Password must contain at least one uppercase letter';
         } else if (!/\d/.test(formData.password)) {
             newErrors.password = 'Password must contain at least one number';
         }
@@ -52,9 +57,22 @@ const Signup = () => {
             newErrors.confirmPassword = 'Passwords do not match';
         }
 
-        // Birthday validation
+        // Birthday validation (must be above 12 years old)
         if (!formData.birthday) {
             newErrors.birthday = 'Birthday is required';
+        } else {
+            const birthDate = new Date(formData.birthday);
+            const today = new Date();
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const monthDiff = today.getMonth() - birthDate.getMonth();
+            
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            
+            if (age < 12) {
+                newErrors.birthday = 'You must be at least 12 years old to register';
+            }
         }
 
         // Sex validation
@@ -86,13 +104,12 @@ const Signup = () => {
         
         setIsSubmitting(true);
         try {
-            console.log('Starting account creation...');
-            
             // Create user account
             const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
             const user = userCredential.user;
             
-            console.log('User account created:', user.uid);
+            // Send email verification
+            await sendEmailVerification(user);
 
             // Create user document in Firestore
             const userDocRef = doc(db, "users", user.uid);
@@ -104,21 +121,16 @@ const Signup = () => {
                 fullName: formData.fullName,
                 createdAt: new Date().toISOString(),
                 bio: '',
-                profilePicture: ''
+                profilePicture: '',
+                emailVerified: false
             };
             
-            console.log('Attempting to create user document:', userData);
-            
             await setDoc(userDocRef, userData);
-            console.log('User document created successfully');
 
-            navigate('/');
+            // Navigate to a verification page or show a message
+            navigate('/verification-sent');
         } catch (error) {
-            console.error('Signup error details:', {
-                code: error.code,
-                message: error.message,
-                fullError: error
-            });
+            console.error('Signup error:', error);
 
             if (error.code === 'auth/email-already-in-use') {
                 setErrors(prev => ({ ...prev, email: 'Email is already registered' }));
@@ -126,8 +138,6 @@ const Signup = () => {
                 setErrors(prev => ({ ...prev, email: 'Invalid email format' }));
             } else if (error.code === 'auth/weak-password') {
                 setErrors(prev => ({ ...prev, password: 'Password is too weak' }));
-            } else if (error.code === 'auth/network-request-failed') {
-                setErrors(prev => ({ ...prev, submit: 'Network error. Please check your internet connection.' }));
             } else {
                 setErrors(prev => ({ 
                     ...prev, 
