@@ -1,0 +1,385 @@
+{
+  "categories": {
+    "self_love": [
+      {
+        "text": "I am a masterpiece—beautiful, whole, and enough just as I am",
+        "emoji": "✨",
+        "category": "self_love"
+      },
+      {
+        "text": "Every inch of me is worthy of love, respect, and kindness",
+        "emoji": "💖",
+        "category": "self_love"
+      },
+      {
+        "text": "I embrace my flaws; they are the brushstrokes of my uniqueness",
+        "emoji": "🎨",
+        "category": "self_love"
+      },
+      {
+        "text": "I am not defined by my past—I am constantly growing into my best self",
+        "emoji": "🦋",
+        "category": "self_love"
+      },
+      {
+        "text": "My heart beats with courage, my soul shines with confidence",
+        "emoji": "⭐",
+        "category": "self_love"
+      },
+      {
+        "text": "I honor my emotions and give myself the space to feel, heal, and thrive",
+        "emoji": "🌸",
+        "category": "self_love"
+      },
+      {
+        "text": "I release all doubts—I trust in my strength, my path, and my purpose",
+        "emoji": "🌟",
+        "category": "self_love"
+      },
+      {
+        "text": "My voice matters. My dreams matter. I matter",
+        "emoji": "💫",
+        "category": "self_love"
+      },
+      {
+        "text": "The love I seek is already within me, waiting to be embraced",
+        "emoji": "💝",
+        "category": "self_love"
+      },
+      {
+        "text": "I am a force of nature—unstoppable, radiant, and powerful beyond measure",
+        "emoji": "🌠",
+        "category": "self_love"
+      },
+      {
+        "text": "I am enough just as I am.",
+        "emoji": "❤️"
+      },
+      {
+        "text": "I deserve love and kindness.",
+        "emoji": "💖"
+      },
+      {
+        "text": "I radiate confidence and self-acceptance.",
+        "emoji": "✨"
+      },
+      {
+        "text": "My self-worth is not dependent on others.",
+        "emoji": "🌟"
+      },
+      {
+        "text": "I love myself unconditionally.",
+        "emoji": "💕"
+      },
+      {
+        "text": "I am proud of who I am becoming.",
+        "emoji": "🌿"
+      },
+      {
+        "text": "My imperfections make me unique and beautiful.",
+        "emoji": "🌸"
+      },
+      {
+        "text": "I embrace my flaws with kindness.",
+        "emoji": "🌷"
+      },
+      {
+        "text": "I treat myself with the same love I give others.",
+        "emoji": "💗"
+      },
+      {
+        "text": "I am at peace with my past.",
+        "emoji": "🌊"
+      },
+      {
+        "text": "I choose to nourish my mind, body, and soul.",
+        "emoji": "🍃"
+      },
+      {
+        "text": "I am deserving of all the good in the world.",
+        "emoji": "🌞"
+      },
+      {
+        "text": "My happiness comes from within.",
+        "emoji": "🌻"
+      },
+      {
+        "text": "I honor my emotions and listen to my needs.",
+        "emoji": "🎶"
+      },
+      {
+        "text": "Every day, I grow into the best version of myself.",
+        "emoji": "🔆"
+      }
+    ],
+    "healing": [
+      {
+        "text": "Every breath I take fills me with light, peace, and renewal",
+        "emoji": "🌿",
+        "category": "healing"
+      },
+      {
+        "text": "I allow the wounds of yesterday to transform into the wisdom of today",
+        "emoji": "🦋",
+        "category": "healing"
+      },
+      {
+        "text": "I forgive myself for the times I didn't know better—I am learning, I am evolving",
+        "emoji": "🕊️",
+        "category": "healing"
+      },
+      {
+        "text": "I let go of what no longer serves me, making room for joy and serenity",
+        "emoji": "🍃",
+        "category": "healing"
+      },
+      {
+        "text": "My past does not define me—I am rewriting my story with love and strength",
+        "emoji": "📖",
+        "category": "healing"
+      },
+      {
+        "text": "I release pain with every exhale and welcome healing with every inhale",
+        "emoji": "🌬️",
+        "category": "healing"
+      },
+      {
+        "text": "Even in my darkest moments, I am cradled in the light of my resilience",
+        "emoji": "🌅",
+        "category": "healing"
+      },
+      {
+        "text": "I am allowed to rest, to heal, and to move forward at my own pace",
+        "emoji": "🌙",
+        "category": "healing"
+      },
+      {
+        "text": "My heart is healing, my soul is rising, my spirit is unbreakable",
+        "emoji": "💫",
+        "category": "healing"
+      },
+      {
+        "text": "No storm lasts forever—like the sun after the rain, I will shine again",
+        "emoji": "🌈",
+        "category": "healing"
+      }
+    ],
+    "strength": [
+      {
+        "text": "I stand tall in my power, rooted in strength and resilience",
+        "emoji": "🌳",
+        "category": "strength"
+      },
+      {
+        "text": "I do not shrink to fit someone else's expectations—I rise to meet my own",
+        "emoji": "🦁",
+        "category": "strength"
+      },
+      {
+        "text": "I am the author of my destiny, and my story is just beginning",
+        "emoji": "✍️",
+        "category": "strength"
+      },
+      {
+        "text": "Fear does not control me—I walk boldly toward my dreams",
+        "emoji": "⚡",
+        "category": "strength"
+      },
+      {
+        "text": "I trust myself to navigate any challenge life brings my way",
+        "emoji": "🧭",
+        "category": "strength"
+      },
+      {
+        "text": "I am not afraid to walk alone if it means staying true to myself",
+        "emoji": "🔥",
+        "category": "strength"
+      },
+      {
+        "text": "I am strong enough to leave behind what dims my light",
+        "emoji": "💪",
+        "category": "strength"
+      },
+      {
+        "text": "I am a warrior, not because I've never been broken, but because I always rise",
+        "emoji": "⚔️",
+        "category": "strength"
+      },
+      {
+        "text": "My power is not given—it is claimed, owned, and embodied",
+        "emoji": "👑",
+        "category": "strength"
+      },
+      {
+        "text": "I am limitless, unstoppable, and fearless in pursuit of my dreams",
+        "emoji": "🚀",
+        "category": "strength"
+      }
+    ],
+    "compassion": [
+      {
+        "text": "My heart is wide open, filled with love and understanding for myself and others",
+        "emoji": "💝",
+        "category": "compassion"
+      },
+      {
+        "text": "I choose kindness, even when the world feels unkind",
+        "emoji": "🕊️",
+        "category": "compassion"
+      },
+      {
+        "text": "I see the beauty in others, and in doing so, I see the beauty in myself",
+        "emoji": "🌸",
+        "category": "compassion"
+      },
+      {
+        "text": "Compassion flows from me effortlessly, like a river of light",
+        "emoji": "✨",
+        "category": "compassion"
+      },
+      {
+        "text": "I listen with my heart, not just my ears",
+        "emoji": "💖",
+        "category": "compassion"
+      },
+      {
+        "text": "Every person I meet is fighting their own battle—I choose grace over judgment",
+        "emoji": "🤝",
+        "category": "compassion"
+      },
+      {
+        "text": "My kindness has the power to heal, uplift, and transform the world around me",
+        "emoji": "🌟",
+        "category": "compassion"
+      },
+      {
+        "text": "I offer love freely, without expectation, and receive it in return",
+        "emoji": "💫",
+        "category": "compassion"
+      },
+      {
+        "text": "The more love I give, the more love I attract",
+        "emoji": "🌈",
+        "category": "compassion"
+      },
+      {
+        "text": "I am a safe space for myself and for those who need warmth and understanding",
+        "emoji": "🏡",
+        "category": "compassion"
+      },
+      {
+        "text": "I treat myself and others with kindness.",
+        "emoji": "🌷"
+      },
+      {
+        "text": "I am patient and understanding.",
+        "emoji": "⏳"
+      },
+      {
+        "text": "Love and compassion flow from me effortlessly.",
+        "emoji": "💞"
+      },
+      {
+        "text": "I uplift those around me.",
+        "emoji": "🤝"
+      },
+      {
+        "text": "My words bring comfort and healing.",
+        "emoji": "💬"
+      },
+      {
+        "text": "I choose to see the good in people.",
+        "emoji": "👀"
+      },
+      {
+        "text": "I embrace differences with an open heart.",
+        "emoji": "❤️"
+      },
+      {
+        "text": "I listen with love and without judgment.",
+        "emoji": "👂"
+      },
+      {
+        "text": "I offer kindness without expecting anything in return.",
+        "emoji": "💌"
+      },
+      {
+        "text": "My heart is filled with gratitude and love.",
+        "emoji": "💓"
+      },
+      {
+        "text": "I forgive myself and others easily.",
+        "emoji": "🕊️"
+      },
+      {
+        "text": "I am a source of peace and comfort.",
+        "emoji": "☀️"
+      },
+      {
+        "text": "I send love to those who need it most.",
+        "emoji": "💛"
+      },
+      {
+        "text": "I create a space of love and acceptance.",
+        "emoji": "🏡"
+      },
+      {
+        "text": "Every person I meet teaches me something valuable.",
+        "emoji": "🎭"
+      }
+    ],
+    "nature": [
+      {
+        "text": "I am deeply connected to the earth, and it fills me with peace and grounding",
+        "emoji": "🌍",
+        "category": "nature"
+      },
+      {
+        "text": "The sun rises for me, the trees whisper my name, and the universe holds me in its embrace",
+        "emoji": "🌅",
+        "category": "nature"
+      },
+      {
+        "text": "I find magic in the small moments—the rustling leaves, the gentle breeze, the stars above",
+        "emoji": "✨",
+        "category": "nature"
+      },
+      {
+        "text": "My soul is as wild and free as the ocean, unchained and boundless",
+        "emoji": "🌊",
+        "category": "nature"
+      },
+      {
+        "text": "I honor the rhythms of nature, knowing I, too, have seasons of growth and rest",
+        "emoji": "🌱",
+        "category": "nature"
+      },
+      {
+        "text": "I breathe in the beauty of this world and exhale gratitude",
+        "emoji": "🌿",
+        "category": "nature"
+      },
+      {
+        "text": "Every step I take, I do so with reverence for this sacred earth",
+        "emoji": "🍃",
+        "category": "nature"
+      },
+      {
+        "text": "I am a child of the universe—loved, protected, and infinite in possibility",
+        "emoji": "🌌",
+        "category": "nature"
+      },
+      {
+        "text": "Nature reminds me that change is natural, and I embrace it with open arms",
+        "emoji": "🦋",
+        "category": "nature"
+      },
+      {
+        "text": "I am one with the universe, and the universe is one with me",
+        "emoji": "🌠",
+        "category": "nature"
+      }
+    ]
+  }
+}
+  
