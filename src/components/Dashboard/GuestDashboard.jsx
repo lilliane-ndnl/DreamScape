@@ -4,50 +4,37 @@ import affirmationsData from '../../data/affirmations.json';
 import quotesData from '../../data/quotes.json';
 
 function GuestDashboard() {
-  const [currentAffirmation, setCurrentAffirmation] = useState(() => {
-    const saved = localStorage.getItem('guestAffirmation');
-    return saved || '';
-  });
-  
-  const [currentQuote, setCurrentQuote] = useState(() => {
-    const saved = localStorage.getItem('guestQuote');
-    return saved ? JSON.parse(saved) : { text: '', author: '' };
-  });
-  
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [currentAffirmation, setCurrentAffirmation] = useState('');
+  const [currentQuote, setCurrentQuote] = useState({ text: '', author: '' });
+  const [isAffirmationAnimating, setIsAffirmationAnimating] = useState(false);
+  const [isQuoteAnimating, setIsQuoteAnimating] = useState(false);
   const [showBackground, setShowBackground] = useState(false);
 
   // Helper function to get random item from array
   const getRandomItem = (array) => array[Math.floor(Math.random() * array.length)];
 
-  // Helper function to get all affirmations from all categories
-  const getAllAffirmations = () => {
-    return Object.values(affirmationsData.categories).flat();
-  };
-
-  // Helper function to get all quotes from all categories
-  const getAllQuotes = () => {
-    return Object.values(quotesData.categories).flat();
-  };
+  // Helper functions for affirmations and quotes
+  const getAllAffirmations = () => Object.values(affirmationsData.categories).flat();
+  const getAllQuotes = () => Object.values(quotesData.categories).flat();
 
   const handleNewAffirmation = useCallback(() => {
-    setIsAnimating(true);
-    const allAffirmations = getAllAffirmations();
-    const newAffirmation = getRandomItem(allAffirmations);
-    const affirmationText = `${newAffirmation.text} ${newAffirmation.emoji}`;
-    
+    setIsAffirmationAnimating(true);
     setTimeout(() => {
-      setCurrentAffirmation(affirmationText);
-      localStorage.setItem('guestAffirmation', affirmationText);
-      setIsAnimating(false);
+      const allAffirmations = getAllAffirmations();
+      const newAffirmation = getRandomItem(allAffirmations);
+      setCurrentAffirmation(`${newAffirmation.text} ${newAffirmation.emoji}`);
+      setIsAffirmationAnimating(false);
     }, 500);
   }, []);
 
   const handleNewQuote = useCallback(() => {
-    const allQuotes = getAllQuotes();
-    const newQuote = getRandomItem(allQuotes);
-    setCurrentQuote(newQuote);
-    localStorage.setItem('guestQuote', JSON.stringify(newQuote));
+    setIsQuoteAnimating(true);
+    setTimeout(() => {
+      const allQuotes = getAllQuotes();
+      const newQuote = getRandomItem(allQuotes);
+      setCurrentQuote(newQuote);
+      setIsQuoteAnimating(false);
+    }, 500);
   }, []);
 
   useEffect(() => {
@@ -83,25 +70,28 @@ function GuestDashboard() {
         <h2 className={styles.dashboardTitle}>Daily Affirmation</h2>
         
         <div className={styles.affirmationCard}>
-          <div className={`${styles.affirmationText} ${isAnimating ? styles.fadeOut : styles.fadeIn}`}>
+          <div className={`${styles.affirmationText} ${isAffirmationAnimating ? styles.fadeOut : styles.fadeIn}`}>
             {currentAffirmation}
           </div>
           
           <button 
             className={styles.newAffirmationButton}
             onClick={handleNewAffirmation}
-            disabled={isAnimating}
+            disabled={isAffirmationAnimating}
           >
             New Affirmation ✦
           </button>
         </div>
 
         <div className={styles.inspirationalQuote}>
-          "{currentQuote.text}"
-          <span className={styles.quoteAuthor}>- {currentQuote.author}</span>
+          <div className={`${styles.quoteText} ${isQuoteAnimating ? styles.fadeOut : styles.fadeIn}`}>
+            "{currentQuote.text}"
+            <span className={styles.quoteAuthor}>- {currentQuote.author}</span>
+          </div>
           <button 
             className={styles.newAffirmationButton}
             onClick={handleNewQuote}
+            disabled={isQuoteAnimating}
             style={{ marginTop: '1rem' }}
           >
             New Quote ✦
