@@ -5,57 +5,6 @@ import MoodTrends from '../MoodTrends/MoodTrends';
 import MoodSlider from '../MoodSlider/MoodSlider';
 import '../../styles/shared.css';
 
-// Common emojis for moods - organized by categories
-const commonEmojis = [
-    // Happy/Positive
-    '😊', '😃', '😄', '😁', '🥰', '😍', '🤗', '😌', '😎', '🥳',
-    // Love/Hearts
-    '💖', '💝', '💕', '💓', '💗', '💞', '💘', '💟',
-    // Sad/Negative
-    '😢', '😭', '😔', '😕', '😟', '🥺', '😩', '😫',
-    // Angry/Frustrated
-    '😠', '😡', '🤬', '😤', '😣', '😖', '😫', '😒',
-    // Tired/Sick
-    '😪', '😴', '🤒', '😷', '🤢', '🤮', '🥴', '😵',
-    // Worried/Scared
-    '😨', '😰', '😱', '😓', '😥', '😧', '😦', '😮',
-    // Neutral/Thoughtful
-    '🤔', '🤨', '😐', '😑', '😶', '🙄', '😏', '😌',
-    // Silly/Fun
-    '🤪', '😜', '😝', '😛', '🤓', '🥸', '🤡', '😎',
-    // Nature/Weather Moods
-    '🌞', '🌤️', '🌧️', '⛈️', '🌈', '✨', '⭐', '🌙',
-    // Activity Moods
-    '💪', '🧘', '🎮', '📚', '🎨', '🎵', '🎬', '🍽️'
-];
-
-// Expanded color options (16 colors)
-const colorOptions = [
-    // Warm & Happy Colors
-    '#FFCACA', // soft pink (slightly deeper)
-    '#FFD6B8', // soft peach (more saturated)
-    '#FFE99B', // soft yellow (more vibrant)
-    '#FFD6E5', // baby pink (deeper)
-
-    // Cool & Calm Colors
-    '#C1D8FF', // soft blue (more saturated)
-    '#D6E5FF', // lighter blue
-    '#C1FFD6', // mint green (more vibrant)
-    '#D6E8D6', // sage green (more saturated)
-
-    // Gentle & Sweet Colors
-    '#E6D6FF', // soft purple (deeper)
-    '#FFD6E8', // light rose (more saturated)
-    '#D6FFF2', // aqua mint (more vibrant)
-    '#FFE1D6', // soft coral (deeper)
-
-    // Negative Emotion Colors
-    '#DBDBDB', // soft gray (deeper)
-    '#D6C7B8', // soft brown (more saturated)
-    '#C9C5BE', // stone gray (deeper)
-    '#D6D0C4'  // taupe gray (more saturated)
-];
-
 function Journal() {
     const [entries, setEntries] = useState([]);
     const [newEntryText, setNewEntryText] = useState('');
