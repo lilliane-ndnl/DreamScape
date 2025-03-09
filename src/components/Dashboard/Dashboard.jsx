@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import styles from './Dashboard.module.css';
 import affirmationsData from '../../data/affirmations.json';
 import quotesData from '../../data/quotes.json';
@@ -30,7 +30,7 @@ function Dashboard() {
     return Object.values(quotesData.categories).flat();
   };
 
-  const handleNewAffirmation = () => {
+  const handleNewAffirmation = useCallback(() => {
     setIsAnimating(true);
     const allAffirmations = getAllAffirmations();
     const newAffirmation = getRandomItem(allAffirmations);
@@ -41,14 +41,14 @@ function Dashboard() {
       localStorage.setItem('currentAffirmation', affirmationText);
       setIsAnimating(false);
     }, 500);
-  };
+  }, []);
 
-  const handleNewQuote = () => {
+  const handleNewQuote = useCallback(() => {
     const allQuotes = getAllQuotes();
     const newQuote = getRandomItem(allQuotes);
     setCurrentQuote(newQuote);
     localStorage.setItem('currentQuote', JSON.stringify(newQuote));
-  };
+  }, []);
 
   useEffect(() => {
     // Show background with delay
@@ -65,7 +65,7 @@ function Dashboard() {
     return () => {
       clearTimeout(backgroundTimer);
     };
-  }, [currentAffirmation, currentQuote.text]);
+  }, [currentAffirmation, currentQuote.text, handleNewAffirmation, handleNewQuote]);
 
   return (
     <div className={`pageContainer ${showBackground ? 'showBackground' : ''}`}>
