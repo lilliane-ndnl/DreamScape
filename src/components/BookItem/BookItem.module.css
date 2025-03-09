@@ -247,3 +247,76 @@
     flex-direction: column;
   }
 }
+
+.quotesSection {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+}
+
+.quotesSection h4 {
+    color: var(--accent-color-2);
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.quote {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem;
+    margin-bottom: 0.8rem;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(83, 46, 59, 0.1);
+}
+
+.quote p {
+    margin: 0;
+    flex: 1;
+    line-height: 1.4;
+}
+
+.deleteQuoteButton {
+    background-color: #ffebef;
+    color: var(--accent-color-2);
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 1rem;
+    transition: all 0.2s ease;
+}
+
+.deleteQuoteButton:hover {
+    background-color: #ffd6e0;
+}
+
+.addQuote {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 1rem;
+}
+
+.quoteInput {
+    flex: 1;
+    padding: 0.6rem;
+    border: 1px solid #ffd6e0;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.addQuoteButton {
+    background-color: var(--accent-color-2);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.addQuoteButton:hover {
+    background-color: #3d222c;
+}
