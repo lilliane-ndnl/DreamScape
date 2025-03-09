@@ -1,0 +1,111 @@
+.moodSliderContainer {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 25px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.95) 100%);
+    box-shadow: 0 8px 25px rgba(255, 179, 193, 0.2);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.moodSliderContainer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, #ffb3c1, #ffd6e0);
+    border-radius: 25px 25px 0 0;
+}
+
+.sliderContainer {
+    position: relative;
+    padding: 20px 0;
+    margin-bottom: 10px;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 8px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #ff8da1 0%, #ffb3c1 50%, #ffd6e0 100%);
+    outline: none;
+    opacity: 0.8;
+    transition: opacity 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 10px rgba(255, 141, 161, 0.2);
+    cursor: pointer;
+}
+
+.slider:hover {
+    opacity: 1;
+    box-shadow: 0 2px 15px rgba(255, 141, 161, 0.3);
+}
+
+/* Override default slider styling */
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(255, 141, 161, 0.4);
+    border: 2px solid #ff8da1;
+    transition: all 0.3s ease;
+}
+
+.slider::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+    box-shadow: 0 2px 12px rgba(255, 141, 161, 0.6);
+}
+
+.slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(255, 141, 161, 0.4);
+    border: 2px solid #ff8da1;
+    transition: all 0.3s ease;
+}
+
+.slider::-moz-range-thumb:hover {
+    transform: scale(1.1);
+    box-shadow: 0 2px 12px rgba(255, 141, 161, 0.6);
+}
+
+.moodLabel {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    background: linear-gradient(90deg, #ff8da1, #ffd6e0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 5px rgba(255, 141, 161, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .moodSliderContainer {
+        padding: 15px;
+    }
+    
+    .moodLabel {
+        font-size: 1rem;
+    }
+    
+    .slider::-webkit-slider-thumb,
+    .slider::-moz-range-thumb {
+        width: 18px;
+        height: 18px;
+    }
+}
