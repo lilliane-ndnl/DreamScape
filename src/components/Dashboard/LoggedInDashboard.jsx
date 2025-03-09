@@ -21,6 +21,8 @@ function LoggedInDashboard() {
   const [currentAffirmation, setCurrentAffirmation] = useState('');
   const [currentQuote, setCurrentQuote] = useState({ text: '', author: '' });
   const [isLoading, setIsLoading] = useState(true);
+  const [isAffirmationAnimating, setIsAffirmationAnimating] = useState(false);
+  const [isQuoteAnimating, setIsQuoteAnimating] = useState(false);
 
   // Helper function to get random item from array
   const getRandomItem = (array) => array[Math.floor(Math.random() * array.length)];
@@ -30,15 +32,23 @@ function LoggedInDashboard() {
   const getAllQuotes = () => Object.values(quotesData.categories).flat();
 
   const handleNewAffirmation = useCallback(() => {
-    const allAffirmations = getAllAffirmations();
-    const newAffirmation = getRandomItem(allAffirmations);
-    setCurrentAffirmation(`${newAffirmation.text} ${newAffirmation.emoji}`);
+    setIsAffirmationAnimating(true);
+    setTimeout(() => {
+      const allAffirmations = getAllAffirmations();
+      const newAffirmation = getRandomItem(allAffirmations);
+      setCurrentAffirmation(`${newAffirmation.text} ${newAffirmation.emoji}`);
+      setIsAffirmationAnimating(false);
+    }, 500);
   }, []);
 
   const handleNewQuote = useCallback(() => {
-    const allQuotes = getAllQuotes();
-    const newQuote = getRandomItem(allQuotes);
-    setCurrentQuote(newQuote);
+    setIsQuoteAnimating(true);
+    setTimeout(() => {
+      const allQuotes = getAllQuotes();
+      const newQuote = getRandomItem(allQuotes);
+      setCurrentQuote(newQuote);
+      setIsQuoteAnimating(false);
+    }, 500);
   }, []);
 
   // Profile picture upload handler
@@ -325,19 +335,29 @@ function LoggedInDashboard() {
       <div className={styles.rightColumn}>
         <div className={styles.affirmationCard}>
           <h3>Daily Affirmation</h3>
-          <p className={styles.affirmationText}>{currentAffirmation}</p>
-          <button onClick={handleNewAffirmation} className={styles.newButton}>
+          <p className={`${styles.affirmationText} ${isAffirmationAnimating ? styles.fadeOut : styles.fadeIn}`}>
+            {currentAffirmation}
+          </p>
+          <button 
+            onClick={handleNewAffirmation} 
+            className={styles.newButton}
+            disabled={isAffirmationAnimating}
+          >
             New Affirmation ✦
           </button>
         </div>
 
         <div className={styles.quoteCard}>
           <h3>Quote of the Day</h3>
-          <blockquote className={styles.quote}>
+          <blockquote className={`${styles.quote} ${isQuoteAnimating ? styles.fadeOut : styles.fadeIn}`}>
             {currentQuote.text}
             <footer>- {currentQuote.author}</footer>
           </blockquote>
-          <button onClick={handleNewQuote} className={styles.newButton}>
+          <button 
+            onClick={handleNewQuote} 
+            className={styles.newButton}
+            disabled={isQuoteAnimating}
+          >
             New Quote ✦
           </button>
         </div>
