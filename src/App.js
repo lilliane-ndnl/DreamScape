@@ -37,18 +37,18 @@ function App() {
       <div className="appContent">
         <nav className="topNav">
           <div className="navLinks">
-            <Link to="/">Vision Board</Link>
+            <Link to="/vision-board">Vision Board</Link>
             <Link to="/journal">Journal</Link>
             <Link to="/about">About</Link>
           </div>
-          <Link to="/dashboard" className="logoLink">
+          <Link to="/" className="logoLink">
             <img src="/images/dreamscape-logo.png" alt="DreamScape" className="logo" />
           </Link>
         </nav>
 
         <Routes>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/" element={<VisionBoard />} />
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/vision-board" element={<VisionBoard />} />
           <Route path="/goals" element={<GoalList />} />
           <Route path="/habits" element={<HabitList />} />
           <Route path="/reading" element={<ReadingList />} />
