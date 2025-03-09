@@ -1,0 +1,347 @@
+{
+  "categories": {
+    "gratitude": [
+      {
+        "text": "What are three things you're grateful for today and why?",
+        "emoji": "🙏",
+        "category": "gratitude"
+      },
+      {
+        "text": "Who made a positive impact on your life recently? How did they affect you?",
+        "emoji": "💝",
+        "category": "gratitude"
+      },
+      {
+        "text": "What simple pleasure brought you joy today?",
+        "emoji": "✨",
+        "category": "gratitude"
+      },
+      {
+        "text": "What opportunity are you thankful for this week?",
+        "emoji": "🌟",
+        "category": "gratitude"
+      },
+      {
+        "text": "How has someone's kindness touched your heart recently?",
+        "emoji": "💖",
+        "category": "gratitude"
+      },
+      {
+        "text": "What is the tiniest thing that made you smile today? A ladybug, a song, a warm cup?",
+        "emoji": "🐞"
+      },
+      {
+        "text": "If today had a soundtrack, which moment would be the main chorus?",
+        "emoji": "🎶"
+      },
+      {
+        "text": "Name one thing in your home that holds a memory you cherish.",
+        "emoji": "🏡"
+      },
+      {
+        "text": "What unexpected kindness did the universe send your way today?",
+        "emoji": "✨"
+      },
+      {
+        "text": "What's a smell, a taste, or a touch that felt like comfort today?",
+        "emoji": "🍞"
+      },
+      {
+        "text": "Which part of your body worked hardest for you today? Thank it.",
+        "emoji": "💪"
+      },
+      {
+        "text": "What's one thing in your daily routine that quietly makes life better?",
+        "emoji": "☕"
+      },
+      {
+        "text": "Who surprised you today—someone you know or a stranger?",
+        "emoji": "👀"
+      },
+      {
+        "text": "If you could freeze one moment from today in a snow globe, which would it be?",
+        "emoji": "❄️"
+      },
+      {
+        "text": "What's something you didn't appreciate before, but now you do?",
+        "emoji": "🌱"
+      }
+    ],
+    "reflection": [
+      {
+        "text": "What was your biggest challenge this week and what did you learn from it?",
+        "emoji": "🌱",
+        "category": "reflection"
+      },
+      {
+        "text": "How are you different today than you were a year ago?",
+        "emoji": "🦋",
+        "category": "reflection"
+      },
+      {
+        "text": "What emotion has been most present for you today? Why?",
+        "emoji": "💭",
+        "category": "reflection"
+      },
+      {
+        "text": "What is something you need to forgive yourself for?",
+        "emoji": "🕊️",
+        "category": "reflection"
+      },
+      {
+        "text": "What patterns have you noticed in your life lately?",
+        "emoji": "🔄",
+        "category": "reflection"
+      }
+    ],
+    "growth": [
+      {
+        "text": "What is one small step you can take today toward your biggest goal?",
+        "emoji": "🎯",
+        "category": "growth"
+      },
+      {
+        "text": "What limiting belief would you like to challenge today?",
+        "emoji": "⚡",
+        "category": "growth"
+      },
+      {
+        "text": "How can you show up more authentically in your relationships?",
+        "emoji": "💫",
+        "category": "growth"
+      },
+      {
+        "text": "What new skill or knowledge would you like to develop this month?",
+        "emoji": "📚",
+        "category": "growth"
+      },
+      {
+        "text": "What does success mean to you at this moment in your life?",
+        "emoji": "🌠",
+        "category": "growth"
+      }
+    ],
+    "healing": [
+      {
+        "text": "What does your heart need to hear today?",
+        "emoji": "💗",
+        "category": "healing"
+      },
+      {
+        "text": "How can you better honor your boundaries this week?",
+        "emoji": "🛡️",
+        "category": "healing"
+      },
+      {
+        "text": "What part of yourself needs more compassion right now?",
+        "emoji": "🌸",
+        "category": "healing"
+      },
+      {
+        "text": "How do you want to feel by the end of today?",
+        "emoji": "✨",
+        "category": "healing"
+      },
+      {
+        "text": "What gentle reminder does your soul need today?",
+        "emoji": "🕯️",
+        "category": "healing"
+      }
+    ],
+    "creativity": [
+      {
+        "text": "If your life were a book, what would this chapter be called?",
+        "emoji": "📖",
+        "category": "creativity"
+      },
+      {
+        "text": "What would you do today if you knew you couldn't fail?",
+        "emoji": "🌈",
+        "category": "creativity"
+      },
+      {
+        "text": "If your emotions had colors, what colors are you feeling today?",
+        "emoji": "🎨",
+        "category": "creativity"
+      },
+      {
+        "text": "What would your younger self be proud of you for?",
+        "emoji": "👣",
+        "category": "creativity"
+      },
+      {
+        "text": "If you could write a letter to tomorrow, what would you say?",
+        "emoji": "✉️",
+        "category": "creativity"
+      }
+    ],
+    "mindfulness": [
+      {
+        "text": "What's one sound you truly heard today?",
+        "emoji": "🎧"
+      },
+      {
+        "text": "Describe the way your feet touched the ground today.",
+        "emoji": "👣"
+      },
+      {
+        "text": "Which moment today felt like slow motion, in the best way?",
+        "emoji": "⏳"
+      },
+      {
+        "text": "If today had a color palette, what would it be?",
+        "emoji": "🎨"
+      },
+      {
+        "text": "What's one thing your hands created, held, or touched with care today?",
+        "emoji": "🤲"
+      },
+      {
+        "text": "What made you feel safe today?",
+        "emoji": "🛑"
+      },
+      {
+        "text": "If your breath had a message for you today, what would it say?",
+        "emoji": "🌬️"
+      },
+      {
+        "text": "What's something so ordinary you barely notice it—but today, you did?",
+        "emoji": "🔦"
+      },
+      {
+        "text": "Describe the first thing you saw when you stepped outside today.",
+        "emoji": "🚪"
+      },
+      {
+        "text": "What's something that grounded you today, even if just for a second?",
+        "emoji": "🏔️"
+      }
+    ],
+    "manifestation": [
+      {
+        "text": "What is one thing you're looking forward to tomorrow that already feels exciting?",
+        "emoji": "🌅"
+      },
+      {
+        "text": "If today was a sign from the universe, what was it telling you?",
+        "emoji": "🔮"
+      },
+      {
+        "text": "What's one little shift in mindset that could change tomorrow?",
+        "emoji": "🔄"
+      },
+      {
+        "text": "If your future self could send you a message about today, what would they say?",
+        "emoji": "📨"
+      },
+      {
+        "text": "What's one dream that felt closer today than it did yesterday?",
+        "emoji": "🚀"
+      },
+      {
+        "text": "If abundance knocked on your door today, what form did it take?",
+        "emoji": "🏡"
+      },
+      {
+        "text": "Write about a small moment today that felt like proof you're on the right path.",
+        "emoji": "🛤️"
+      },
+      {
+        "text": "What did you tell yourself 'I can' about today?",
+        "emoji": "🎯"
+      },
+      {
+        "text": "If you could bottle up one feeling from today and keep it forever, what would it be?",
+        "emoji": "🍾"
+      },
+      {
+        "text": "What was a little 'yes' you said to yourself today?",
+        "emoji": "✅"
+      }
+    ],
+    "resilience": [
+      {
+        "text": "What small challenge did you conquer today?",
+        "emoji": "🏆"
+      },
+      {
+        "text": "What did you choose to release today, even if just a little?",
+        "emoji": "🍂"
+      },
+      {
+        "text": "Describe a moment today when you could have given up—but didn't.",
+        "emoji": "🔥"
+      },
+      {
+        "text": "What's a piece of advice you gave yourself today?",
+        "emoji": "🗝️"
+      },
+      {
+        "text": "What's something hard that you handled with grace today?",
+        "emoji": "🦢"
+      },
+      {
+        "text": "How did you protect your peace today?",
+        "emoji": "🛡️"
+      },
+      {
+        "text": "What's a moment today where you simply kept going?",
+        "emoji": "🏃‍♂️"
+      },
+      {
+        "text": "What's something you worried about but turned out okay?",
+        "emoji": "🌈"
+      },
+      {
+        "text": "What was a reminder today that you are stronger than you think?",
+        "emoji": "💎"
+      },
+      {
+        "text": "If resilience had a flavor today, what would it taste like?",
+        "emoji": "🍫"
+      }
+    ],
+    "connection": [
+      {
+        "text": "Who made you feel seen today, and how?",
+        "emoji": "👀"
+      },
+      {
+        "text": "What was a small act of kindness you received or gave today?",
+        "emoji": "🎁"
+      },
+      {
+        "text": "If love was measured in tiny moments, what was today's proof of love?",
+        "emoji": "💖"
+      },
+      {
+        "text": "Who surprised you with warmth or thoughtfulness today?",
+        "emoji": "🔥"
+      },
+      {
+        "text": "What's a conversation you had today that you want to remember?",
+        "emoji": "💬"
+      },
+      {
+        "text": "Describe a moment today when you felt deeply connected to someone or something.",
+        "emoji": "🌍"
+      },
+      {
+        "text": "What's something someone said today that made you feel lighter?",
+        "emoji": "🕊️"
+      },
+      {
+        "text": "If you could text 'thank you' to someone right now, who would it be?",
+        "emoji": "📲"
+      },
+      {
+        "text": "How did you express love, kindness, or appreciation today?",
+        "emoji": "❤️"
+      },
+      {
+        "text": "What's a moment today where you felt like you truly belonged?",
+        "emoji": "🏡"
+      }
+    ]
+  }
+} 
