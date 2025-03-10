@@ -1,9 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCloud } from '@fortawesome/free-solid-svg-icons';
 import styles from './MoodSlider.module.css';
 
-const MoodSlider = ({ initialMood = 5, onMoodChange }) => {
+const MoodSlider = ({ initialMood = 5, onMoodChange, size = 'default' }) => {
   const [mood, setMood] = useState(initialMood);
-  const moodLabels = ["Awful", "Terrible", "Very Bad", "Bad", "Meh", "Okay", "Good", "Very Good", "Great", "Awesome"];
+  const moodLabels = [
+    "Awful",
+    "Terrible", 
+    "Drained",
+    "Bad",
+    "Meh",
+    "Could be better",
+    "Fine",
+    "Good",
+    "Happy",
+    "Ecstatic"
+  ];
 
   useEffect(() => {
     if (onMoodChange) {
@@ -17,7 +30,7 @@ const MoodSlider = ({ initialMood = 5, onMoodChange }) => {
   };
 
   return (
-    <div className={styles.moodSliderContainer}>
+    <div className={`${styles.moodSliderContainer} ${size === 'small' ? styles.small : ''}`}>
       <div className={styles.sliderContainer}>
         <input
           type="range"
@@ -28,6 +41,9 @@ const MoodSlider = ({ initialMood = 5, onMoodChange }) => {
           onChange={handleMoodChange}
           className={styles.slider}
         />
+        <div className={styles.cloudIcon} style={{ left: `calc(${((mood - 1) / 9) * 100}%)` }}>
+          <FontAwesomeIcon icon={faCloud} style={{color: "#ffffff"}} />
+        </div>
       </div>
       <p className={styles.moodLabel}>{moodLabels[mood - 1]}</p>
     </div>
