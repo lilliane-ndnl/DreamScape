@@ -27,7 +27,7 @@ function Sidebar() {
   return (
     <div className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
       <button onClick={toggleSidebar} className={styles.menuButton}>
-        <img src="/images/cloudladder-icon.avif" alt="Menu" className={styles.menuIcon} />
+        <img src="/images/cloudladder-icon.png" alt="Menu" className={styles.menuIcon} />
       </button>
       <div className={styles.links}>
         <Link to="/dashboard" className={styles.link}>Dashboard</Link>
