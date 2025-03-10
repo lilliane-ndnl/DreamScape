@@ -85,9 +85,6 @@ function GoalItem({ goal, onUpdate, onDelete, snapshot }) {
             ) : (
                 <>
                     <h3 className={styles.title}>{goal.title}</h3>
-                    <div className={styles.priorityIndicator}>
-                        Priority: {goal.priority + 1}
-                    </div>
                     {goal.description && (
                         <p className={styles.description}>{goal.description}</p>
                     )}
