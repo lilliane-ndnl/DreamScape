@@ -14,11 +14,15 @@
 }
 
 .moodTrendsHeader h3 {
-    color: #6B85A1;
-    font-size: 1.5rem;
+    color: #532e3b;
+    font-size: 1.3rem;
     margin: 0;
     font-family: 'Playfair Display', serif;
     font-weight: 500;
+    background: linear-gradient(135deg, #532e3b 0%, #6B85A1 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .timeRangeSelector {
@@ -27,26 +31,31 @@
 }
 
 .timeRangeButton {
-    padding: 0.5rem 1rem;
-    border: 2px solid #ff8da1;
-    border-radius: 15px;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid #ffb3c1;
+    border-radius: 12px;
     background: white;
     color: #532e3b;
-    font-family: var(--font-body);
-    font-size: 0.9rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.85rem;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 2px 8px rgba(255, 179, 193, 0.1);
 }
 
 .timeRangeButton:hover {
-    background: #fff5f7;
+    background: linear-gradient(135deg, #ffb3c1 0%, #ffd6e0 100%);
     transform: translateY(-2px);
+    color: #532e3b;
+    border-color: transparent;
 }
 
 .timeRangeButton.active {
-    background: #ff8da1;
-    color: white;
+    background: linear-gradient(135deg, #ffb3c1 0%, #ffd6e0 100%);
+    color: #532e3b;
     transform: translateY(-2px);
+    border-color: transparent;
+    box-shadow: 0 4px 12px rgba(255, 179, 193, 0.2);
 }
 
 .chartContainer {
@@ -55,17 +64,33 @@
     margin-top: 1rem;
 }
 
+.chartContainer text {
+    font-family: 'Playfair Display', serif !important;
+    font-size: 0.9rem !important;
+    fill: #532e3b !important;
+}
+
+.chartContainer .recharts-cartesian-axis-tick-value {
+    font-family: 'Playfair Display', serif !important;
+    font-size: 0.85rem !important;
+    fill: #6B85A1 !important;
+}
+
 @media (max-width: 768px) {
-    .periodSelector {
-        gap: 8px;
+    .timeRangeSelector {
+        gap: 6px;
     }
 
-    .periodButton {
-        padding: 6px 12px;
-        font-size: 0.8em;
+    .timeRangeButton {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.8rem;
     }
 
     .chartContainer {
-        height: 300px;
+        height: 250px;
+    }
+
+    .chartContainer text {
+        font-size: 0.8rem !important;
     }
 } 
