@@ -4,9 +4,11 @@ import { auth, createUserWithEmailAndPassword, db } from '../../firebase';
 import { doc, setDoc } from 'firebase/firestore';
 import { sendEmailVerification } from 'firebase/auth';
 import styles from '../Auth/AuthShared.module.css';
+import { useUserAuth } from '../../contexts/UserAuthContext';
 
 const Signup = () => {
     const navigate = useNavigate();
+    const { createUser: useUserAuthCreateUser } = useUserAuth();
     const [formData, setFormData] = useState({
         email: '',
         username: '',
@@ -108,6 +110,9 @@ const Signup = () => {
             const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
             const user = userCredential.user;
 
+            // Send email verification silently
+            await sendEmailVerification(user);
+
             // Create user document in Firestore
             const userDocRef = doc(db, "users", user.uid);
             const userData = {
@@ -118,13 +123,14 @@ const Signup = () => {
                 fullName: formData.fullName,
                 createdAt: new Date().toISOString(),
                 bio: '',
-                profilePicture: ''
+                profilePicture: '',
+                isNewUser: true
             };
             
             await setDoc(userDocRef, userData);
 
-            // Navigate to the welcome page/dashboard
-            navigate('/dashboard');
+            // Navigate to the welcome page instead of dashboard
+            navigate('/welcome');
         } catch (error) {
             console.error('Signup error:', error);
 
