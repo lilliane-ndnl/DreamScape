@@ -1,9 +1,52 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { register } from 'swiper/element/bundle';
 import styles from './About.module.css';
+
+// Register Swiper custom elements
+register();
 
 function About() {
   const [showBackground, setShowBackground] = useState(false);
+
+  const features = [
+    {
+      title: "Vision Board",
+      description: "Create a personal vision board with images and words that bring aspirations to life",
+      icon: "✨",
+      path: "/vision-board"
+    },
+    {
+      title: "Journal",
+      description: "Reflect on personal growth with guided prompts for thoughts and emotions",
+      icon: "📝",
+      path: "/journal"
+    },
+    {
+      title: "Goal Tracking",
+      description: "Break big dreams into small, actionable steps, track progress, and celebrate wins",
+      icon: "📍",
+      path: "/goals"
+    },
+    {
+      title: "Habit Building",
+      description: "Stay consistent with meaningful routines and build lasting positive habits",
+      icon: "🔄",
+      path: "/habits"
+    },
+    {
+      title: "Reading List",
+      description: "Keep track of books being read, completed, and planned for the future",
+      icon: "📚",
+      path: "/reading"
+    },
+    {
+      title: "Daily Inspiration",
+      description: "Start each day with an uplifting affirmation to boost your motivation",
+      icon: "💬",
+      path: "/"
+    }
+  ];
 
   useEffect(() => {
     setTimeout(() => setShowBackground(true), 500);
@@ -49,43 +92,35 @@ function About() {
           <p className={styles.aboutText}>
             With this vision in mind, DreamScape was designed to be more than just a productivity tool. It is a safe, inspiring space where users can:
           </p>
-          <ul className={styles.featureList}>
-            <li>
-              <Link to="/vision">
-                <span>Visualize dreams:</span> Create a personal vision board with images and words that bring aspirations to life ✨
-              </Link>
-            </li>
-            <li>
-              <Link to="/goals">
-                <span>Set and achieve goals:</span> Break big dreams into small, actionable steps, track progress, and celebrate wins 📍
-              </Link>
-            </li>
-            <li>
-              <Link to="/habits">
-                <span>Build positive habits:</span> Stay consistent with meaningful routines 🔄
-              </Link>
-            </li>
-            <li>
-              <Link to="/reading">
-                <span>Manage a reading list:</span> Keep track of books being read, completed, and planned for the future 📚
-              </Link>
-            </li>
-            <li>
-              <Link to="/journal">
-                <span>Reflect on personal growth:</span> Journal thoughts, emotions, and milestones with guided prompts 📝
-              </Link>
-            </li>
-            <li>
-              <Link to="/">
-                <span>Find daily inspiration:</span> Start each day with an uplifting affirmation 💬
-              </Link>
-            </li>
-          </ul>
+          
+          <div className={styles.featureSliderContainer}>
+            <swiper-container
+              slides-per-view="auto"
+              centered-slides="true"
+              space-between="30"
+              grab-cursor="true"
+              class={styles.featureSlider}
+            >
+              {features.map((feature, index) => (
+                <swiper-slide key={index}>
+                  <Link to={feature.path} className={styles.featureCard}>
+                    <div className={styles.featureIcon}>{feature.icon}</div>
+                    <h3 className={styles.featureTitle}>{feature.title}</h3>
+                    <p className={styles.featureDescription}>{feature.description}</p>
+                  </Link>
+                </swiper-slide>
+              ))}
+            </swiper-container>
+          </div>
 
           <p className={styles.aboutText}>
             More than anything, DreamScape is a reminder that every small step forward is still progress. It empowers you to shape your life at your own pace, in your own way – one dream at a time.
           </p>
-          <p className={styles.finalText}>✨ Start building your DreamScape today. 💫</p>
+          <p className={styles.finalText}>
+            <span style={{ color: '#FF69B4' }}>✨</span> 
+            Start building your DreamScape today. 
+            <span style={{ color: '#FF69B4' }}>💫</span>
+          </p>
         </div>
       </div>
     </div>
