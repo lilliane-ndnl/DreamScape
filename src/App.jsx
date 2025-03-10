@@ -13,6 +13,7 @@ import Goals from './components/Goals/Goals';
 import Habits from './components/Habits/Habits';
 import Reading from './components/Reading/Reading';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { UserAuthContextProvider } from './contexts/UserAuthContext';
 import './App.css';
 
 // Protected Route component
@@ -43,80 +44,82 @@ const FirstTimeUserRoute = ({ children }) => {
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <div className="app">
-          <Navbar />
-          <Routes>
-            {/* Public routes */}
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            
-            {/* Welcome route for new users */}
-            <Route 
-              path="/welcome" 
-              element={
-                <FirstTimeUserRoute>
-                  <Welcome />
-                </FirstTimeUserRoute>
-              } 
-            />
-            
-            {/* Protected routes */}
-            <Route 
-              path="/dashboard" 
-              element={
-                <ProtectedRoute>
-                  <Dashboard />
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/vision-board" 
-              element={
-                <ProtectedRoute>
-                  <VisionBoard />
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/journal" 
-              element={
-                <ProtectedRoute>
-                  <Journal />
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/goals" 
-              element={
-                <ProtectedRoute>
-                  <Goals />
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/habits" 
-              element={
-                <ProtectedRoute>
-                  <Habits />
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/reading" 
-              element={
-                <ProtectedRoute>
-                  <Reading />
-                </ProtectedRoute>
-              } 
-            />
-          </Routes>
-        </div>
-      </Router>
-    </AuthProvider>
+    <UserAuthContextProvider>
+      <AuthProvider>
+        <Router>
+          <div className="app">
+            <Navbar />
+            <Routes>
+              {/* Public routes */}
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              
+              {/* Welcome route for new users */}
+              <Route 
+                path="/welcome" 
+                element={
+                  <FirstTimeUserRoute>
+                    <Welcome />
+                  </FirstTimeUserRoute>
+                } 
+              />
+              
+              {/* Protected routes */}
+              <Route 
+                path="/dashboard" 
+                element={
+                  <ProtectedRoute>
+                    <Dashboard />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/vision-board" 
+                element={
+                  <ProtectedRoute>
+                    <VisionBoard />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/journal" 
+                element={
+                  <ProtectedRoute>
+                    <Journal />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/goals" 
+                element={
+                  <ProtectedRoute>
+                    <Goals />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/habits" 
+                element={
+                  <ProtectedRoute>
+                    <Habits />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/reading" 
+                element={
+                  <ProtectedRoute>
+                    <Reading />
+                  </ProtectedRoute>
+                } 
+              />
+            </Routes>
+          </div>
+        </Router>
+      </AuthProvider>
+    </UserAuthContextProvider>
   );
 }
 
