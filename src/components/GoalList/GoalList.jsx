@@ -40,8 +40,7 @@ function GoalList() {
                 description: '',
                 deadline: '',
                 steps: [],
-                completed: false,
-                priority: goals.length
+                completed: false
             };
             
             setGoals([...goals, newGoal]);
@@ -70,15 +69,7 @@ function GoalList() {
         const [movedGoal] = newGoals.splice(source.index, 1);
         newGoals.splice(destination.index, 0, movedGoal);
 
-        // Update priorities
-        updatePriorities(newGoals);
         setGoals(newGoals);
-    };
-
-    const updatePriorities = (goalsList) => {
-        goalsList.forEach((goal, index) => {
-            goal.priority = index;
-        });
     };
 
     const calculateGoalProgress = (goal) => {
@@ -177,17 +168,18 @@ function GoalList() {
                                                                         className={`${styles.goalCard} ${snapshot.isDragging ? styles.dragging : ''} ${selectedGoalId === goal.id ? styles.selected : ''}`}
                                                                         onClick={() => setSelectedGoalId(goal.id)}
                                                                         style={{
+                                                                            ...provided.draggableProps.style,
                                                                             padding: '1.2rem',
                                                                             marginBottom: '0.5rem',
-                                                                            width: '100%'
+                                                                            width: '100%',
+                                                                            transform: snapshot.isDragging ? `${provided.draggableProps.style.transform} rotate(1deg)` : provided.draggableProps.style.transform
                                                                         }}
                                                                     >
                                                                         <div className={styles.goalCardContent}>
-                                                                            <span className={styles.priorityNumber} style={{ fontSize: '1.2rem' }}>{index + 1}</span>
-                                                                            <h3 className={styles.goalCardTitle} style={{ fontSize: '1.2rem' }}>{goal.title}</h3>
-                                                                        </div>
-                                                                        <div className={styles.goalCardProgress} style={{ fontSize: '1.1rem' }}>
-                                                                            {Math.round(calculateGoalProgress(goal))}%
+                                                                            <h3 className={styles.goalCardTitle}>{goal.title}</h3>
+                                                                            <div className={styles.goalCardProgress}>
+                                                                                {Math.round(calculateGoalProgress(goal))}%
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 )}
