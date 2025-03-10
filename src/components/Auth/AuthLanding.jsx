@@ -13,13 +13,19 @@ const AuthLanding = () => {
             
             <div className="wideContainer">
                 <div className={styles.authContainer}>
-                    <h1>Welcome to DreamScape</h1>
-                    <p className={styles.subtitle}>Your journey to personal growth and achievement begins here</p>
+                    <div className={styles.welcomeSection}>
+                        <h1 className={styles.pageTitle}>
+                            <span>Welcome to</span>
+                            <img src="/images/dreamscape-logo.png" alt="DreamScape" className={styles.titleLogo} />
+                        </h1>
+                        <p className={styles.subtitle}>Your journey to self-growth and success starts here.</p>
+                        <p className={styles.description}>Whether you're setting new goals, tracking progress, or building positive habits, DreamScape is here to support you every step of the way.</p>
+                    </div>
                     
                     <div className={styles.optionsContainer}>
                         <div className={styles.option}>
                             <h2>Create New Account</h2>
-                            <p>Start your journey with DreamScape. Create vision boards, track goals, and build better habits.</p>
+                            <p>Start your journey with DreamScape. Create vision boards, set goals, and build better habits.</p>
                             <Link to="/signup" className={styles.primaryButton}>
                                 Create Account
                             </Link>
@@ -30,8 +36,8 @@ const AuthLanding = () => {
                         </div>
                         
                         <div className={styles.option}>
-                            <h2>Already have an account?</h2>
-                            <p>Welcome back! Continue your journey and track your progress.</p>
+                            <h2>Already Have an Account?</h2>
+                            <p>Welcome back to DreamScape! Log in to continue your growing journey and track your transformation.</p>
                             <Link to="/login" className={styles.secondaryButton}>
                                 Log In
                             </Link>
