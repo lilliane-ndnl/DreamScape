@@ -5,20 +5,39 @@
     text-align: center;
 }
 
-.authContainer h1 {
-    font-size: 3rem;
+.welcomeSection {
+    margin-bottom: 4rem;
+}
+
+.welcomeSection h1 {
+    font-size: 3.5rem;
     color: #532e3b;
     margin-bottom: 1rem;
     font-family: 'Playfair Display', serif;
     text-shadow: 2px 2px 4px rgba(83, 46, 59, 0.1);
+    background: linear-gradient(135deg, #532e3b 0%, #6B85A1 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .subtitle {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     color: var(--text-color-secondary);
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
     font-family: 'Playfair Display', serif;
+    font-style: italic;
     opacity: 0.9;
+}
+
+.description {
+    font-size: 1.1rem;
+    color: var(--text-color-secondary);
+    margin-bottom: 2rem;
+    font-family: 'Playfair Display', serif;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.8;
 }
 
 .optionsContainer {
@@ -49,8 +68,12 @@
 .option h2 {
     font-size: 1.8rem;
     color: #532e3b;
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
     font-family: 'Playfair Display', serif;
+    background: linear-gradient(135deg, #532e3b 0%, #6B85A1 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .option p {
@@ -91,16 +114,37 @@
 }
 
 .primaryButton {
-    background: linear-gradient(135deg, var(--accent-color-1) 0%, #ffb3c1 100%);
-    color: white;
-    box-shadow: 0 4px 15px rgba(225, 177, 104, 0.3);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #ffb3c1 0%, #ffd6e0 60%, #E1B168 100%);
+    color: #532e3b;
+    box-shadow: 0 4px 15px rgba(255, 179, 193, 0.3);
+    position: relative;
+    overflow: visible;
+}
+
+.primaryButton::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(135deg, #ffb3c1 0%, #ffd6e0 60%, #E1B168 100%);
+    border-radius: 30px;
+    z-index: -1;
+    opacity: 0.5;
+    filter: blur(8px);
+    transition: all 0.3s ease;
 }
 
 .primaryButton:hover {
-    background: linear-gradient(135deg, #d4a35c 0%, #ffd6e0 100%);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(225, 177, 104, 0.4);
+    background: linear-gradient(135deg, #ffd6e0 0%, #ffb3c1 60%, #E1B168 100%);
+    box-shadow: 0 6px 20px rgba(255, 179, 193, 0.4);
+}
+
+.primaryButton:hover::before {
+    opacity: 0.7;
+    filter: blur(12px);
 }
 
 .secondaryButton {
@@ -114,6 +158,37 @@
     background: rgba(255, 255, 255, 0.98);
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(83, 46, 59, 0.12);
+}
+
+.pageTitle {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+}
+
+.pageTitle span {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    background: linear-gradient(135deg, #ffb3c1 0%, #ffd6e0 60%, #E1B168 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 4px rgba(83, 46, 59, 0.1);
+}
+
+.titleLogo {
+    height: 80px;
+    vertical-align: baseline;
+    margin: 0 5px;
+    transition: all 0.3s ease;
+    transform: translateY(5px);
+}
+
+.titleLogo:hover {
+    transform: scale(1.05) translateY(5px);
+    filter: drop-shadow(0 4px 10px rgba(255, 179, 193, 0.3));
 }
 
 @media (max-width: 768px) {
@@ -134,7 +209,24 @@
         padding: 1.5rem;
     }
 
-    .authContainer h1 {
+    .welcomeSection h1 {
         font-size: 2.5rem;
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+    }
+
+    .description {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+
+    .pageTitle span {
+        font-size: 2.5rem;
+    }
+
+    .titleLogo {
+        height: 60px;
     }
 } 
