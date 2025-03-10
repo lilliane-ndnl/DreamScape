@@ -24,10 +24,9 @@ const Navbar = () => {
             <div className={styles.navLinks}>
                 <Link to="/about">About</Link>
                 {!user ? (
-                    <>
-                        <Link to="/login" className={styles.authButton}>Log In</Link>
-                        <Link to="/signup" className={styles.authButton}>Sign Up</Link>
-                    </>
+                    <Link to="/signup" className={styles.joinButton}>
+                        Join Us
+                    </Link>
                 ) : (
                     <button 
                         onClick={handleLogout} 
