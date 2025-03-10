@@ -1,0 +1,64 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--background-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo a {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-color);
+    text-decoration: none;
+    font-family: 'Playfair Display', serif;
+}
+
+.navLinks {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.navLinks a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navLinks a:hover {
+    color: var(--accent-color-1);
+}
+
+.authButton {
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    background-color: transparent;
+    border: 2px solid var(--accent-color-1);
+    color: var(--accent-color-1) !important;
+}
+
+.authButton:hover {
+    background-color: var(--accent-color-1);
+    color: white !important;
+}
+
+.logoutButton {
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    background-color: transparent;
+    border: 2px solid var(--accent-color-2);
+    color: var(--accent-color-2);
+    cursor: pointer;
+}
+
+.logoutButton:hover {
+    background-color: var(--accent-color-2);
+    color: white;
+} 
