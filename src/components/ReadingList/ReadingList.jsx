@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import BookItem from '../BookItem/BookItem';
 import AddBookForm from '../AddBookForm/AddBookForm';
+import BookModal from '../BookModal/BookModal';
 import styles from './ReadingList.module.css';
 import '../../styles/shared.css';
 
 function ReadingList() {
     const [books, setBooks] = useState([]);
     const [showBackground, setShowBackground] = useState(false);
+    const [selectedBook, setSelectedBook] = useState(null);
 
     // Load books from localStorage
     useEffect(() => {
@@ -14,7 +15,6 @@ function ReadingList() {
         if (savedBooks) {
             setBooks(JSON.parse(savedBooks));
         }
-        // Show background with delay
         setTimeout(() => setShowBackground(true), 500);
     }, []);
 
@@ -36,14 +36,14 @@ function ReadingList() {
     };
 
     const handleMoveBook = (bookId, newStatus) => {
-      setBooks(
-        books.map((book) => {
-          if (book.id === bookId) {
-            return { ...book, status: newStatus };
-          }
-          return book;
-        })
-      );
+        setBooks(
+            books.map((book) => {
+                if (book.id === bookId) {
+                    return { ...book, status: newStatus };
+                }
+                return book;
+            })
+        );
     };
 
     const booksWantToRead = books.filter((book) => book.status === "Want to Read");
@@ -77,21 +77,24 @@ function ReadingList() {
                             paddingBottom: '0.5rem'
                         }}>Want to Read</h3>
                         
-                        {booksWantToRead.length === 0 ? 
+                        {booksWantToRead.length === 0 ? (
                             <p className={styles.noBooks}>No books in "Want to Read"</p>
-                            :
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                        ) : (
+                            <div className={styles.bookGrid}>
                                 {booksWantToRead.map(book => (
-                                    <BookItem
-                                        key={book.id}
-                                        book={book}
-                                        onUpdate={handleUpdateBook}
-                                        onDelete={handleDeleteBook}
-                                        onMove={handleMoveBook}
-                                    />
+                                    <div 
+                                        key={book.id} 
+                                        className={styles.bookCover}
+                                        onClick={() => setSelectedBook(book)}
+                                    >
+                                        <img 
+                                            src={book.imageUrl || '/images/BlankBookCover.png'} 
+                                            alt={book.title}
+                                        />
+                                    </div>
                                 ))}
                             </div>
-                        }
+                        )}
                     </div>
 
                     {/* Currently Reading Section */}
@@ -105,21 +108,24 @@ function ReadingList() {
                             paddingBottom: '0.5rem'
                         }}>Currently Reading</h3>
                         
-                        {booksCurrentlyReading.length === 0 ? 
-                            <p className={styles.noBooks}>No books in "Currently Reading"</p> 
-                            :
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                        {booksCurrentlyReading.length === 0 ? (
+                            <p className={styles.noBooks}>No books in "Currently Reading"</p>
+                        ) : (
+                            <div className={styles.bookGrid}>
                                 {booksCurrentlyReading.map(book => (
-                                    <BookItem
-                                        key={book.id}
-                                        book={book}
-                                        onUpdate={handleUpdateBook}
-                                        onDelete={handleDeleteBook}
-                                        onMove={handleMoveBook}
-                                    />
+                                    <div 
+                                        key={book.id} 
+                                        className={styles.bookCover}
+                                        onClick={() => setSelectedBook(book)}
+                                    >
+                                        <img 
+                                            src={book.imageUrl || '/images/BlankBookCover.png'} 
+                                            alt={book.title}
+                                        />
+                                    </div>
                                 ))}
                             </div>
-                        }
+                        )}
                     </div>
 
                     {/* Finished Section */}
@@ -133,24 +139,37 @@ function ReadingList() {
                             paddingBottom: '0.5rem'
                         }}>Finished</h3>
                         
-                        {booksFinished.length === 0 ? 
-                            <p className={styles.noBooks}>No books in "Finished"</p> 
-                            :
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                        {booksFinished.length === 0 ? (
+                            <p className={styles.noBooks}>No books in "Finished"</p>
+                        ) : (
+                            <div className={styles.bookGrid}>
                                 {booksFinished.map(book => (
-                                    <BookItem
-                                        key={book.id}
-                                        book={book}
-                                        onUpdate={handleUpdateBook}
-                                        onDelete={handleDeleteBook}
-                                        onMove={handleMoveBook}
-                                    />
+                                    <div 
+                                        key={book.id} 
+                                        className={styles.bookCover}
+                                        onClick={() => setSelectedBook(book)}
+                                    >
+                                        <img 
+                                            src={book.imageUrl || '/images/BlankBookCover.png'} 
+                                            alt={book.title}
+                                        />
+                                    </div>
                                 ))}
                             </div>
-                        }
+                        )}
                     </div>
                 </div>
             </div>
+
+            {selectedBook && (
+                <BookModal
+                    book={selectedBook}
+                    onClose={() => setSelectedBook(null)}
+                    onUpdate={handleUpdateBook}
+                    onMove={handleMoveBook}
+                    onDelete={handleDeleteBook}
+                />
+            )}
         </div>
     );
 }
