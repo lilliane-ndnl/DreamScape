@@ -122,4 +122,21 @@
         flex-direction: column;
         gap: 0;
     }
+}
+
+.verificationContent {
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.verificationContent p {
+    color: #532e3b;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.verificationActions {
+    margin-top: 2rem;
 } 
