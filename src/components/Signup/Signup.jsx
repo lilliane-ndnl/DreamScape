@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { auth, db } from '../../firebase';
-import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
+import { sendEmailVerification } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
+import { db } from '../../firebase';
 import styles from '../Auth/AuthShared.module.css';
 import { useUserAuth } from '../../contexts/UserAuthContext';
 
 const Signup = () => {
     const navigate = useNavigate();
-    const { createUser: useUserAuthCreateUser } = useUserAuth();
+    const { createUser } = useUserAuth();
     const [formData, setFormData] = useState({
         email: '',
         username: '',
@@ -106,8 +106,8 @@ const Signup = () => {
         
         setIsSubmitting(true);
         try {
-            // Create user account
-            const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+            // Create user account using context
+            const userCredential = await createUser(formData.email, formData.password);
             const user = userCredential.user;
 
             // Send email verification silently
@@ -129,7 +129,7 @@ const Signup = () => {
             
             await setDoc(userDocRef, userData);
 
-            // Navigate to the welcome page instead of dashboard
+            // Navigate to the welcome page
             navigate('/welcome');
         } catch (error) {
             console.error('Signup error:', error);
