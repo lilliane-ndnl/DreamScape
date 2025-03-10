@@ -17,12 +17,19 @@ import { AuthProvider, useAuth } from './contexts/AuthContext';
 import './App.css';
 
 function AppContent() {
-  const [showScrollTop, setShowScrollTop] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
   const { currentUser } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
-      setShowScrollTop(window.pageYOffset > 300);
+      // Calculate scroll progress
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (window.pageYOffset / totalHeight) * 100;
+      setProgress(progress);
+      
+      // Show/hide button based on scroll position
+      setIsVisible(window.pageYOffset > 100);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -75,9 +82,13 @@ function AppContent() {
 
         <Footer />
 
-        {showScrollTop && (
-          <button className="scrollTopButton" onClick={scrollToTop} aria-label="Scroll to top" />
-        )}
+        <div className={`progress-wrap ${isVisible ? 'active-progress' : ''}`} onClick={scrollToTop}>
+          <svg className="progress-circle" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" 
+                  style={{strokeDashoffset: `${316 - (316 * progress) / 100}`}}/>
+          </svg>
+        </div>
       </div>
     </div>
   );
