@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { auth, signInWithEmailAndPassword, db } from '../../firebase';
 import { collection, query, where, getDocs } from 'firebase/firestore';
+import { db } from '../../firebase';
 import styles from '../Auth/AuthShared.module.css';
+import { useUserAuth } from '../../contexts/UserAuthContext';
 
 const Login = () => {
     const navigate = useNavigate();
+    const { signIn } = useUserAuth();
     const [formData, setFormData] = useState({
         emailOrUsername: '',
         password: ''
@@ -61,13 +63,16 @@ const Login = () => {
                 email = querySnapshot.docs[0].data().email;
             }
 
-            await signInWithEmailAndPassword(auth, email, formData.password);
-            navigate('/');
+            await signIn(email, formData.password);
+            navigate('/dashboard');
         } catch (error) {
+            console.error('Login error:', error);
             if (error.message === 'user-not-found' || error.code === 'auth/user-not-found') {
                 setErrors(prev => ({ ...prev, emailOrUsername: 'No account found with these credentials' }));
             } else if (error.code === 'auth/wrong-password') {
                 setErrors(prev => ({ ...prev, password: 'Incorrect password' }));
+            } else if (error.code === 'auth/invalid-email') {
+                setErrors(prev => ({ ...prev, emailOrUsername: 'Invalid email format' }));
             } else {
                 setErrors(prev => ({ ...prev, submit: 'Failed to sign in. Please try again.' }));
             }
