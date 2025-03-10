@@ -11,6 +11,34 @@
     overflow: hidden;
 }
 
+.small {
+    max-width: 300px;
+    padding: 15px;
+}
+
+.small .slider {
+    height: 2px;
+}
+
+.small .cloudIcon {
+    font-size: 16px;
+}
+
+.small .slider::-webkit-slider-thumb {
+    width: 12px;
+    height: 12px;
+}
+
+.small .slider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+}
+
+.small .moodLabel {
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
 .moodSliderContainer::before {
     content: '';
     position: absolute;
@@ -32,53 +60,65 @@
     -webkit-appearance: none;
     appearance: none;
     width: 100%;
-    height: 8px;
-    border-radius: 10px;
-    background: linear-gradient(90deg, #ff8da1 0%, #ffb3c1 50%, #ffd6e0 100%);
+    height: 2px;
+    background: linear-gradient(90deg, #ffb3c1 0%, #ffd6e0 100%);
     outline: none;
-    opacity: 0.8;
-    transition: opacity 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 2px 10px rgba(255, 141, 161, 0.2);
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
     cursor: pointer;
+    border: none;
+    position: relative;
 }
 
 .slider:hover {
     opacity: 1;
-    box-shadow: 0 2px 15px rgba(255, 141, 161, 0.3);
 }
 
-/* Override default slider styling */
+/* Hide default thumb */
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: white;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(255, 141, 161, 0.4);
-    border: 2px solid #ff8da1;
-    transition: all 0.3s ease;
-}
-
-.slider::-webkit-slider-thumb:hover {
-    transform: scale(1.1);
-    box-shadow: 0 2px 12px rgba(255, 141, 161, 0.6);
+    width: 0;
+    height: 0;
+    background: transparent;
 }
 
 .slider::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: white;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(255, 141, 161, 0.4);
-    border: 2px solid #ff8da1;
-    transition: all 0.3s ease;
+    width: 0;
+    height: 0;
+    background: transparent;
+    border: none;
 }
 
-.slider::-moz-range-thumb:hover {
-    transform: scale(1.1);
-    box-shadow: 0 2px 12px rgba(255, 141, 161, 0.6);
+/* Cloud icon styling */
+.cloudIcon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(255, 179, 193, 0.4));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: #ffb3c1;
+    border-radius: 50%;
+    padding: 4px;
+}
+
+.cloudIcon:hover {
+    transform: translate(-50%, -50%) scale(1.2);
+    filter: drop-shadow(0 3px 6px rgba(255, 179, 193, 0.6));
+}
+
+/* Remove the track border in Firefox */
+.slider::-moz-range-track {
+    height: 2px;
+    border: none;
+    background: linear-gradient(90deg, #ffb3c1 0%, #ffd6e0 100%);
 }
 
 .moodLabel {
@@ -88,11 +128,11 @@
     font-weight: 500;
     margin-top: 15px;
     margin-bottom: 5px;
-    background: linear-gradient(90deg, #ff8da1, #ffd6e0);
+    background: linear-gradient(90deg, #ffb3c1, #ffd6e0);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 2px 5px rgba(255, 141, 161, 0.1);
+    text-shadow: 0 2px 5px rgba(255, 179, 193, 0.1);
 }
 
 /* Responsive adjustments */
@@ -103,11 +143,5 @@
     
     .moodLabel {
         font-size: 1rem;
-    }
-    
-    .slider::-webkit-slider-thumb,
-    .slider::-moz-range-thumb {
-        width: 18px;
-        height: 18px;
     }
 }
