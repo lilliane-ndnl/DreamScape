@@ -48,6 +48,119 @@ body {
   margin-left: 250px;
 }
 
+/* Add explicit pageContainer and showBackground styles */
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  width: 100%;
+  position: relative;
+  padding: 2rem 1rem;
+}
+
+.showBackground {
+  background: linear-gradient(135deg, 
+    #f8f9fa 0%,
+    var(--bg-pink, #fff5f7) 25%,
+    #fdf2f8 50%,
+    var(--bg-pink, #fff5f7) 75%,
+    #f8f9fa 100%
+  );
+}
+
+.wideContainer {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.floatingShapes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.5;
+  filter: blur(40px);
+}
+
+.shape1 {
+  background: rgba(225, 177, 104, 0.3);
+  width: 200px;
+  height: 200px;
+  top: 10%;
+  left: 10%;
+  animation: float 8s ease-in-out infinite;
+}
+
+.shape2 {
+  background: rgba(161, 107, 120, 0.2);
+  width: 300px;
+  height: 300px;
+  top: 40%;
+  right: 10%;
+  animation: float 10s ease-in-out infinite 1s;
+}
+
+.shape3 {
+  background: rgba(107, 133, 161, 0.2);
+  width: 150px;
+  height: 150px;
+  bottom: 20%;
+  left: 20%;
+  animation: float 7s ease-in-out infinite 2s;
+}
+
+.shape4 {
+  background: rgba(213, 225, 223, 0.3);
+  width: 180px;
+  height: 180px;
+  top: 20%;
+  right: 30%;
+  animation: float 9s ease-in-out infinite 1.5s;
+}
+
+.shape5 {
+  background: rgba(255, 180, 180, 0.2);
+  width: 120px;
+  height: 120px;
+  bottom: 10%;
+  right: 40%;
+  animation: float 6s ease-in-out infinite 0.5s;
+}
+
+.shape6 {
+  background: rgba(225, 200, 180, 0.2);
+  width: 250px;
+  height: 250px;
+  top: 40%;
+  left: 25%;
+  animation: float 11s ease-in-out infinite 3s;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 /* Gradient Background Classes */
 .gradientBackground {
   background: linear-gradient(135deg, rgba(255, 179, 193, 0.1) 0%, rgba(255, 214, 224, 0.1) 100%);
