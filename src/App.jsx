@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
 import About from './components/About/About';
@@ -20,8 +20,19 @@ const ProtectedRoute = ({ children }) => {
   // Move the hook inside the component that's wrapped in the context
   const authContext = useUserAuth();
   
-  if (!authContext || !authContext.user) {
-    return <Navigate to="/login" />;
+  // Show a loading state while auth is initializing
+  if (authContext.loading) {
+    return (
+      <div className="loading-container">
+        <div className="loading-spinner"></div>
+        <p>Loading...</p>
+      </div>
+    );
+  }
+  
+  if (!authContext.user) {
+    console.log("User not authenticated, redirecting to login");
+    return <Navigate to="/login" replace />;
   }
   
   return children;
@@ -32,12 +43,43 @@ const FirstTimeUserRoute = ({ children }) => {
   // Move the hook inside the component that's wrapped in the context
   const authContext = useUserAuth();
   
-  if (!authContext || !authContext.user) {
-    return <Navigate to="/login" />;
+  // Show a loading state while auth is initializing
+  if (authContext.loading) {
+    return (
+      <div className="loading-container">
+        <div className="loading-spinner"></div>
+        <p>Loading...</p>
+      </div>
+    );
+  }
+  
+  if (!authContext.user) {
+    console.log("User not authenticated, redirecting to login");
+    return <Navigate to="/login" replace />;
   }
   
   if (!authContext.isNewUser) {
-    return <Navigate to="/dashboard" />;
+    console.log("Not a new user, redirecting to dashboard");
+    return <Navigate to="/dashboard" replace />;
+  }
+  
+  return children;
+};
+
+// This component ensures the main content is only rendered once auth is initialized
+const AuthAwareContent = ({ children }) => {
+  const { loading } = useUserAuth();
+  const location = useLocation();
+  
+  console.log("Current location:", location.pathname);
+  
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <div className="loading-spinner"></div>
+        <p>Loading authentication...</p>
+      </div>
+    );
   }
   
   return children;
@@ -49,73 +91,73 @@ function App() {
       <UserAuthContextProvider>
         <div className="app">
           <Navbar />
-          <Routes>
-            {/* Public routes */}
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            
-            {/* Welcome route for new users */}
-            <Route 
-              path="/welcome" 
-              element={
-                <FirstTimeUserRoute>
-                  <Welcome />
-                </FirstTimeUserRoute>
-              } 
-            />
-            
-            {/* Protected routes */}
-            <Route 
-              path="/dashboard" 
-              element={
-                <ProtectedRoute>
-                  <Dashboard />
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/vision-board" 
-              element={
-                <ProtectedRoute>
-                  <VisionBoard />
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/journal" 
-              element={
-                <ProtectedRoute>
-                  <Journal />
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/goals" 
-              element={
-                <ProtectedRoute>
-                  <Goals />
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/habits" 
-              element={
-                <ProtectedRoute>
-                  <Habits />
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/reading" 
-              element={
-                <ProtectedRoute>
-                  <Reading />
-                </ProtectedRoute>
-              } 
-            />
-          </Routes>
+          <AuthAwareContent>
+            <Routes>
+              {/* Public routes */}
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              
+              {/* Welcome route for new users */}
+              <Route 
+                path="/welcome" 
+                element={
+                  <FirstTimeUserRoute>
+                    <Welcome />
+                  </FirstTimeUserRoute>
+                } 
+              />
+              
+              {/* Dashboard is special - it shows different content for guests vs auth users */}
+              <Route path="/dashboard" element={<Dashboard />} />
+              
+              {/* Other protected routes */}
+              <Route 
+                path="/vision-board" 
+                element={
+                  <ProtectedRoute>
+                    <VisionBoard />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/journal" 
+                element={
+                  <ProtectedRoute>
+                    <Journal />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/goals" 
+                element={
+                  <ProtectedRoute>
+                    <Goals />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/habits" 
+                element={
+                  <ProtectedRoute>
+                    <Habits />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="/reading" 
+                element={
+                  <ProtectedRoute>
+                    <Reading />
+                  </ProtectedRoute>
+                } 
+              />
+              
+              {/* Fallback route for any unmatched paths */}
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </AuthAwareContent>
         </div>
       </UserAuthContextProvider>
     </Router>
