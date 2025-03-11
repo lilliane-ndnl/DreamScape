@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { collection, query, where, getDocs } from 'firebase/firestore';
-import { db } from '../../firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { db, auth } from '../../firebase';
 import styles from '../Auth/AuthShared.module.css';
 import { useUserAuth } from '../../contexts/UserAuthContext';
 
 const Login = () => {
     const navigate = useNavigate();
-    const { signIn } = useUserAuth();
+    
+    // Try to use context but provide fallback for direct Firebase access
+    const authContext = useUserAuth();
+    
     const [formData, setFormData] = useState({
         emailOrUsername: '',
         password: ''
@@ -63,7 +67,14 @@ const Login = () => {
                 email = querySnapshot.docs[0].data().email;
             }
 
-            await signIn(email, formData.password);
+            // Use either context method or direct Firebase method
+            if (authContext && authContext.signIn) {
+                await authContext.signIn(email, formData.password);
+            } else {
+                // Fallback to direct Firebase call
+                await signInWithEmailAndPassword(auth, email, formData.password);
+            }
+            
             navigate('/dashboard');
         } catch (error) {
             console.error('Login error:', error);
