@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { sendEmailVerification, createUserWithEmailAndPassword } from 'firebase/auth';
+import { sendEmailVerification, createUserWithEmailAndPassword, setPersistence, browserLocalPersistence } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { db, auth } from '../../firebase';
 import styles from '../Auth/AuthShared.module.css';
@@ -109,26 +109,35 @@ const Signup = () => {
         
         setIsSubmitting(true);
         try {
+            console.log("Starting signup process for:", formData.email);
+            
+            // Set persistence to LOCAL first
+            await setPersistence(auth, browserLocalPersistence);
+            
             // Use either context method or direct Firebase method
             let userCredential;
             if (authContext && authContext.createUser) {
                 userCredential = await authContext.createUser(formData.email, formData.password);
+                console.log("User created using context");
             } else {
                 // Fallback to direct Firebase call
                 userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+                console.log("User created using direct Firebase");
             }
             
             const user = userCredential.user;
+            console.log("User created with ID:", user.uid);
 
             // Send email verification silently
             await sendEmailVerification(user);
+            console.log("Verification email sent");
 
             // Create user document in Firestore
             const userDocRef = doc(db, "users", user.uid);
             const userData = {
                 username: formData.username,
                 email: formData.email,
-                birthday: new Date(formData.birthday),
+                birthday: new Date(formData.birthday).toISOString(),
                 sex: formData.sex,
                 fullName: formData.fullName,
                 createdAt: new Date().toISOString(),
@@ -138,8 +147,10 @@ const Signup = () => {
             };
             
             await setDoc(userDocRef, userData);
+            console.log("User document created in Firestore");
 
             // Navigate to the welcome page
+            console.log("Signup successful, navigating to welcome page");
             navigate('/welcome');
         } catch (error) {
             console.error('Signup error:', error);
