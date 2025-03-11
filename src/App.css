@@ -1,6 +1,20 @@
 /* Base Styles */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
 
+@font-face {
+  font-family: 'Playfair Display';
+  src: url('./fonts/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
+  font-weight: 400 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Playfair Display';
+  src: url('./fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 400 900;
+  font-style: italic;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -524,16 +538,104 @@ h1.appTitle {
   }
 }
 
-/* Page transitions */
-.page-transition {
+/* Page transitions and element animations */
+.page-enter {
   opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateY(60px) scale(0.98);
 }
 
-.page-transition-enter {
+.page-enter-active {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
+  transition: opacity 1.2s ease-out, transform 1.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.page-exit {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.page-exit-active {
+  opacity: 0;
+  transform: translateY(-40px) scale(0.98);
+  transition: opacity 0.8s ease, transform 0.9s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Enhanced floating animation */
+@keyframes floatUp {
+  0% {
+    opacity: 0;
+    transform: translateY(60px) scale(0.98);
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Apply enhanced animations to common components */
+.dashboardContainer, 
+.welcomeTitle, 
+.dashboardGrid, 
+.dashboardCard, 
+.affirmationCard, 
+.inspirationalQuote, 
+.joinSection,
+.authContainer {
+  animation: floatUp 1.4s forwards cubic-bezier(0.165, 0.84, 0.44, 1);
+  will-change: transform, opacity;
+}
+
+.dashboardContainer {
+  animation-delay: 0.1s;
+}
+
+.welcomeTitle {
+  animation-delay: 0.25s;
+}
+
+.dashboardGrid {
+  animation-delay: 0.35s;
+}
+
+.dashboardCard:nth-child(1) {
+  animation-delay: 0.5s;
+}
+
+.dashboardCard:nth-child(2) {
+  animation-delay: 0.65s;
+}
+
+.dashboardCard:nth-child(3) {
+  animation-delay: 0.8s;
+}
+
+.dashboardCard:nth-child(4) {
+  animation-delay: 0.95s;
+}
+
+.affirmationCard {
+  animation-delay: 0.3s;
+}
+
+.inspirationalQuote {
+  animation-delay: 0.45s;
+}
+
+.joinSection {
+  animation-delay: 0.55s;
 }
 
 /* Floating shapes for background */
@@ -543,7 +645,7 @@ h1.appTitle {
   width: 100%;
   overflow: hidden;
   opacity: 0;
-  transition: opacity 0.5s ease-in;
+  transition: opacity 0.8s ease-in;
 }
 
 .showBackground {
@@ -565,7 +667,7 @@ h1.appTitle {
   border-radius: 50%;
   filter: blur(50px);
   opacity: 0.6;
-  animation: float 15s infinite ease-in-out;
+  animation: float 20s infinite ease-in-out;
 }
 
 .shape1 {
@@ -591,7 +693,7 @@ h1.appTitle {
   right: 15%;
   width: 280px;
   height: 280px;
-  background-color: rgba(107, 133, 161, 0.3);
+  background-color: rgba(107, 133, 161, 0.25);
   animation-delay: 4s;
 }
 
@@ -600,7 +702,7 @@ h1.appTitle {
   right: 5%;
   width: 320px;
   height: 320px;
-  background-color: rgba(255, 238, 242, 0.4);
+  background-color: rgba(255, 238, 242, 0.5);
   animation-delay: 6s;
 }
 
@@ -609,7 +711,7 @@ h1.appTitle {
   left: 60%;
   width: 220px;
   height: 220px;
-  background-color: rgba(83, 46, 59, 0.2);
+  background-color: rgba(255, 182, 193, 0.3);
   animation-delay: 8s;
 }
 
@@ -618,19 +720,79 @@ h1.appTitle {
   left: 40%;
   width: 180px;
   height: 180px;
-  background-color: rgba(255, 159, 159, 0.3);
+  background-color: rgba(255, 159, 159, 0.35);
   animation-delay: 10s;
+}
+
+/* New additional background shapes */
+.shape7 {
+  top: 45%;
+  left: 75%;
+  width: 200px;
+  height: 200px;
+  background-color: rgba(255, 192, 203, 0.25);
+  animation-delay: 3s;
+  animation-duration: 18s;
+}
+
+.shape8 {
+  top: 15%;
+  left: 65%;
+  width: 350px;
+  height: 350px;
+  background-color: rgba(255, 107, 129, 0.15);
+  animation-delay: 7s;
+  animation-duration: 25s;
+}
+
+.shape9 {
+  top: 75%;
+  left: 30%;
+  width: 230px;
+  height: 230px;
+  background-color: rgba(161, 107, 120, 0.2);
+  animation-delay: 5s;
+  animation-duration: 22s;
+}
+
+.shape10 {
+  top: 40%;
+  left: 5%;
+  width: 280px;
+  height: 280px;
+  background-color: rgba(255, 228, 235, 0.35);
+  animation-delay: 9s;
+  animation-duration: 23s;
+}
+
+.shape11 {
+  top: 5%;
+  left: 35%;
+  width: 180px;
+  height: 180px;
+  background-color: rgba(255, 153, 172, 0.25);
+  animation-delay: 1s;
+  animation-duration: 19s;
 }
 
 @keyframes float {
   0% {
-    transform: translate(0px, 0px);
+    transform: translate(0px, 0px) scale(1);
+    opacity: 0.6;
+  }
+  25% {
+    opacity: 0.5;
   }
   50% {
-    transform: translate(20px, 20px);
+    transform: translate(20px, 20px) scale(1.05);
+    opacity: 0.7;
+  }
+  75% {
+    opacity: 0.55;
   }
   100% {
-    transform: translate(0px, 0px);
+    transform: translate(0px, 0px) scale(1);
+    opacity: 0.6;
   }
 }
 
