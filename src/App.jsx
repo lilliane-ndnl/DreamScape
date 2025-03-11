@@ -12,29 +12,31 @@ import Journal from './components/Journal/Journal';
 import Goals from './components/Goals/Goals';
 import Habits from './components/Habits/Habits';
 import Reading from './components/Reading/Reading';
-import { UserAuthContextProvider } from './contexts/UserAuthContext';
+import { UserAuthContextProvider, useUserAuth } from './contexts/UserAuthContext';
 import './App.css';
 
-// Protected Route component
+// Protected Route component - defined with the hook inside for proper context access
 const ProtectedRoute = ({ children }) => {
-  const { user } = useUserAuth();
+  // Move the hook inside the component that's wrapped in the context
+  const authContext = useUserAuth();
   
-  if (!user) {
+  if (!authContext || !authContext.user) {
     return <Navigate to="/login" />;
   }
   
   return children;
 };
 
-// First Time User Route component
+// First Time User Route component - defined with the hook inside for proper context access
 const FirstTimeUserRoute = ({ children }) => {
-  const { user, isNewUser } = useUserAuth();
+  // Move the hook inside the component that's wrapped in the context
+  const authContext = useUserAuth();
   
-  if (!user) {
+  if (!authContext || !authContext.user) {
     return <Navigate to="/login" />;
   }
   
-  if (!isNewUser) {
+  if (!authContext.isNewUser) {
     return <Navigate to="/dashboard" />;
   }
   
@@ -43,8 +45,8 @@ const FirstTimeUserRoute = ({ children }) => {
 
 function App() {
   return (
-    <UserAuthContextProvider>
-      <Router>
+    <Router>
+      <UserAuthContextProvider>
         <div className="app">
           <Navbar />
           <Routes>
@@ -115,8 +117,8 @@ function App() {
             />
           </Routes>
         </div>
-      </Router>
-    </UserAuthContextProvider>
+      </UserAuthContextProvider>
+    </Router>
   );
 }
 
