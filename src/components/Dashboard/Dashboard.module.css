@@ -131,8 +131,8 @@
 }
 
 .affirmationCard {
-  background: linear-gradient(135deg, rgba(255, 179, 193, 0.9) 0%, rgba(255, 214, 224, 0.9) 100%);
-  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(255, 179, 193, 0.7) 0%, rgba(255, 214, 224, 0.7) 100%);
+  border-radius: 20px;
   padding: 2rem;
   color: #532e3b;
   text-align: center;
@@ -158,7 +158,7 @@
 }
 
 .statsCard {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.7);
   border-radius: 12px;
   padding: 1.8rem;
   box-shadow: 0 4px 20px rgba(255, 179, 193, 0.1);
@@ -194,7 +194,7 @@
 }
 
 .progressCard {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.7);
   border-radius: 12px;
   padding: 1.8rem;
   box-shadow: 0 4px 20px rgba(107, 133, 161, 0.1);
@@ -237,7 +237,7 @@
 }
 
 .recentActivityCard {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.7);
   border-radius: 12px;
   padding: 1.8rem;
   box-shadow: 0 4px 20px rgba(107, 133, 161, 0.1);
@@ -341,28 +341,71 @@
   transform: translateY(0);
 }
 
-.newAffirmationButton {
-  background: linear-gradient(45deg, #ffb3c1, #ffd6e0);
-  color: #532e3b;
+/* Common button styles */
+.newAffirmationButton, .loginButton, .signupButton {
+  padding: 1rem 2rem;
   border: none;
   border-radius: 30px;
-  padding: 1rem 2rem;
-  font-family: 'Playfair Display', serif;
   font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 0.5px;
+  min-width: 150px;
+  position: relative;
+  overflow: hidden;
+}
+
+.newAffirmationButton {
+  background: linear-gradient(135deg, #ff8da1 0%, #ffd6e0 100%);
+  color: #532e3b;
+  font-weight: 600;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  border: none;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(255, 179, 193, 0.3);
+  box-shadow: 0 4px 15px rgba(255, 141, 161, 0.2);
+}
+
+.loginButton {
+  background: rgba(255, 255, 255, 0.7);
+  color: #532e3b;
+  border: 1px solid rgba(250, 172, 168, 0.2);
+  box-shadow: 0 4px 12px rgba(250, 172, 168, 0.1);
+}
+
+.signupButton {
+  background-image: linear-gradient(to right, #ddd6f3 0%, #faaca8 51%, #ddd6f3 100%);
+  background-size: 200% auto;
+  color: #532e3b;
+  box-shadow: 0 4px 15px rgba(250, 172, 168, 0.3);
 }
 
 .newAffirmationButton:hover {
+  background: linear-gradient(135deg, #ffd6e0 0%, #ff8da1 100%);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 179, 193, 0.4);
-  background: linear-gradient(45deg, #ffd6e0, #ffb3c1);
+  box-shadow: 0 6px 20px rgba(255, 141, 161, 0.4);
 }
 
-.newAffirmationButton:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
+.loginButton:hover {
+  background: rgba(255, 255, 255, 0.95);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(250, 172, 168, 0.2);
+  border-color: rgba(250, 172, 168, 0.5);
+}
+
+.newAffirmationButton:active, .loginButton:active, .signupButton:active {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(250, 172, 168, 0.3);
+}
+
+.joinButtons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
 }
 
 .inspirationalQuote {
@@ -376,7 +419,7 @@
   z-index: 1;
   font-style: italic;
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.5);
   border-radius: 30px;
   box-shadow: 0 4px 15px rgba(255, 179, 193, 0.1);
 }
@@ -411,53 +454,57 @@
 .joinSection {
   margin: 3rem auto;
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.65);
+  border-radius: 20px;
   max-width: 600px;
-  box-shadow: 0 4px 20px rgba(83, 46, 59, 0.1);
+  box-shadow: 0 10px 30px rgba(255, 107, 129, 0.15);
+  text-align: center;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  position: relative;
+  overflow: hidden;
+}
+
+.joinSection::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 214, 224, 0.3) 0%, rgba(255, 255, 255, 0) 60%);
+  z-index: -1;
+}
+
+.joinSection:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(255, 107, 129, 0.2);
 }
 
 .joinSection h3 {
   font-family: 'Playfair Display', serif;
-  color: #532e3b;
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  margin-bottom: 1.2rem;
+  background: linear-gradient(135deg, #ff6b81 0%, #A16B78 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
 .joinSection p {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.8rem;
   color: #6B85A1;
-}
-
-.joinButtons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.loginButton, .signupButton {
-  padding: 0.8rem 1.8rem;
-  border: none;
-  border-radius: 30px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.loginButton {
-  background: linear-gradient(135deg, #6B85A1 0%, #D5E1DF 100%);
-  color: white;
-}
-
-.signupButton {
-  background: linear-gradient(135deg, #ffb3c1 0%, #ffd6e0 100%);
-  color: #532e3b;
-}
-
-.loginButton:hover, .signupButton:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(83, 46, 59, 0.2);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  opacity: 0.85;
 }
 
 /* Authenticated dashboard specific styles */
@@ -477,7 +524,7 @@
 }
 
 .dashboardCard {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.65);
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(83, 46, 59, 0.1);

@@ -24,6 +24,12 @@ function LoggedInDashboard() {
         {[...Array(6)].map((_, i) => (
           <div key={i} className={`shape shape${i + 1}`} />
         ))}
+        
+        <div className="shape shape7" />
+        <div className="shape shape8" />
+        <div className="shape shape9" />
+        <div className="shape shape10" />
+        <div className="shape shape11" />
       </div>
 
       <div className={styles.dashboardContainer}>

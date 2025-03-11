@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './Dashboard.module.css';
 import affirmationsData from '../../data/affirmations.json';
 import quotesData from '../../data/quotes.json';
 
 function GuestDashboard({ onLogin }) {
+  const navigate = useNavigate(); // Get navigate function for direct navigation
   const [currentAffirmation, setCurrentAffirmation] = useState(() => {
     const saved = localStorage.getItem('currentAffirmation');
     return saved || '';
@@ -50,6 +52,26 @@ function GuestDashboard({ onLogin }) {
     localStorage.setItem('currentQuote', JSON.stringify(newQuote));
   }, []);
 
+  // Handle login button click - navigate to login page
+  const handleLoginClick = () => {
+    console.log("Navigating to login page");
+    if (onLogin) {
+      onLogin(false); // Use the provided onLogin function if available
+    } else {
+      navigate('/login'); // Fallback to direct navigation
+    }
+  };
+
+  // Handle signup button click - navigate to signup page
+  const handleSignupClick = () => {
+    console.log("Navigating to signup page");
+    if (onLogin) {
+      onLogin(true); // Use the provided onLogin function if available
+    } else {
+      navigate('/signup'); // Fallback to direct navigation
+    }
+  };
+
   useEffect(() => {
     // Show background with delay
     const backgroundTimer = setTimeout(() => setShowBackground(true), 500);
@@ -73,6 +95,12 @@ function GuestDashboard({ onLogin }) {
         {[...Array(6)].map((_, i) => (
           <div key={i} className={`shape shape${i + 1}`} />
         ))}
+        
+        <div className="shape shape7" />
+        <div className="shape shape8" />
+        <div className="shape shape9" />
+        <div className="shape shape10" />
+        <div className="shape shape11" />
       </div>
 
       <div className={styles.logoContainer}>
@@ -105,10 +133,10 @@ function GuestDashboard({ onLogin }) {
           <h3>Ready to Track Your Personal Growth Journey?</h3>
           <p>Sign in to access your personalized dashboard and track your goals, habits, and more.</p>
           <div className={styles.joinButtons}>
-            <button className={styles.loginButton} onClick={onLogin}>
+            <button className={styles.loginButton} onClick={handleLoginClick}>
               Sign In
             </button>
-            <button className={styles.signupButton} onClick={() => onLogin(true)}>
+            <button className={styles.signupButton} onClick={handleSignupClick}>
               Create Account
             </button>
           </div>

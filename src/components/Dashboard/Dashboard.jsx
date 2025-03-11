@@ -12,8 +12,11 @@ function Dashboard() {
   
   console.log("Dashboard rendering, authenticated user:", !!user);
   
+  // Enhanced navigation handler with console logging
   const handleLogin = (isSignup = false) => {
-    navigate(isSignup ? '/signup' : '/login');
+    const destination = isSignup ? '/signup' : '/login';
+    console.log(`Navigating from Dashboard to ${destination}`);
+    navigate(destination);
   };
   
   // If we can't determine authentication state yet, show a loading spinner
