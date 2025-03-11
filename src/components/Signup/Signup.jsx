@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { sendEmailVerification } from 'firebase/auth';
+import { sendEmailVerification, createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
-import { db } from '../../firebase';
+import { db, auth } from '../../firebase';
 import styles from '../Auth/AuthShared.module.css';
 import { useUserAuth } from '../../contexts/UserAuthContext';
 
 const Signup = () => {
     const navigate = useNavigate();
-    const { createUser } = useUserAuth();
+    
+    // Try to use context but provide fallback for direct Firebase access
+    const authContext = useUserAuth();
+    
     const [formData, setFormData] = useState({
         email: '',
         username: '',
@@ -106,8 +109,15 @@ const Signup = () => {
         
         setIsSubmitting(true);
         try {
-            // Create user account using context
-            const userCredential = await createUser(formData.email, formData.password);
+            // Use either context method or direct Firebase method
+            let userCredential;
+            if (authContext && authContext.createUser) {
+                userCredential = await authContext.createUser(formData.email, formData.password);
+            } else {
+                // Fallback to direct Firebase call
+                userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+            }
+            
             const user = userCredential.user;
 
             // Send email verification silently
