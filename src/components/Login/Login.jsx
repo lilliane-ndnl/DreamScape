@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { signInWithEmailAndPassword, setPersistence, browserLocalPersistence } from 'firebase/auth';
@@ -18,6 +18,15 @@ const Login = () => {
     });
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [redirectInProgress, setRedirectInProgress] = useState(false);
+
+    // Check if user is already logged in
+    useEffect(() => {
+        if (authContext && authContext.user && !redirectInProgress) {
+            console.log("User already logged in, redirecting to dashboard");
+            navigate('/dashboard');
+        }
+    }, [authContext, navigate, redirectInProgress]);
 
     const validateForm = () => {
         const newErrors = {};
@@ -73,19 +82,31 @@ const Login = () => {
             await setPersistence(auth, browserLocalPersistence);
             
             // Use either context method or direct Firebase method
+            let userCredential;
             if (authContext && authContext.signIn) {
-                await authContext.signIn(email, formData.password);
+                userCredential = await authContext.signIn(email, formData.password);
                 console.log("Signed in using context");
             } else {
                 // Fallback to direct Firebase call
-                await signInWithEmailAndPassword(auth, email, formData.password);
+                userCredential = await signInWithEmailAndPassword(auth, email, formData.password);
                 console.log("Signed in using direct Firebase");
             }
             
-            console.log("Login successful, navigating to dashboard");
-            navigate('/dashboard');
+            console.log("Login successful");
+            
+            // Mark that a redirect is in progress to prevent double redirects
+            setRedirectInProgress(true);
+            
+            // Delay navigation slightly to ensure auth state is updated
+            setTimeout(() => {
+                console.log("Navigating to dashboard");
+                navigate('/dashboard');
+                setIsSubmitting(false);
+            }, 500);
         } catch (error) {
             console.error('Login error:', error);
+            setIsSubmitting(false);
+            
             if (error.message === 'user-not-found' || error.code === 'auth/user-not-found') {
                 setErrors(prev => ({ ...prev, emailOrUsername: 'No account found with these credentials' }));
             } else if (error.code === 'auth/wrong-password') {
@@ -95,8 +116,6 @@ const Login = () => {
             } else {
                 setErrors(prev => ({ ...prev, submit: 'Failed to sign in. Please try again.' }));
             }
-        } finally {
-            setIsSubmitting(false);
         }
     };
 
