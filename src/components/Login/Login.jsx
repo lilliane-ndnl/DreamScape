@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { collection, query, where, getDocs } from 'firebase/firestore';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, setPersistence, browserLocalPersistence } from 'firebase/auth';
 import { db, auth } from '../../firebase';
 import styles from '../Auth/AuthShared.module.css';
 import { useUserAuth } from '../../contexts/UserAuthContext';
@@ -67,14 +67,22 @@ const Login = () => {
                 email = querySnapshot.docs[0].data().email;
             }
 
+            console.log("Attempting to sign in with:", email);
+
+            // Set persistence to LOCAL first
+            await setPersistence(auth, browserLocalPersistence);
+            
             // Use either context method or direct Firebase method
             if (authContext && authContext.signIn) {
                 await authContext.signIn(email, formData.password);
+                console.log("Signed in using context");
             } else {
                 // Fallback to direct Firebase call
                 await signInWithEmailAndPassword(auth, email, formData.password);
+                console.log("Signed in using direct Firebase");
             }
             
+            console.log("Login successful, navigating to dashboard");
             navigate('/dashboard');
         } catch (error) {
             console.error('Login error:', error);
