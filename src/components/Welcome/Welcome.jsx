@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { register } from 'swiper/element/bundle';
 import Confetti from 'react-confetti';
 import styles from './Welcome.module.css';
+import { useUserAuth } from '../../contexts/UserAuthContext';
 
 // Register Swiper custom elements
 register();
@@ -13,6 +14,8 @@ function Welcome() {
     width: window.innerWidth,
     height: window.innerHeight
   });
+  const navigate = useNavigate();
+  const { user, setUserAsNotNew } = useUserAuth();
 
   const features = [
     {
@@ -68,11 +71,27 @@ function Welcome() {
       setShowConfetti(false);
     }, 8000);
 
+    // Mark user as not new after they've seen the welcome page
+    const markUserTimer = setTimeout(() => {
+      if (user && user.uid) {
+        console.log("Marking user as not new after welcome page view");
+        setUserAsNotNew(user.uid);
+      }
+    }, 10000); // Give them time to see the welcome page
+
     return () => {
       window.removeEventListener('resize', handleResize);
       clearTimeout(timer);
+      clearTimeout(markUserTimer);
     };
-  }, []);
+  }, [user, setUserAsNotNew]);
+
+  const handleContinueToDashboard = () => {
+    if (user && user.uid) {
+      setUserAsNotNew(user.uid);
+    }
+    navigate('/dashboard');
+  };
 
   return (
     <div className={styles.welcomeContainer}>
@@ -137,6 +156,10 @@ function Welcome() {
             Start building your DreamScape today. 
             <span className={styles.sparkle}>💫</span>
           </p>
+          
+          <button onClick={handleContinueToDashboard} className={styles.dashboardButton}>
+            Continue to Dashboard
+          </button>
         </div>
       </div>
     </div>

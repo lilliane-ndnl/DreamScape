@@ -121,6 +121,31 @@
   animation: sparkle 1.5s infinite;
 }
 
+.dashboardButton {
+  background-color: #ff6b81;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(255, 107, 129, 0.3);
+}
+
+.dashboardButton:hover {
+  background-color: #ff5268;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(255, 107, 129, 0.4);
+}
+
+.dashboardButton:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(255, 107, 129, 0.3);
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
