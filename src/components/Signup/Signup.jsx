@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { sendEmailVerification, createUserWithEmailAndPassword, setPersistence, browserLocalPersistence } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
@@ -24,6 +24,15 @@ const Signup = () => {
 
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [redirectInProgress, setRedirectInProgress] = useState(false);
+
+    // Check if user is already logged in
+    useEffect(() => {
+        if (authContext && authContext.user && !redirectInProgress) {
+            console.log("User already logged in, redirecting to dashboard");
+            navigate('/dashboard');
+        }
+    }, [authContext, navigate, redirectInProgress]);
 
     const validateForm = () => {
         const newErrors = {};
@@ -149,12 +158,19 @@ const Signup = () => {
             await setDoc(userDocRef, userData);
             console.log("User document created in Firestore");
 
-            // Navigate to the welcome page
-            console.log("Signup successful, navigating to welcome page");
-            navigate('/welcome');
+            // Mark that a redirect is in progress to prevent double redirects
+            setRedirectInProgress(true);
+            
+            // Navigate to the welcome page with a slight delay to ensure auth state is updated
+            setTimeout(() => {
+                console.log("Signup successful, navigating to welcome page");
+                navigate('/welcome');
+                setIsSubmitting(false);
+            }, 500);
         } catch (error) {
             console.error('Signup error:', error);
-
+            setIsSubmitting(false);
+            
             if (error.code === 'auth/email-already-in-use') {
                 setErrors(prev => ({ ...prev, email: 'Email is already registered' }));
             } else if (error.code === 'auth/invalid-email') {
@@ -167,8 +183,6 @@ const Signup = () => {
                     submit: `Failed to create account: ${error.message || 'Unknown error occurred'}`
                 }));
             }
-        } finally {
-            setIsSubmitting(false);
         }
     };
 
