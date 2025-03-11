@@ -39,6 +39,25 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
+## Build Information
+
+### Node Version
+
+This project works with Node.js v22.14.0 and npm 10.9.2. If you encounter build issues, consider using an LTS version of Node.js.
+
+### Environment Variables
+
+For Firebase configuration, copy `.env.example` to `.env` and fill in your Firebase project details.
+
+### Troubleshooting Build Issues
+
+If you encounter build failures:
+
+1. Make sure you're using a compatible Node.js version
+2. The build script includes the `--openssl-legacy-provider` flag to address potential OpenSSL issues
+3. Run `npm audit fix` to address dependency vulnerabilities when possible
+4. If port 3000 is already in use, the development server will prompt to use a different port
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
