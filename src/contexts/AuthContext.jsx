@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import { auth, firestore } from '../firebase';
+import { auth, db } from '../firebase';
 import { 
   createUserWithEmailAndPassword, 
   signInWithEmailAndPassword, 
@@ -24,7 +24,7 @@ export function AuthProvider({ children }) {
       const result = await createUserWithEmailAndPassword(auth, email, password);
       
       // Create user document in Firestore
-      await setDoc(doc(firestore, 'users', result.user.uid), {
+      await setDoc(doc(db, 'users', result.user.uid), {
         email: result.user.email,
         createdAt: new Date().toISOString(),
         isNewUser: true
@@ -42,13 +42,13 @@ export function AuthProvider({ children }) {
       const result = await signInWithEmailAndPassword(auth, email, password);
       
       // Check if user is new
-      const userDoc = await getDoc(doc(firestore, 'users', result.user.uid));
+      const userDoc = await getDoc(doc(db, 'users', result.user.uid));
       if (userDoc.exists()) {
         setIsNewUser(userDoc.data().isNewUser || false);
         
         // If user was new, update the flag
         if (userDoc.data().isNewUser) {
-          await setDoc(doc(firestore, 'users', result.user.uid), {
+          await setDoc(doc(db, 'users', result.user.uid), {
             ...userDoc.data(),
             isNewUser: false
           });
@@ -68,7 +68,7 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        const userDoc = await getDoc(doc(firestore, 'users', user.uid));
+        const userDoc = await getDoc(doc(db, 'users', user.uid));
         if (userDoc.exists()) {
           setIsNewUser(userDoc.data().isNewUser || false);
         }
