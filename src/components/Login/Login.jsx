@@ -82,13 +82,12 @@ const Login = () => {
             await setPersistence(auth, browserLocalPersistence);
             
             // Use either context method or direct Firebase method
-            let userCredential;
             if (authContext && authContext.signIn) {
-                userCredential = await authContext.signIn(email, formData.password);
+                await authContext.signIn(email, formData.password);
                 console.log("Signed in using context");
             } else {
                 // Fallback to direct Firebase call
-                userCredential = await signInWithEmailAndPassword(auth, email, formData.password);
+                await signInWithEmailAndPassword(auth, email, formData.password);
                 console.log("Signed in using direct Firebase");
             }
             
