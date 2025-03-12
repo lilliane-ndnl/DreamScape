@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Dashboard.module.css';
 import { useUserAuth } from '../../contexts/UserAuthContext';
@@ -8,13 +8,11 @@ import './CalendarStyles.css';
 import { doc, updateDoc, getDoc } from 'firebase/firestore';
 import { db, storage } from '../../firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import UserAuthContext from '../../contexts/UserAuthContext';
 
 function LoggedInDashboard() {
   const [showBackground, setShowBackground] = useState(false);
   const { user, logout } = useUserAuth();
   const navigate = useNavigate();
-  const { currentUser, updateProfile } = useContext(UserAuthContext);
   
   // User profile state
   const [profileData, setProfileData] = useState({
