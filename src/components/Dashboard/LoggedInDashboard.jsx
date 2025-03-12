@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import styles from './Dashboard.module.css';
 import { useUserAuth } from '../../contexts/UserAuthContext';
 import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+// Try to import the CSS from node_modules first, if that fails we have our own CSS
+import './CalendarStyles.css';
 import { doc, updateDoc, getDoc } from 'firebase/firestore';
 import { db, storage } from '../../firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
