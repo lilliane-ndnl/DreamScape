@@ -151,9 +151,6 @@ function LoggedInDashboard() {
     if (!user?.uid) return;
     
     // Check if username is being changed and if allowed
-    const canChangeUsername = !profileData.lastUsernameUpdate || 
-      (new Date() - new Date(profileData.lastUsernameUpdate)) > (14 * 24 * 60 * 60 * 1000);
-    
     if (editFormData.username !== profileData.username && !canChangeUsername) {
       alert("You can only change your username once every 14 days.");
       return;
@@ -211,7 +208,6 @@ function LoggedInDashboard() {
   const getHabitStreak = (habit) => {
     if (!habit.completions || habit.completions.length === 0) return 0;
     
-    const today = new Date().toISOString().split('T')[0];
     let streak = 0;
     let currentDate = new Date();
     
@@ -251,6 +247,10 @@ function LoggedInDashboard() {
     if (moodValue >= 2) return '#ffb347'; // Sad - orange
     return '#ff6961'; // Very sad - red
   };
+  
+  // Check if username can be changed (only once every 14 days)
+  const canChangeUsername = !profileData.lastUsernameUpdate || 
+    (new Date() - new Date(profileData.lastUsernameUpdate)) > (14 * 24 * 60 * 60 * 1000);
   
   // GMT+7 time display
   const gmt7Time = getGMT7Time();
