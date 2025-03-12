@@ -68,7 +68,9 @@ const Login = () => {
                 const querySnapshot = await getDocs(q);
                 
                 if (querySnapshot.empty) {
-                    throw { code: 'auth/user-not-found' };
+                    const error = new Error('User not found');
+                    error.code = 'auth/user-not-found';
+                    throw error;
                 }
                 
                 email = querySnapshot.docs[0].data().email;
@@ -83,13 +85,15 @@ const Login = () => {
             console.error('Login error:', error);
             setIsSubmitting(false);
             
-            if (error.code === 'auth/user-not-found') {
+            const errorCode = error.code || error.message;
+            
+            if (errorCode === 'auth/user-not-found') {
                 setErrors(prev => ({ ...prev, emailOrUsername: 'No account found with these credentials' }));
-            } else if (error.code === 'auth/wrong-password') {
+            } else if (errorCode === 'auth/wrong-password') {
                 setErrors(prev => ({ ...prev, password: 'Incorrect password' }));
-            } else if (error.code === 'auth/invalid-email') {
+            } else if (errorCode === 'auth/invalid-email') {
                 setErrors(prev => ({ ...prev, emailOrUsername: 'Invalid email format' }));
-            } else if (error.code === 'auth/too-many-requests') {
+            } else if (errorCode === 'auth/too-many-requests') {
                 setErrors(prev => ({ ...prev, submit: 'Too many failed login attempts. Please try again later.' }));
             } else {
                 setErrors(prev => ({ ...prev, submit: 'Failed to sign in. Please try again.' }));
