@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { collection, query, where, getDocs } from 'firebase/firestore';
-import { signInWithEmailAndPassword, setPersistence, browserLocalPersistence } from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { db, auth } from '../../firebase';
 import styles from '../Auth/AuthShared.module.css';
-import { useUserAuth } from '../../contexts/UserAuthContext';
 
 const Login = () => {
     const navigate = useNavigate();
-    
-    // Try to use context but provide fallback for direct Firebase access
-    const authContext = useUserAuth();
     
     const [formData, setFormData] = useState({
         emailOrUsername: '',
@@ -20,13 +16,15 @@ const Login = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [redirectInProgress, setRedirectInProgress] = useState(false);
 
-    // Check if user is already logged in
     useEffect(() => {
-        if (authContext && authContext.user && !redirectInProgress) {
-            console.log("User already logged in, redirecting to dashboard");
-            navigate('/dashboard');
-        }
-    }, [authContext, navigate, redirectInProgress]);
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            if (user && !redirectInProgress) {
+                navigate('/');
+            }
+        });
+        
+        return () => unsubscribe();
+    }, [navigate, redirectInProgress]);
 
     const validateForm = () => {
         const newErrors = {};
@@ -70,48 +68,29 @@ const Login = () => {
                 const querySnapshot = await getDocs(q);
                 
                 if (querySnapshot.empty) {
-                    throw new Error('user-not-found');
+                    throw { code: 'auth/user-not-found' };
                 }
                 
                 email = querySnapshot.docs[0].data().email;
             }
 
-            console.log("Attempting to sign in with:", email);
-
-            // Set persistence to LOCAL first
-            await setPersistence(auth, browserLocalPersistence);
+            await signInWithEmailAndPassword(auth, email, formData.password);
             
-            // Use either context method or direct Firebase method
-            if (authContext && authContext.signIn) {
-                await authContext.signIn(email, formData.password);
-                console.log("Signed in using context");
-            } else {
-                // Fallback to direct Firebase call
-                await signInWithEmailAndPassword(auth, email, formData.password);
-                console.log("Signed in using direct Firebase");
-            }
-            
-            console.log("Login successful");
-            
-            // Mark that a redirect is in progress to prevent double redirects
             setRedirectInProgress(true);
+            navigate('/');
             
-            // Delay navigation slightly to ensure auth state is updated
-            setTimeout(() => {
-                console.log("Navigating to dashboard");
-                navigate('/dashboard');
-                setIsSubmitting(false);
-            }, 500);
         } catch (error) {
             console.error('Login error:', error);
             setIsSubmitting(false);
             
-            if (error.message === 'user-not-found' || error.code === 'auth/user-not-found') {
+            if (error.code === 'auth/user-not-found') {
                 setErrors(prev => ({ ...prev, emailOrUsername: 'No account found with these credentials' }));
             } else if (error.code === 'auth/wrong-password') {
                 setErrors(prev => ({ ...prev, password: 'Incorrect password' }));
             } else if (error.code === 'auth/invalid-email') {
                 setErrors(prev => ({ ...prev, emailOrUsername: 'Invalid email format' }));
+            } else if (error.code === 'auth/too-many-requests') {
+                setErrors(prev => ({ ...prev, submit: 'Too many failed login attempts. Please try again later.' }));
             } else {
                 setErrors(prev => ({ ...prev, submit: 'Failed to sign in. Please try again.' }));
             }
