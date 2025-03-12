@@ -1,9 +1,11 @@
 [build]
-  command = "npm run build"
+  base = "/"
+  command = "bash ./build.sh"
   publish = "build"
 
 [build.environment]
   NODE_VERSION = "16"
+  NPM_VERSION = "8"
   # We don't need legacy SSL for Netlify builds
   # NODE_OPTIONS = "--openssl-legacy-provider"
 
