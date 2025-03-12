@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './LoggedInDashboard.module.css';
-import calendarStyles from './CalendarStyles.css';
+import './CalendarStyles.css';
 import { auth, db, storage } from '../../firebase';
 import { signOut } from 'firebase/auth';
 import { doc, getDoc, updateDoc, collection, query, where, getDocs, orderBy, limit } from 'firebase/firestore';
