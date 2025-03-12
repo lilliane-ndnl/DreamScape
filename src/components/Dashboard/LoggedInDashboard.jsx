@@ -102,6 +102,7 @@ const LoggedInDashboard = () => {
         ...doc.data()
       }));
       setGoals(goalsData);
+      console.log('Fetched goals:', goalsData);
     } catch (error) {
       console.error('Error fetching goals:', error);
     }
@@ -120,6 +121,7 @@ const LoggedInDashboard = () => {
         ...doc.data()
       }));
       setHabits(habitsData);
+      console.log('Fetched habits:', habitsData);
     } catch (error) {
       console.error('Error fetching habits:', error);
     }
@@ -127,16 +129,30 @@ const LoggedInDashboard = () => {
 
   const fetchReadingList = async (userId) => {
     try {
-      const readingQuery = query(
-        collection(db, 'readingList'),
-        where('userId', '==', userId),
-        orderBy('createdAt', 'desc')
-      );
-      const querySnapshot = await getDocs(readingQuery);
-      const readingData = querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }));
+      let collections = ['readingList', 'books', 'reading'];
+      let readingData = [];
+      
+      for (let collectionName of collections) {
+        const readingQuery = query(
+          collection(db, collectionName),
+          where('userId', '==', userId),
+          orderBy('createdAt', 'desc')
+        );
+        try {
+          const querySnapshot = await getDocs(readingQuery);
+          if (!querySnapshot.empty) {
+            readingData = querySnapshot.docs.map(doc => ({
+              id: doc.id,
+              ...doc.data()
+            }));
+            console.log(`Fetched reading list from ${collectionName}:`, readingData);
+            break;
+          }
+        } catch (e) {
+          console.log(`No data in ${collectionName} collection`);
+        }
+      }
+      
       setReadingList(readingData);
     } catch (error) {
       console.error('Error fetching reading list:', error);
@@ -145,17 +161,31 @@ const LoggedInDashboard = () => {
 
   const fetchJournalEntries = async (userId) => {
     try {
-      const journalQuery = query(
-        collection(db, 'journalEntries'),
-        where('userId', '==', userId),
-        orderBy('date', 'desc'),
-        limit(30)
-      );
-      const querySnapshot = await getDocs(journalQuery);
-      const journalData = querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }));
+      let collections = ['journalEntries', 'journal', 'entries'];
+      let journalData = [];
+      
+      for (let collectionName of collections) {
+        try {
+          const journalQuery = query(
+            collection(db, collectionName),
+            where('userId', '==', userId),
+            orderBy('date', 'desc'),
+            limit(30)
+          );
+          const querySnapshot = await getDocs(journalQuery);
+          if (!querySnapshot.empty) {
+            journalData = querySnapshot.docs.map(doc => ({
+              id: doc.id,
+              ...doc.data()
+            }));
+            console.log(`Fetched journal entries from ${collectionName}:`, journalData);
+            break;
+          }
+        } catch (e) {
+          console.log(`No data in ${collectionName} collection`);
+        }
+      }
+      
       setJournalEntries(journalData);
       
       // Prepare mood chart data
@@ -173,8 +203,8 @@ const LoggedInDashboard = () => {
             {
               label: 'Mood Rating',
               data: moodValues,
-              borderColor: '#a78bfa',
-              backgroundColor: 'rgba(167, 139, 250, 0.2)',
+              borderColor: '#fd74a7',
+              backgroundColor: 'rgba(253, 116, 167, 0.2)',
               tension: 0.3,
             },
           ],
@@ -201,6 +231,11 @@ const LoggedInDashboard = () => {
   const handleImageChange = (e) => {
     if (e.target.files[0]) {
       setProfileImage(e.target.files[0]);
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setProfileImageURL(event.target.result);
+      };
+      reader.readAsDataURL(e.target.files[0]);
     }
   };
 
@@ -215,10 +250,9 @@ const LoggedInDashboard = () => {
   const handleSubmitProfile = async (e) => {
     e.preventDefault();
     setUsernameError('');
-
+    
     try {
       if (profileForm.username !== userData.username) {
-        // Check if 14 days have passed since last username change
         if (lastUsernameChange) {
           const lastChange = new Date(lastUsernameChange.toDate ? lastUsernameChange.toDate() : lastUsernameChange);
           const daysSinceChange = Math.floor((new Date() - lastChange) / (1000 * 60 * 60 * 24));
@@ -229,11 +263,10 @@ const LoggedInDashboard = () => {
           }
         }
         
-        // Check if username is already taken
         const usernameQuery = query(collection(db, 'users'), where('username', '==', profileForm.username));
         const usernameSnapshot = await getDocs(usernameQuery);
         
-        if (!usernameSnapshot.empty) {
+        if (!usernameSnapshot.empty && usernameSnapshot.docs[0].id !== user.uid) {
           setUsernameError('This username is already taken.');
           return;
         }
@@ -248,19 +281,28 @@ const LoggedInDashboard = () => {
         updateData.lastUsernameChange = new Date();
       }
 
-      // Upload profile image if changed
       if (profileImage) {
-        const storageRef = ref(storage, `profileImages/${user.uid}`);
-        await uploadBytes(storageRef, profileImage);
-        const downloadURL = await getDownloadURL(storageRef);
-        updateData.profileImageURL = downloadURL;
-        setProfileImageURL(downloadURL);
+        try {
+          console.log('Uploading profile image:', profileImage);
+          const storageRef = ref(storage, `profileImages/${user.uid}`);
+          const uploadTask = uploadBytes(storageRef, profileImage);
+          await uploadTask;
+          console.log('Image uploaded successfully');
+          const downloadURL = await getDownloadURL(storageRef);
+          console.log('Image URL:', downloadURL);
+          updateData.profileImageURL = downloadURL;
+        } catch (uploadError) {
+          console.error('Error uploading image:', uploadError);
+        }
       }
 
+      console.log('Updating user data:', updateData);
       await updateDoc(userRef, updateData);
       setUserData({ ...userData, ...updateData });
       setShowEditProfile(false);
       setLastUsernameChange(updateData.lastUsernameChange || lastUsernameChange);
+      
+      await fetchUserData(user.uid);
     } catch (error) {
       console.error('Error updating profile:', error);
     }
@@ -454,7 +496,7 @@ const LoggedInDashboard = () => {
           <div className={styles.summaryBox}>
             <div className={styles.summaryHeader}>
               <h3>Your Reading List</h3>
-              <Link to="/reading-list" className={styles.viewAllLink}>View All</Link>
+              <Link to="/reading" className={styles.viewAllLink}>View All</Link>
             </div>
             <div className={styles.summaryContent}>
               {readingList.length === 0 ? (

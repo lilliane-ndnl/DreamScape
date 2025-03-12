@@ -5,7 +5,7 @@
 .dashboardContainer {
   width: 100%;
   min-height: 100vh;
-  background-color: #f8f5f2;
+  background-color: #fff5f7;
   padding: 2rem;
   color: #4a4a4a;
   font-family: 'Playfair Display', serif;
@@ -28,18 +28,19 @@
   align-items: center;
   font-family: 'Playfair Display', serif;
   font-size: 1.5rem;
-  color: #a78bfa;
+  color: #fd74a7;
 }
 
 /* div1: Profile Section */
 .profileSection {
-  background-color: white;
-  border-radius: 12px;
+  background: linear-gradient(145deg, #ffffff, #fff8fa);
+  border-radius: 20px;
   padding: 2rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 25px rgba(253, 116, 167, 0.1);
   display: flex;
   align-items: center;
   gap: 2rem;
+  border: 1px solid rgba(253, 116, 167, 0.2);
 }
 
 .profileImageContainer {
@@ -49,8 +50,9 @@
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
-  border: 3px solid #a78bfa;
+  border: 3px solid #fd74a7;
   cursor: pointer;
+  box-shadow: 0 5px 15px rgba(253, 116, 167, 0.2);
 }
 
 .profileImage {
@@ -62,7 +64,7 @@
 .profileImagePlaceholder {
   width: 100%;
   height: 100%;
-  background-color: #a78bfa;
+  background: linear-gradient(145deg, #fd74a7, #ff94bd);
   color: white;
   display: flex;
   justify-content: center;
@@ -107,7 +109,7 @@
 
 .username {
   font-size: 1.1rem;
-  color: #a78bfa;
+  color: #fd74a7;
   margin: 0;
 }
 
@@ -138,32 +140,38 @@
   margin-top: 1rem;
   padding: 0.6rem 1.5rem;
   border: none;
-  border-radius: 6px;
+  border-radius: 15px;
   font-family: 'Playfair Display', serif;
   font-size: 1rem;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s;
   font-weight: 500;
 }
 
 .editProfileButton {
-  background-color: #a78bfa;
+  background: linear-gradient(145deg, #fd74a7, #ff94bd);
   color: white;
   margin-right: 1rem;
+  box-shadow: 0 4px 15px rgba(253, 116, 167, 0.3);
 }
 
 .editProfileButton:hover {
-  background-color: #9061f9;
+  background: linear-gradient(145deg, #ff94bd, #fd74a7);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(253, 116, 167, 0.4);
 }
 
 .logoutButton {
-  background-color: #f3f4f6;
-  color: #4b5563;
-  border: 1px solid #e5e7eb;
+  background: linear-gradient(145deg, #f3f4f6, #ffffff);
+  color: #fd74a7;
+  border: 1px solid rgba(253, 116, 167, 0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 .logoutButton:hover {
-  background-color: #e5e7eb;
+  background: linear-gradient(145deg, #ffffff, #f3f4f6);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Edit Profile Form */
@@ -187,15 +195,23 @@
 
 .formGroup input, .formGroup textarea {
   padding: 0.75rem;
-  border: 1px solid #e5e7eb;
-  border-radius: 6px;
+  border: 1px solid #ffc1d6;
+  border-radius: 12px;
   font-family: 'Playfair Display', serif;
   font-size: 1rem;
+  box-shadow: 0 2px 5px rgba(253, 116, 167, 0.1);
+  transition: all 0.3s;
+}
+
+.formGroup input:focus, .formGroup textarea:focus {
+  border-color: #fd74a7;
+  box-shadow: 0 2px 8px rgba(253, 116, 167, 0.2);
+  outline: none;
 }
 
 .formGroup small {
   font-size: 0.8rem;
-  color: #6b7280;
+  color: #fd74a7;
   margin-top: 0.2rem;
 }
 
@@ -214,30 +230,36 @@
 .saveButton, .cancelButton {
   padding: 0.6rem 1.5rem;
   border: none;
-  border-radius: 6px;
+  border-radius: 15px;
   font-family: 'Playfair Display', serif;
   font-size: 1rem;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s;
 }
 
 .saveButton {
-  background-color: #a78bfa;
+  background: linear-gradient(145deg, #fd74a7, #ff94bd);
   color: white;
+  box-shadow: 0 4px 15px rgba(253, 116, 167, 0.3);
 }
 
 .saveButton:hover {
-  background-color: #9061f9;
+  background: linear-gradient(145deg, #ff94bd, #fd74a7);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(253, 116, 167, 0.4);
 }
 
 .cancelButton {
-  background-color: #f3f4f6;
-  color: #4b5563;
+  background: linear-gradient(145deg, #f3f4f6, #ffffff);
+  color: #666;
   border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 .cancelButton:hover {
-  background-color: #e5e7eb;
+  background: linear-gradient(145deg, #ffffff, #f3f4f6);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* div2-div5: Summary Grid */
@@ -248,13 +270,20 @@
 }
 
 .summaryBox {
-  background-color: white;
-  border-radius: 12px;
+  background: linear-gradient(145deg, #ffffff, #fff8fa);
+  border-radius: 20px;
   padding: 1.5rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 10px 25px rgba(253, 116, 167, 0.1);
   display: flex;
   flex-direction: column;
   height: 100%;
+  border: 1px solid rgba(253, 116, 167, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.summaryBox:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(253, 116, 167, 0.15);
 }
 
 .summaryHeader {
@@ -262,7 +291,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
-  border-bottom: 1px solid #f3f4f6;
+  border-bottom: 1px solid #ffd6e3;
   padding-bottom: 0.75rem;
 }
 
@@ -275,7 +304,7 @@
 }
 
 .viewAllLink {
-  color: #a78bfa;
+  color: #fd74a7;
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
@@ -283,7 +312,7 @@
 }
 
 .viewAllLink:hover {
-  color: #9061f9;
+  color: #ff94bd;
   text-decoration: underline;
 }
 
@@ -292,7 +321,7 @@
 }
 
 .emptyStateText {
-  color: #9ca3af;
+  color: #fd9fbc;
   font-style: italic;
   text-align: center;
   margin: 2rem 0;
@@ -309,14 +338,16 @@
 
 .summaryItem {
   padding: 0.75rem;
-  border-radius: 8px;
-  background-color: #f9fafb;
-  transition: transform 0.2s;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #ffffff, #fff5f7);
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid rgba(253, 116, 167, 0.1);
+  box-shadow: 0 2px 5px rgba(253, 116, 167, 0.05);
 }
 
 .summaryItem:hover {
   transform: translateY(-3px);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 5px 15px rgba(253, 116, 167, 0.1);
 }
 
 .summaryItemTitle {
@@ -327,22 +358,22 @@
 
 /* Goal Progress Bar */
 .progressBar {
-  height: 6px;
-  background-color: #e5e7eb;
-  border-radius: 3px;
+  height: 8px;
+  background-color: #ffe1eb;
+  border-radius: 4px;
   overflow: hidden;
   margin-bottom: 0.35rem;
 }
 
 .progressFill {
   height: 100%;
-  background-color: #a78bfa;
-  border-radius: 3px;
+  background: linear-gradient(90deg, #fd74a7, #ff94bd);
+  border-radius: 4px;
 }
 
 .progressText {
   font-size: 0.8rem;
-  color: #6b7280;
+  color: #fd74a7;
 }
 
 /* Habit Streak */
@@ -355,7 +386,7 @@
 .streakCount {
   font-size: 1.2rem;
   font-weight: 600;
-  color: #a78bfa;
+  color: #fd74a7;
 }
 
 .streakLabel {
@@ -375,7 +406,7 @@
 }
 
 .bookStatus {
-  color: #a78bfa;
+  color: #fd74a7;
   font-weight: 500;
   font-size: 0.8rem;
 }
@@ -383,7 +414,7 @@
 /* Journal Entry */
 .entryDate {
   font-size: 0.85rem;
-  color: #6b7280;
+  color: #fd74a7;
   margin-bottom: 0.25rem;
 }
 
@@ -402,12 +433,19 @@
 
 /* div6: Mood Chart */
 .moodChartContainer {
-  background-color: white;
-  border-radius: 12px;
+  background: linear-gradient(145deg, #ffffff, #fff8fa);
+  border-radius: 20px;
   padding: 1.5rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 10px 25px rgba(253, 116, 167, 0.1);
   display: flex;
   flex-direction: column;
+  border: 1px solid rgba(253, 116, 167, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.moodChartContainer:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(253, 116, 167, 0.15);
 }
 
 .moodChartContainer h3 {
@@ -416,7 +454,7 @@
   font-weight: 600;
   color: #333;
   margin: 0 0 1rem 0;
-  border-bottom: 1px solid #f3f4f6;
+  border-bottom: 1px solid #ffd6e3;
   padding-bottom: 0.75rem;
 }
 
@@ -426,10 +464,17 @@
 
 /* div7: Calendar */
 .calendarContainer {
-  background-color: white;
-  border-radius: 12px;
+  background: linear-gradient(145deg, #ffffff, #fff8fa);
+  border-radius: 20px;
   padding: 1.5rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 10px 25px rgba(253, 116, 167, 0.1);
+  border: 1px solid rgba(253, 116, 167, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.calendarContainer:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(253, 116, 167, 0.15);
 }
 
 .calendarContainer h3 {
@@ -438,7 +483,7 @@
   font-weight: 600;
   color: #333;
   margin: 0 0 1rem 0;
-  border-bottom: 1px solid #f3f4f6;
+  border-bottom: 1px solid #ffd6e3;
   padding-bottom: 0.75rem;
 }
 
