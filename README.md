@@ -1,89 +1,96 @@
-# Getting Started with Create React App
+# DreamScape: Your Personal Growth Companion
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+DreamScape is a web application designed to help you visualize your dreams, set achievable goals, track your progress, cultivate positive habits, and reflect on your journey.  It combines a customizable vision board, a SMART goal-setting system, a prompted reflection journal (with mood tracking), a habit tracker, a reading list manager, and daily affirmations – all in one place.  DreamScape is built with React and Firebase, providing a responsive and engaging user experience.
 
-In the project directory, you can run:
+This project was created by Lilliane Nguyen as a personal project, drawing inspiration from personal experiences and a desire to create a tool for self-improvement and reflection.
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+*   **Vision Board:**
+    *   Create a dynamic digital vision board with images (upload and URL support) and text.
+    *   Drag-and-drop functionality for easy customization.
+    *   Persistence of layout and content.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+*   **Goal Setting:**
+    *   Set SMART goals (Specific, Measurable, Achievable, Relevant, Time-bound).
+    *   Break down goals into actionable steps.
+    *   Track progress with visual indicators.
+    *   Edit and delete goals/steps.
 
-### `npm test`
+*   **Reflection Journal:**
+    *   Write journal entries with a clean, distraction-free interface.
+    *   Guided writing prompts to encourage reflection.
+    *   Track your mood with an interactive mood slider.
+    *   View past entries with date/time stamps.
+    *   Delete entries.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+*   **Habit Tracker:**
+    *   Track daily or weekly habits.
+    *   Mark habits as complete.
+    *   Visualize streaks (consecutive days of completion).
+    *   Delete habits
 
-### `npm run build`
+*   **Reading List:**
+    *   Organize books into "Want to Read," "Currently Reading," and "Finished" lists.
+    *   Add book cover images (via URL).
+    *   Add links to Goodreads pages.
+    *   Track reading progress.
+    *   Add and manage favorite quotes from books.
+    *   Add rating and review for finished books.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+*   **Daily Affirmations (Dashboard):**
+    *   Receive a new daily affirmation.
+    *   (Future: Customize affirmations.)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+*   **User Authentication:**
+    *   Secure signup and login using Firebase Authentication (email/password).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+*   **Data Persistence:**
+    *   User data (vision board, goals, journal entries, habits, reading list, profile information) is stored securely using Firebase Firestore.
+    *   Data persists across sessions and devices (after login).
 
-### `npm run eject`
+*   **Responsive Design:** The application is fully responsive and works well on desktop, tablet, and mobile devices.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+*   **Sidebar Navigation:** Easy navigation between different sections of the app.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Technologies Used
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+*   **Frontend:**
+    *   React (with Create React App)
+    *   React Router (`react-router-dom`) for client-side routing.
+    *   @dnd-kit/core and @dnd-kit/sortable for drag-and-drop functionality.
+    *   CSS Modules for component-scoped styling.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+*   **Backend:**
+    *   Firebase Authentication (for user accounts)
+    *   Firebase Cloud Firestore (for NoSQL database)
+    *   Firebase Cloud Storage (if you implement profile picture uploads, mention it here)
 
-## Build Information
+* **Deployment**
+    * Netlify
 
-### Node Version
+## Usage
 
-This project works with Node.js v22.14.0 and npm 10.9.2. If you encounter build issues, consider using an LTS version of Node.js.
+1. **Sign Up/Log In:** If not logged, Sign up for a new account or log in with an existing account.
+2. Explore the app.
 
-### Environment Variables
+## Contributing
 
-For Firebase configuration, copy `.env.example` to `.env` and fill in your Firebase project details.
+Currently, contributions are not being accepted, as this is a personal project. 
 
-### Troubleshooting Build Issues
+## License
 
-If you encounter build failures:
+Copyright © 2024 Lilliane Nguyen. All rights reserved.
 
-1. Make sure you're using a compatible Node.js version
-2. The build script includes the `--openssl-legacy-provider` flag to address potential OpenSSL issues
-3. Run `npm audit fix` to address dependency vulnerabilities when possible
-4. If port 3000 is already in use, the development server will prompt to use a different port
+This project is not open source.
 
-## Learn More
+## Future Enhancements
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+*   User profiles with customizable settings.
+*   Advanced goal-setting features (recurring goals, sub-goals).
+*   Improved journal prompts and organization.
+*   Integration with external services (calendar, music).
+*   Mobile app version (potential future development).
+*   ...
