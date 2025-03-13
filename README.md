@@ -82,7 +82,7 @@ Currently, contributions are not being accepted, as this is a personal project.
 
 ## License
 
-Copyright © 2024 Lilliane Nguyen. All rights reserved.
+Copyright © 2025 Lilliane Nguyen. All rights reserved.
 
 This project is not open source.
 
