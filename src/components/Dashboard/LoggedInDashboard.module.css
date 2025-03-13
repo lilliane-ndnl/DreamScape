@@ -5,7 +5,7 @@
 .dashboardContainer {
   width: 100%;
   min-height: 100vh;
-  background-color: #fff5f7;
+  background-color: #fff9fb;
   padding: 2rem;
   color: #4a4a4a;
   font-family: 'Playfair Display', serif;
@@ -28,19 +28,19 @@
   align-items: center;
   font-family: 'Playfair Display', serif;
   font-size: 1.5rem;
-  color: #fd74a7;
+  color: #ffb6c1;
 }
 
 /* div1: Profile Section */
 .profileSection {
-  background: linear-gradient(145deg, #ffffff, #fff8fa);
+  background: linear-gradient(145deg, #ffffff, #fff9fb);
   border-radius: 20px;
   padding: 2rem;
-  box-shadow: 0 10px 25px rgba(253, 116, 167, 0.1);
+  box-shadow: 0 10px 25px rgba(255, 182, 193, 0.1);
   display: flex;
   align-items: center;
   gap: 2rem;
-  border: 1px solid rgba(253, 116, 167, 0.2);
+  border: 1px solid rgba(255, 182, 193, 0.2);
 }
 
 .profileImageContainer {
@@ -50,9 +50,9 @@
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
-  border: 3px solid #fd74a7;
+  border: 3px solid #ffb6c1;
   cursor: pointer;
-  box-shadow: 0 5px 15px rgba(253, 116, 167, 0.2);
+  box-shadow: 0 5px 15px rgba(255, 182, 193, 0.2);
 }
 
 .profileImage {
@@ -64,7 +64,7 @@
 .profileImagePlaceholder {
   width: 100%;
   height: 100%;
-  background: linear-gradient(145deg, #fd74a7, #ff94bd);
+  background: linear-gradient(145deg, #ffb6c1, #ffc1cc);
   color: white;
   display: flex;
   justify-content: center;
@@ -109,7 +109,7 @@
 
 .username {
   font-size: 1.1rem;
-  color: #fd74a7;
+  color: #ffb6c1;
   margin: 0;
 }
 
@@ -140,7 +140,7 @@
   margin-top: 1rem;
   padding: 0.6rem 1.5rem;
   border: none;
-  border-radius: 15px;
+  border-radius: 25px;
   font-family: 'Playfair Display', serif;
   font-size: 1rem;
   cursor: pointer;
@@ -149,27 +149,27 @@
 }
 
 .editProfileButton {
-  background: linear-gradient(145deg, #fd74a7, #ff94bd);
+  background: linear-gradient(to right, #ffb6c1, #ffc1cc);
   color: white;
   margin-right: 1rem;
-  box-shadow: 0 4px 15px rgba(253, 116, 167, 0.3);
+  box-shadow: 0 4px 12px rgba(255, 182, 193, 0.3);
 }
 
 .editProfileButton:hover {
-  background: linear-gradient(145deg, #ff94bd, #fd74a7);
+  background: linear-gradient(to right, #ffb6c1, #ffd1dc);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(253, 116, 167, 0.4);
+  box-shadow: 0 6px 16px rgba(255, 182, 193, 0.4);
 }
 
 .logoutButton {
-  background: linear-gradient(145deg, #f3f4f6, #ffffff);
-  color: #fd74a7;
-  border: 1px solid rgba(253, 116, 167, 0.3);
+  background: transparent;
+  color: #ffb6c1;
+  border: 1px solid #ffb6c1;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 .logoutButton:hover {
-  background: linear-gradient(145deg, #ffffff, #f3f4f6);
+  background: rgba(255, 182, 193, 0.1);
   transform: translateY(-2px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
@@ -195,23 +195,23 @@
 
 .formGroup input, .formGroup textarea {
   padding: 0.75rem;
-  border: 1px solid #ffc1d6;
+  border: 1px solid #ffd1dc;
   border-radius: 12px;
   font-family: 'Playfair Display', serif;
   font-size: 1rem;
-  box-shadow: 0 2px 5px rgba(253, 116, 167, 0.1);
+  box-shadow: 0 2px 5px rgba(255, 182, 193, 0.1);
   transition: all 0.3s;
 }
 
 .formGroup input:focus, .formGroup textarea:focus {
-  border-color: #fd74a7;
-  box-shadow: 0 2px 8px rgba(253, 116, 167, 0.2);
+  border-color: #ffb6c1;
+  box-shadow: 0 2px 8px rgba(255, 182, 193, 0.2);
   outline: none;
 }
 
 .formGroup small {
   font-size: 0.8rem;
-  color: #fd74a7;
+  color: #ffb6c1;
   margin-top: 0.2rem;
 }
 
@@ -230,7 +230,7 @@
 .saveButton, .cancelButton {
   padding: 0.6rem 1.5rem;
   border: none;
-  border-radius: 15px;
+  border-radius: 25px;
   font-family: 'Playfair Display', serif;
   font-size: 1rem;
   cursor: pointer;
@@ -238,26 +238,26 @@
 }
 
 .saveButton {
-  background: linear-gradient(145deg, #fd74a7, #ff94bd);
+  background: linear-gradient(to right, #ffb6c1, #ffc1cc);
   color: white;
-  box-shadow: 0 4px 15px rgba(253, 116, 167, 0.3);
+  box-shadow: 0 4px 12px rgba(255, 182, 193, 0.3);
 }
 
 .saveButton:hover {
-  background: linear-gradient(145deg, #ff94bd, #fd74a7);
+  background: linear-gradient(to right, #ffb6c1, #ffd1dc);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(253, 116, 167, 0.4);
+  box-shadow: 0 6px 16px rgba(255, 182, 193, 0.4);
 }
 
 .cancelButton {
-  background: linear-gradient(145deg, #f3f4f6, #ffffff);
+  background: transparent;
   color: #666;
   border: 1px solid #e5e7eb;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 .cancelButton:hover {
-  background: linear-gradient(145deg, #ffffff, #f3f4f6);
+  background: rgba(0, 0, 0, 0.05);
   transform: translateY(-2px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
@@ -270,20 +270,20 @@
 }
 
 .summaryBox {
-  background: linear-gradient(145deg, #ffffff, #fff8fa);
+  background: linear-gradient(145deg, #ffffff, #fff9fb);
   border-radius: 20px;
   padding: 1.5rem;
-  box-shadow: 0 10px 25px rgba(253, 116, 167, 0.1);
+  box-shadow: 0 10px 25px rgba(255, 182, 193, 0.15);
   display: flex;
   flex-direction: column;
   height: 100%;
-  border: 1px solid rgba(253, 116, 167, 0.2);
+  border: 1px solid rgba(255, 182, 193, 0.3);
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .summaryBox:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(253, 116, 167, 0.15);
+  box-shadow: 0 15px 30px rgba(255, 182, 193, 0.2);
 }
 
 .summaryHeader {
@@ -291,7 +291,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
-  border-bottom: 1px solid #ffd6e3;
+  border-bottom: 1px solid #ffd1dc;
   padding-bottom: 0.75rem;
 }
 
@@ -304,7 +304,7 @@
 }
 
 .viewAllLink {
-  color: #fd74a7;
+  color: #ffb6c1;
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
@@ -312,7 +312,7 @@
 }
 
 .viewAllLink:hover {
-  color: #ff94bd;
+  color: #ffc1cc;
   text-decoration: underline;
 }
 
@@ -321,7 +321,7 @@
 }
 
 .emptyStateText {
-  color: #fd9fbc;
+  color: #ffc1cc;
   font-style: italic;
   text-align: center;
   margin: 2rem 0;
@@ -339,15 +339,15 @@
 .summaryItem {
   padding: 0.75rem;
   border-radius: 15px;
-  background: linear-gradient(145deg, #ffffff, #fff5f7);
+  background: linear-gradient(145deg, #ffffff, #fff9fb);
   transition: transform 0.2s, box-shadow 0.2s;
-  border: 1px solid rgba(253, 116, 167, 0.1);
-  box-shadow: 0 2px 5px rgba(253, 116, 167, 0.05);
+  border: 1px solid rgba(255, 182, 193, 0.2);
+  box-shadow: 0 2px 5px rgba(255, 182, 193, 0.05);
 }
 
 .summaryItem:hover {
   transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(253, 116, 167, 0.1);
+  box-shadow: 0 5px 15px rgba(255, 182, 193, 0.15);
 }
 
 .summaryItemTitle {
@@ -359,7 +359,7 @@
 /* Goal Progress Bar */
 .progressBar {
   height: 8px;
-  background-color: #ffe1eb;
+  background-color: #ffd1dc;
   border-radius: 4px;
   overflow: hidden;
   margin-bottom: 0.35rem;
@@ -367,13 +367,13 @@
 
 .progressFill {
   height: 100%;
-  background: linear-gradient(90deg, #fd74a7, #ff94bd);
+  background: linear-gradient(90deg, #ffb6c1, #ffc1cc);
   border-radius: 4px;
 }
 
 .progressText {
   font-size: 0.8rem;
-  color: #fd74a7;
+  color: #ffb6c1;
 }
 
 /* Habit Streak */
@@ -386,7 +386,7 @@
 .streakCount {
   font-size: 1.2rem;
   font-weight: 600;
-  color: #fd74a7;
+  color: #ffb6c1;
 }
 
 .streakLabel {
@@ -406,7 +406,7 @@
 }
 
 .bookStatus {
-  color: #fd74a7;
+  color: #ffb6c1;
   font-weight: 500;
   font-size: 0.8rem;
 }
@@ -414,7 +414,7 @@
 /* Journal Entry */
 .entryDate {
   font-size: 0.85rem;
-  color: #fd74a7;
+  color: #ffb6c1;
   margin-bottom: 0.25rem;
 }
 
@@ -433,19 +433,19 @@
 
 /* div6: Mood Chart */
 .moodChartContainer {
-  background: linear-gradient(145deg, #ffffff, #fff8fa);
+  background: linear-gradient(145deg, #ffffff, #fff9fb);
   border-radius: 20px;
   padding: 1.5rem;
-  box-shadow: 0 10px 25px rgba(253, 116, 167, 0.1);
+  box-shadow: 0 10px 25px rgba(255, 182, 193, 0.15);
   display: flex;
   flex-direction: column;
-  border: 1px solid rgba(253, 116, 167, 0.2);
+  border: 1px solid rgba(255, 182, 193, 0.3);
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .moodChartContainer:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(253, 116, 167, 0.15);
+  box-shadow: 0 15px 30px rgba(255, 182, 193, 0.2);
 }
 
 .moodChartContainer h3 {
@@ -454,7 +454,7 @@
   font-weight: 600;
   color: #333;
   margin: 0 0 1rem 0;
-  border-bottom: 1px solid #ffd6e3;
+  border-bottom: 1px solid #ffd1dc;
   padding-bottom: 0.75rem;
 }
 
@@ -464,17 +464,17 @@
 
 /* div7: Calendar */
 .calendarContainer {
-  background: linear-gradient(145deg, #ffffff, #fff8fa);
+  background: linear-gradient(145deg, #ffffff, #fff9fb);
   border-radius: 20px;
   padding: 1.5rem;
-  box-shadow: 0 10px 25px rgba(253, 116, 167, 0.1);
-  border: 1px solid rgba(253, 116, 167, 0.2);
+  box-shadow: 0 10px 25px rgba(255, 182, 193, 0.15);
+  border: 1px solid rgba(255, 182, 193, 0.3);
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .calendarContainer:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(253, 116, 167, 0.15);
+  box-shadow: 0 15px 30px rgba(255, 182, 193, 0.2);
 }
 
 .calendarContainer h3 {
@@ -483,8 +483,129 @@
   font-weight: 600;
   color: #333;
   margin: 0 0 1rem 0;
-  border-bottom: 1px solid #ffd6e3;
+  border-bottom: 1px solid #ffd1dc;
   padding-bottom: 0.75rem;
+}
+
+/* Affirmation and Quote Sections */
+.inspirationContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.affirmationBox, .quoteBox {
+  background: linear-gradient(145deg, #ffffff, #fff9fb);
+  border-radius: 20px;
+  padding: 1.8rem;
+  box-shadow: 0 10px 25px rgba(255, 182, 193, 0.15);
+  border: 1px solid rgba(255, 182, 193, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.affirmationBox:hover, .quoteBox:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(255, 182, 193, 0.25);
+}
+
+.affirmationHeader, .quoteHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+  border-bottom: 1px solid #ffd1dc;
+  padding-bottom: 0.75rem;
+}
+
+.affirmationHeader h3, .quoteHeader h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.refreshButton {
+  background: none;
+  border: none;
+  color: #ffb6c1;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: color 0.2s, background-color 0.2s;
+  padding: 5px 12px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.refreshButton:hover {
+  color: #fff;
+  background-color: #ffb6c1;
+}
+
+.affirmationContent, .quoteContent {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0.5rem;
+  position: relative;
+}
+
+.affirmationIcon {
+  color: #ffb6c1;
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+.affirmationText {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #4a4a4a;
+  text-align: center;
+  font-style: italic;
+  margin: 0;
+}
+
+.quoteTextContainer {
+  flex: 1;
+  text-align: center;
+  padding: 0 1.5rem;
+}
+
+.quoteText {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #4a4a4a;
+  margin-bottom: 0.75rem;
+  font-style: italic;
+}
+
+.quoteAuthor {
+  font-size: 1rem;
+  color: #ffb6c1;
+  margin: 0;
+  text-align: right;
+}
+
+.quoteIconLeft, .quoteIconRight {
+  color: #ffd1dc;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.quoteIconLeft {
+  align-self: flex-start;
+}
+
+.quoteIconRight {
+  align-self: flex-end;
 }
 
 /* Responsive Styles */
@@ -511,6 +632,10 @@
   .editProfileButton, .logoutButton {
     width: 100%;
     margin-right: 0;
+  }
+  
+  .inspirationContainer {
+    grid-template-columns: 1fr;
   }
 }
 

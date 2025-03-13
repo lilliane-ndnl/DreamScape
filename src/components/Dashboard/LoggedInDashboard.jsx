@@ -4,7 +4,7 @@ import styles from './LoggedInDashboard.module.css';
 import './CalendarStyles.css';
 import { auth, db, storage } from '../../firebase';
 import { signOut } from 'firebase/auth';
-import { doc, getDoc, updateDoc, collection, query, where, getDocs, orderBy, limit } from 'firebase/firestore';
+import { doc, getDoc, updateDoc, collection, query, where, getDocs, orderBy, limit, setDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { Calendar } from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
@@ -50,16 +50,74 @@ const LoggedInDashboard = () => {
   const [lastUsernameChange, setLastUsernameChange] = useState(null);
   const [usernameError, setUsernameError] = useState('');
   const fileInputRef = useRef(null);
+  
+  // New state for affirmations and quotes
+  const [currentAffirmation, setCurrentAffirmation] = useState('');
+  const [currentQuote, setCurrentQuote] = useState({ text: '', author: '' });
+
+  // Array of affirmations
+  const affirmations = [
+    "I am worthy of love, respect, and positive energy.",
+    "I trust in my ability to create positive change in my life.",
+    "I embrace challenges as opportunities for growth.",
+    "I am becoming the best version of myself every day.",
+    "I release all negative thoughts and embrace positivity.",
+    "I am in charge of my own happiness and I choose to be happy.",
+    "I am capable, strong, and will accomplish my goals.",
+    "My potential is limitless, and my opportunities are abundant.",
+    "I welcome joy, love, and positivity into my life.",
+    "I am enough, just as I am right now.",
+    "I radiate confidence, self-respect, and inner harmony.",
+    "I accept myself unconditionally and love myself deeply.",
+    "My body is healthy, my mind is brilliant, my soul is tranquil.",
+    "I am surrounded by people who recognize my worth and value my presence.",
+    "Today, I choose to focus on what I can control and let go of what I cannot."
+  ];
+
+  // Array of quotes
+  const quotes = [
+    { text: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt" },
+    { text: "You are never too old to set another goal or to dream a new dream.", author: "C.S. Lewis" },
+    { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+    { text: "Believe you can and you're halfway there.", author: "Theodore Roosevelt" },
+    { text: "The power of imagination makes us infinite.", author: "John Muir" },
+    { text: "Life is what happens when you're busy making other plans.", author: "John Lennon" },
+    { text: "Happiness is not something ready-made. It comes from your own actions.", author: "Dalai Lama" },
+    { text: "The purpose of our lives is to be happy.", author: "Dalai Lama" },
+    { text: "You only live once, but if you do it right, once is enough.", author: "Mae West" },
+    { text: "The way to get started is to quit talking and begin doing.", author: "Walt Disney" },
+    { text: "Your time is limited, don't waste it living someone else's life.", author: "Steve Jobs" },
+    { text: "If you want to live a happy life, tie it to a goal, not to people or things.", author: "Albert Einstein" },
+    { text: "The journey of a thousand miles begins with one step.", author: "Lao Tzu" },
+    { text: "You miss 100% of the shots you don't take.", author: "Wayne Gretzky" },
+    { text: "The best time to plant a tree was 20 years ago. The second best time is now.", author: "Chinese Proverb" }
+  ];
+
+  // Function to get a random affirmation
+  const getRandomAffirmation = () => {
+    const randomIndex = Math.floor(Math.random() * affirmations.length);
+    return affirmations[randomIndex];
+  };
+
+  // Function to get a random quote
+  const getRandomQuote = () => {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    return quotes[randomIndex];
+  };
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        setUser(user);
-        await fetchUserData(user.uid);
-        await fetchGoals(user.uid);
-        await fetchHabits(user.uid);
-        await fetchReadingList(user.uid);
-        await fetchJournalEntries(user.uid);
+    const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
+      if (currentUser) {
+        setUser(currentUser);
+        await fetchUserData(currentUser.uid);
+        await fetchGoals(currentUser.uid);
+        await fetchHabits(currentUser.uid);
+        await fetchReadingList(currentUser.uid);
+        await fetchJournalEntries(currentUser.uid);
+        
+        // Set initial affirmation and quote
+        setCurrentAffirmation(getRandomAffirmation());
+        setCurrentQuote(getRandomQuote());
       } else {
         navigate('/login');
       }
@@ -71,9 +129,13 @@ const LoggedInDashboard = () => {
 
   const fetchUserData = async (userId) => {
     try {
-      const userDoc = await getDoc(doc(db, 'users', userId));
-      if (userDoc.exists()) {
-        const data = userDoc.data();
+      const userDocRef = doc(db, 'users', userId);
+      const userDocSnap = await getDoc(userDocRef);
+      
+      if (userDocSnap.exists()) {
+        const data = userDocSnap.data();
+        console.log('Fetched user data:', data);
+        
         setUserData(data);
         setProfileForm({
           displayName: data.displayName || '',
@@ -81,8 +143,29 @@ const LoggedInDashboard = () => {
           bio: data.bio || '',
           birthdate: data.birthdate || '',
         });
-        setProfileImageURL(data.profileImageURL || '');
+        
+        if (data.profileImageURL) {
+          console.log('Setting profile image URL:', data.profileImageURL);
+          setProfileImageURL(data.profileImageURL);
+        }
+        
         setLastUsernameChange(data.lastUsernameChange || null);
+      } else {
+        // Create a new user document if it doesn't exist
+        const newUserData = {
+          displayName: user?.displayName || '',
+          email: user?.email || '',
+          createdAt: new Date(),
+        };
+        
+        await setDoc(userDocRef, newUserData);
+        setUserData(newUserData);
+        setProfileForm({
+          displayName: newUserData.displayName || '',
+          username: '',
+          bio: '',
+          birthdate: '',
+        });
       }
     } catch (error) {
       console.error('Error fetching user data:', error);
@@ -133,12 +216,12 @@ const LoggedInDashboard = () => {
       let readingData = [];
       
       for (let collectionName of collections) {
-        const readingQuery = query(
-          collection(db, collectionName),
-          where('userId', '==', userId),
-          orderBy('createdAt', 'desc')
-        );
         try {
+          const readingQuery = query(
+            collection(db, collectionName),
+            where('userId', '==', userId),
+            orderBy('createdAt', 'desc')
+          );
           const querySnapshot = await getDocs(readingQuery);
           if (!querySnapshot.empty) {
             readingData = querySnapshot.docs.map(doc => ({
@@ -203,8 +286,8 @@ const LoggedInDashboard = () => {
             {
               label: 'Mood Rating',
               data: moodValues,
-              borderColor: '#fd74a7',
-              backgroundColor: 'rgba(253, 116, 167, 0.2)',
+              borderColor: '#ff8fab',
+              backgroundColor: 'rgba(255, 194, 209, 0.2)',
               tension: 0.3,
             },
           ],
@@ -230,12 +313,15 @@ const LoggedInDashboard = () => {
 
   const handleImageChange = (e) => {
     if (e.target.files[0]) {
-      setProfileImage(e.target.files[0]);
+      const file = e.target.files[0];
+      setProfileImage(file);
+      
+      // Show preview immediately
       const reader = new FileReader();
       reader.onload = (event) => {
         setProfileImageURL(event.target.result);
       };
-      reader.readAsDataURL(e.target.files[0]);
+      reader.readAsDataURL(file);
     }
   };
 
@@ -252,6 +338,11 @@ const LoggedInDashboard = () => {
     setUsernameError('');
     
     try {
+      if (!user) {
+        console.error('No user found');
+        return;
+      }
+      
       if (profileForm.username !== userData.username) {
         if (lastUsernameChange) {
           const lastChange = new Date(lastUsernameChange.toDate ? lastUsernameChange.toDate() : lastUsernameChange);
@@ -281,30 +372,52 @@ const LoggedInDashboard = () => {
         updateData.lastUsernameChange = new Date();
       }
 
+      // Upload profile image if changed
       if (profileImage) {
         try {
           console.log('Uploading profile image:', profileImage);
-          const storageRef = ref(storage, `profileImages/${user.uid}`);
-          const uploadTask = uploadBytes(storageRef, profileImage);
-          await uploadTask;
+          
+          // Create a reference with a timestamp to avoid caching issues
+          const timestamp = new Date().getTime();
+          const storageRef = ref(storage, `profileImages/${user.uid}_${timestamp}`);
+          
+          // Upload the file
+          await uploadBytes(storageRef, profileImage);
           console.log('Image uploaded successfully');
+          
+          // Get the download URL
           const downloadURL = await getDownloadURL(storageRef);
           console.log('Image URL:', downloadURL);
+          
+          // Add to update data
           updateData.profileImageURL = downloadURL;
         } catch (uploadError) {
           console.error('Error uploading image:', uploadError);
+          alert('Failed to upload profile image. Please try again.');
         }
       }
 
       console.log('Updating user data:', updateData);
+      
+      // Update the Firestore document
       await updateDoc(userRef, updateData);
+      
+      // Update local state
       setUserData({ ...userData, ...updateData });
+      
+      // Close edit form
       setShowEditProfile(false);
+      
+      // Update last username change time
       setLastUsernameChange(updateData.lastUsernameChange || lastUsernameChange);
       
+      // Refresh user data to ensure changes are reflected
       await fetchUserData(user.uid);
+      
+      alert('Profile updated successfully!');
     } catch (error) {
       console.error('Error updating profile:', error);
+      alert('An error occurred while updating your profile. Please try again.');
     }
   };
 
@@ -414,7 +527,7 @@ const LoggedInDashboard = () => {
                   </p>
                   {userData.birthdate && (
                     <p className={styles.age}>
-                      <span className={styles.ageLabel}>Age:</span> {calculateAge(userData.birthdate)} years
+                      <span className={styles.ageLabel}>Age:</span> {calculateAge(userData.birthdate)} years old
                     </p>
                   )}
                 </div>
@@ -435,6 +548,46 @@ const LoggedInDashboard = () => {
               </button>
             </div>
           )}
+        </div>
+
+        {/* New Affirmation and Quote Section */}
+        <div className={styles.inspirationContainer}>
+          {/* Affirmation Section */}
+          <div className={styles.affirmationBox}>
+            <div className={styles.affirmationHeader}>
+              <h3>Daily Affirmation</h3>
+              <button 
+                className={styles.refreshButton} 
+                onClick={() => setCurrentAffirmation(getRandomAffirmation())}
+                aria-label="Get new affirmation"
+              >
+                Refresh
+              </button>
+            </div>
+            <div className={styles.affirmationContent}>
+              <p className={styles.affirmationText}>{currentAffirmation}</p>
+            </div>
+          </div>
+
+          {/* Quote Section */}
+          <div className={styles.quoteBox}>
+            <div className={styles.quoteHeader}>
+              <h3>Inspiring Quote</h3>
+              <button 
+                className={styles.refreshButton} 
+                onClick={() => setCurrentQuote(getRandomQuote())}
+                aria-label="Get new quote"
+              >
+                Refresh
+              </button>
+            </div>
+            <div className={styles.quoteContent}>
+              <div className={styles.quoteTextContainer}>
+                <p className={styles.quoteText}>{currentQuote.text}</p>
+                <p className={styles.quoteAuthor}>— {currentQuote.author}</p>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* div2-div5: Summary Boxes */}
