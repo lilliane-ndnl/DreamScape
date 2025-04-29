@@ -199,20 +199,6 @@ const Signup = () => {
                     <h1>Create Account</h1>
                     
                     <div className={styles.formGroup}>
-                        <label htmlFor="fullName">Full Name</label>
-                        <input
-                            type="text"
-                            id="fullName"
-                            name="fullName"
-                            value={formData.fullName}
-                            onChange={handleChange}
-                            className={errors.fullName ? styles.error : ''}
-                            autoComplete="name"
-                        />
-                        {errors.fullName && <span className={styles.errorMessage}>{errors.fullName}</span>}
-                    </div>
-
-                    <div className={styles.formGroup}>
                         <label htmlFor="email">Email</label>
                         <input
                             type="email"
@@ -300,6 +286,20 @@ const Signup = () => {
                             </select>
                             {errors.sex && <span className={styles.errorMessage}>{errors.sex}</span>}
                         </div>
+                    </div>
+
+                    <div className={styles.formGroup}>
+                        <label htmlFor="fullName">Full Name</label>
+                        <input
+                            type="text"
+                            id="fullName"
+                            name="fullName"
+                            value={formData.fullName}
+                            onChange={handleChange}
+                            className={errors.fullName ? styles.error : ''}
+                            autoComplete="name"
+                        />
+                        {errors.fullName && <span className={styles.errorMessage}>{errors.fullName}</span>}
                     </div>
 
                     {errors.submit && <div className={styles.submitError}>{errors.submit}</div>}

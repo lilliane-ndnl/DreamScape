@@ -2,17 +2,19 @@
     max-width: 500px;
     margin: 0 auto;
     padding: 2.5rem;
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.98) 100%);
+    border-radius: 20px;
+    box-shadow: 0 4px 25px rgba(83, 46, 59, 0.08);
+    border: 1px solid rgba(255, 179, 193, 0.1);
 }
 
 .authForm h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: #532e3b;
     margin-bottom: 1.5rem;
     text-align: center;
-    font-weight: 600;
+    font-family: 'Playfair Display', serif;
+    text-shadow: 2px 2px 4px rgba(83, 46, 59, 0.1);
 }
 
 .formGroup {
@@ -23,49 +25,56 @@
     display: block;
     margin-bottom: 0.5rem;
     color: #532e3b;
-    font-size: 1rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
     font-weight: 500;
 }
 
 .formGroup input,
 .formGroup select {
     width: 100%;
-    padding: 0.8rem 1rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #ffffff;
+    padding: 0.75rem 1rem;
+    border: 2px solid rgba(255, 179, 193, 0.2);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.9);
     color: #532e3b;
-    font-size: 1rem;
+    font-family: 'VT323', monospace;
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
     transition: all 0.3s ease;
+    box-shadow: inset 0 2px 4px rgba(83, 46, 59, 0.05);
 }
 
 .formGroup input:focus,
 .formGroup select:focus {
     outline: none;
-    border-color: #ff8da1;
-    box-shadow: 0 0 0 2px rgba(255, 141, 161, 0.1);
+    border-color: var(--accent-color-1);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 0 3px rgba(225, 177, 104, 0.2);
 }
 
 .formGroup input.error,
 .formGroup select.error {
-    border-color: #ff6b81;
-    background-color: rgba(255, 107, 129, 0.05);
+    border-color: #ff4444;
+    background: rgba(255, 68, 68, 0.05);
 }
 
 .errorMessage {
-    color: #ff6b81;
+    color: #ff4444;
     font-size: 0.9rem;
     margin-top: 0.4rem;
     display: block;
+    font-family: 'Playfair Display', serif;
 }
 
 .submitError {
-    color: #ff6b81;
+    color: #ff4444;
     text-align: center;
     margin-bottom: 1.5rem;
     padding: 1rem;
-    background-color: rgba(255, 107, 129, 0.1);
-    border-radius: 8px;
+    background: rgba(255, 68, 68, 0.1);
+    border-radius: 12px;
+    font-family: 'Playfair Display', serif;
 }
 
 .submitButton {

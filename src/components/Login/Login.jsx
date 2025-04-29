@@ -148,24 +148,14 @@ const Login = () => {
                         className={styles.submitButton}
                         disabled={isSubmitting}
                     >
-                        {isSubmitting ? 'Signing In...' : 'Sign In'}
+                        {isSubmitting ? 'Signing in...' : 'Sign In'}
                     </button>
 
-                    <p style={{ 
-                        textAlign: 'center', 
-                        marginTop: '1.5rem',
-                        fontFamily: 'Playfair Display, serif',
-                        color: '#532e3b'
-                    }}>
-                        Don't have an account?{' '}
-                        <Link to="/signup" style={{
-                            color: 'var(--accent-color-1)',
-                            textDecoration: 'none',
-                            fontWeight: '600'
-                        }}>
-                            Create one now
-                        </Link>
-                    </p>
+                    <div className={styles.authLinks}>
+                        <Link to="/forgot-password">Forgot Password?</Link>
+                        <span className={styles.divider}>|</span>
+                        <Link to="/signup">Create Account</Link>
+                    </div>
                 </form>
             </div>
         </div>

@@ -4,6 +4,21 @@ import { getAuth, setPersistence, browserLocalPersistence } from "firebase/auth"
 import { getFirestore, enableIndexedDbPersistence } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
+// Check for required environment variables
+const requiredEnvVars = [
+    'REACT_APP_FIREBASE_API_KEY',
+    'REACT_APP_FIREBASE_AUTH_DOMAIN',
+    'REACT_APP_FIREBASE_PROJECT_ID',
+    'REACT_APP_FIREBASE_STORAGE_BUCKET',
+    'REACT_APP_FIREBASE_MESSAGING_SENDER_ID',
+    'REACT_APP_FIREBASE_APP_ID'
+];
+
+const missingEnvVars = requiredEnvVars.filter(varName => !process.env[varName]);
+if (missingEnvVars.length > 0) {
+    throw new Error(`Missing required environment variables: ${missingEnvVars.join(', ')}`);
+}
+
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -14,7 +29,14 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+let app;
+try {
+    app = initializeApp(firebaseConfig);
+    console.log("Firebase initialized successfully");
+} catch (error) {
+    console.error("Error initializing Firebase:", error);
+    throw error;
+}
 
 // Initialize services
 const auth = getAuth(app);
@@ -23,32 +45,29 @@ const storage = getStorage(app);
 
 // Set persistence to LOCAL by default
 setPersistence(auth, browserLocalPersistence)
-  .then(() => {
-    console.log("Firebase auth persistence set to LOCAL");
-  })
-  .catch((error) => {
-    console.error("Error setting auth persistence:", error);
-  });
-
-// Enable offline data persistence for Firestore
-// This helps with network issues and performance on Netlify
-try {
-  enableIndexedDbPersistence(db)
     .then(() => {
-      console.log("Firestore persistence enabled");
+        console.log("Firebase auth persistence set to LOCAL");
     })
-    .catch((err) => {
-      if (err.code === 'failed-precondition') {
-        console.warn('Firestore persistence could not be enabled: Multiple tabs open');
-      } else if (err.code === 'unimplemented') {
-        console.warn('Firestore persistence not available in this browser');
-      } else {
-        console.error("Error enabling Firestore persistence:", err);
-      }
+    .catch((error) => {
+        console.error("Error setting auth persistence:", error);
+        // Don't throw here as this is not critical for app functionality
     });
-} catch (error) {
-  console.error("Error with Firestore persistence setup:", error);
-}
+
+// Enable offline persistence for Firestore
+enableIndexedDbPersistence(db)
+    .then(() => {
+        console.log("Firestore offline persistence enabled");
+    })
+    .catch((error) => {
+        if (error.code === 'failed-precondition') {
+            console.warn('Firestore persistence could not be enabled: Multiple tabs open');
+        } else if (error.code === 'unimplemented') {
+            console.warn('Firestore persistence not available in this browser');
+        } else {
+            console.error("Error enabling Firestore offline persistence:", error);
+        }
+        // Don't throw here as this is not critical for app functionality
+    });
 
 // Add a flag for debugging
 window.firebaseInitialized = true;
