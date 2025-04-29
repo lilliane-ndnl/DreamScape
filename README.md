@@ -66,7 +66,7 @@
  *   **Backend:**
      *   Firebase Authentication (for user accounts)
      *   Firebase Cloud Firestore (for NoSQL database)
-     *   Firebase Cloud Storage (if you implement profile picture uploads, mention it here)
+     *   Firebase Cloud Storage (for profile picture uploads)
  
  * **Deployment**
      * Netlify
