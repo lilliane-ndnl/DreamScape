@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import styles from './Journal.module.css';
 import promptsData from '../../data/prompts.json';
 import MoodTrends from '../MoodTrends/MoodTrends';
@@ -18,18 +18,12 @@ function Journal() {
     const [attachments, setAttachments] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [isSubmitting, setIsSubmitting] = useState(false);
     const fileInputRef = useRef(null);
     const [showBackground, setShowBackground] = useState(false);
 
-    useEffect(() => {
-        if (user) {
-            fetchEntries();
-        }
-        getRandomPrompt();
-    }, [user]);
-
-    const fetchEntries = async () => {
+    const fetchEntries = useCallback(async () => {
+        if (!user) return;
+        
         try {
             setLoading(true);
             const entriesQuery = query(
@@ -43,13 +37,20 @@ function Journal() {
                 ...doc.data()
             }));
             setEntries(entriesData);
-        } catch (error) {
-            console.error('Error fetching entries:', error);
+        } catch (err) {
+            console.error('Error fetching entries:', err);
             setError('Failed to load journal entries. Please try again.');
         } finally {
             setLoading(false);
         }
-    };
+    }, [user]);
+
+    useEffect(() => {
+        if (user) {
+            fetchEntries();
+        }
+        getRandomPrompt();
+    }, [user, fetchEntries]);
 
     useEffect(() => {
         // Show background with delay
@@ -101,7 +102,6 @@ function Journal() {
         }
 
         try {
-            setIsSubmitting(true);
             setError(null);
 
             const entryData = {
@@ -124,11 +124,9 @@ function Journal() {
             setMoodDescription('');
             setAttachments([]);
             getRandomPrompt();
-        } catch (error) {
-            console.error('Error adding entry:', error);
+        } catch (err) {
+            console.error('Error adding entry:', err);
             setError('Failed to save journal entry. Please try again.');
-        } finally {
-            setIsSubmitting(false);
         }
     };
 
@@ -164,6 +162,21 @@ function Journal() {
             </div>
 
             <h1 className="pageTitle">My Reflection Journal</h1>
+            
+            {error && (
+                <div style={{ 
+                    background: 'rgba(255, 68, 68, 0.1)', 
+                    color: '#ff4444', 
+                    padding: '1rem', 
+                    borderRadius: '10px', 
+                    marginBottom: '1rem',
+                    textAlign: 'center',
+                    maxWidth: '800px',
+                    margin: '0 auto 1rem auto'
+                }}>
+                    {error}
+                </div>
+            )}
             
             <div className="wideContainer">
                 <div className="gradientCard" style={{ padding: '2rem', borderRadius: '20px', position: 'relative', zIndex: 1 }}>
