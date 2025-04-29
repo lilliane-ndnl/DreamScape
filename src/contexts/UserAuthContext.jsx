@@ -6,6 +6,7 @@ import {
     onAuthStateChanged,
     setPersistence,
     browserLocalPersistence,
+    updateProfile
 } from 'firebase/auth';
 import { auth, db } from '../firebase';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
@@ -84,6 +85,32 @@ export function UserAuthContextProvider({ children }) {
         }
     }
 
+    async function updateUserProfile(profileData) {
+        console.log("Updating user profile:", profileData);
+        try {
+            setError(null);
+            if (!auth.currentUser) {
+                throw new Error("No authenticated user found");
+            }
+            
+            // Update profile in Firebase Auth
+            await retryOperation(() => updateProfile(auth.currentUser, profileData));
+            
+            // Update the local user state with new profile data
+            setUser(prevUser => ({
+                ...prevUser,
+                displayName: profileData.displayName || prevUser.displayName,
+                photoURL: profileData.photoURL || prevUser.photoURL
+            }));
+            
+            console.log("User profile updated successfully");
+        } catch (error) {
+            console.error("Error updating user profile:", error);
+            setError(error.message);
+            throw error;
+        }
+    }
+
     async function setUserAsNotNew(uid) {
         console.log("Setting user as not new:", uid);
         try {
@@ -152,6 +179,7 @@ export function UserAuthContextProvider({ children }) {
         createUser,
         signIn,
         logout,
+        updateUserProfile,
         setUserAsNotNew
     };
 

@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useUserAuth } from '../../contexts/UserAuthContext';
 import styles from './SideBar.module.css';
 
 function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, logout } = useUserAuth();
+  const navigate = useNavigate();
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -24,9 +27,30 @@ function Sidebar() {
     };
   }, [isOpen]);
 
+  const handleLogout = async () => {
+    try {
+      await logout();
+      setIsOpen(false);
+      navigate('/');
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
+
+  const handleLogin = () => {
+    setIsOpen(false);
+    navigate('/login');
+  };
+
+  const handleSignup = () => {
+    setIsOpen(false);
+    navigate('/signup');
+  };
+
   return (
     <div className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
       <button onClick={toggleSidebar} className={styles.menuButton}>
+        <div className={styles.menuButtonBg}></div>
         <img src="/images/cloudladder-icon.png" alt="Menu" className={styles.menuIcon} />
       </button>
       <div className={styles.links}>
@@ -37,6 +61,23 @@ function Sidebar() {
         <Link to="/reading" className={styles.link}>Reading List</Link>
         <Link to="/journal" className={styles.link}>Journal</Link>
         <Link to="/about" className={styles.link}>About</Link>
+        
+        <div className={styles.authSection}>
+          {user ? (
+            <button onClick={handleLogout} className={styles.logoutButton}>
+              Log Out
+            </button>
+          ) : (
+            <>
+              <button onClick={handleLogin} className={styles.loginButton}>
+                Log In
+              </button>
+              <button onClick={handleSignup} className={styles.signupButton}>
+                Sign Up
+              </button>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
