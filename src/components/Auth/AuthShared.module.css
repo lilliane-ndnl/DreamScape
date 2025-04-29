@@ -1,0 +1,169 @@
+.authForm {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2.5rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.authForm h1 {
+    font-size: 2rem;
+    color: #532e3b;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.formGroup {
+    margin-bottom: 1.5rem;
+}
+
+.formGroup label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #532e3b;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.formGroup input,
+.formGroup select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #532e3b;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.formGroup input:focus,
+.formGroup select:focus {
+    outline: none;
+    border-color: #ff8da1;
+    box-shadow: 0 0 0 2px rgba(255, 141, 161, 0.1);
+}
+
+.formGroup input.error,
+.formGroup select.error {
+    border-color: #ff6b81;
+    background-color: rgba(255, 107, 129, 0.05);
+}
+
+.errorMessage {
+    color: #ff6b81;
+    font-size: 0.9rem;
+    margin-top: 0.4rem;
+    display: block;
+}
+
+.submitError {
+    color: #ff6b81;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: rgba(255, 107, 129, 0.1);
+    border-radius: 8px;
+}
+
+.submitButton {
+    width: 100%;
+    padding: 0.8rem 1.5rem;
+    margin-top: 1rem;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #ff8da1;
+    color: white;
+}
+
+.submitButton:hover:not(:disabled) {
+    background-color: #ff6b81;
+    transform: translateY(-2px);
+}
+
+.submitButton:active:not(:disabled) {
+    transform: translateY(-1px);
+}
+
+.submitButton:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.formRow {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.verificationContent {
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.verificationContent p {
+    color: #532e3b;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.verificationActions {
+    margin-top: 2rem;
+}
+
+/* Loading Spinner */
+.loadingSpinner {
+    width: 30px;
+    height: 30px;
+    border: 3px solid rgba(255, 141, 161, 0.3);
+    border-radius: 50%;
+    border-top-color: #ff8da1;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .authForm {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+
+    .formRow {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .authForm h1 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .authForm {
+        padding: 1rem;
+        margin: 0.5rem;
+    }
+
+    .authForm h1 {
+        font-size: 1.5rem;
+    }
+
+    .formGroup input,
+    .formGroup select {
+        padding: 0.7rem 0.8rem;
+    }
+} 

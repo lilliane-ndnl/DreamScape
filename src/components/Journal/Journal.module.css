@@ -1,0 +1,404 @@
+.journalContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    min-height: 100vh;
+}
+
+.journalTitle {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #532e3b;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.mainContent {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.inputArea {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.inputSections {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.leftColumn, .rightColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.sectionTitle {
+    color: #532e3b;
+    font-size: 1.2rem;
+    margin: 0 0 1rem 0;
+    font-weight: 500;
+}
+
+.promptCard {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.promptContent {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.promptEmoji {
+    font-size: 1.5rem;
+    min-width: 2rem;
+    text-align: center;
+}
+
+.promptText {
+    font-size: 1.1rem;
+    color: #532e3b;
+    margin: 0;
+    line-height: 1.6;
+    flex: 1;
+    font-style: italic;
+}
+
+.attachmentsSection {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.attachButton {
+    background-color: #ff8da1;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.attachButton:hover:not(:disabled) {
+    background-color: #ff6b81;
+    transform: translateY(-2px);
+}
+
+.attachButton:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.attachmentPreviews {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.attachmentPreview {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 1;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.attachmentPreview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.removeAttachment {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #ff6b81;
+    transition: all 0.3s ease;
+}
+
+.removeAttachment:hover {
+    background-color: #ff6b81;
+    color: white;
+}
+
+.moodInputSection {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.moodDescription {
+    margin-top: 1rem;
+}
+
+.moodDescription input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.moodDescription input:focus {
+    outline: none;
+    border-color: #ff8da1;
+    box-shadow: 0 0 0 2px rgba(255, 141, 161, 0.1);
+}
+
+.entryInputSection {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    line-height: 1.5;
+    resize: vertical;
+    min-height: 150px;
+    transition: all 0.3s ease;
+}
+
+.textarea:focus {
+    outline: none;
+    border-color: #ff8da1;
+    box-shadow: 0 0 0 2px rgba(255, 141, 161, 0.1);
+}
+
+.addButton {
+    background-color: #ff8da1;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.addButton:hover:not(:disabled) {
+    background-color: #ff6b81;
+    transform: translateY(-2px);
+}
+
+.addButton:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.entriesContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.entry {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.entry:hover {
+    transform: translateY(-2px);
+}
+
+.entryHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.entryDate {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.entryMood {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.moodRating {
+    color: #ff8da1;
+    font-weight: 500;
+}
+
+.entryMood .moodDescription {
+    color: #666;
+    font-style: italic;
+}
+
+.entryText {
+    color: #532e3b;
+    line-height: 1.6;
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+.deleteButton {
+    background: none;
+    border: 1px solid #ff6b81;
+    color: #ff6b81;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.deleteButton:hover {
+    background-color: #ff6b81;
+    color: white;
+}
+
+.entryAttachments {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.entryAttachment {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.errorMessage {
+    background-color: rgba(255, 107, 129, 0.1);
+    color: #ff6b81;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.loadingContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    padding: 2rem;
+}
+
+.loadingSpinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(255, 141, 161, 0.3);
+    border-radius: 50%;
+    border-top-color: #ff8da1;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .journalContainer {
+        padding: 1.5rem;
+    }
+
+    .inputSections {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .journalContainer {
+        padding: 1rem;
+    }
+
+    .journalTitle {
+        font-size: 1.8rem;
+    }
+
+    .inputArea {
+        padding: 1.5rem;
+    }
+
+    .attachmentPreviews {
+        grid-template-columns: 1fr;
+    }
+
+    .entryAttachments {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .journalContainer {
+        padding: 0.5rem;
+    }
+
+    .journalTitle {
+        font-size: 1.5rem;
+    }
+
+    .inputArea {
+        padding: 1rem;
+    }
+
+    .sectionTitle {
+        font-size: 1.1rem;
+    }
+
+    .promptText {
+        font-size: 1rem;
+    }
+}

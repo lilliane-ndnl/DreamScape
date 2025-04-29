@@ -1,0 +1,808 @@
+/* Import Playfair Display font */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+/* Main Dashboard Container */
+.dashboardContainer {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #fff9fb;
+  color: #4a4a4a;
+  font-family: 'Playfair Display', serif;
+}
+
+.dashboardWrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Loading State */
+.loadingContainer {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: #ffb6c1;
+}
+
+/* div1: Profile Section */
+.profileSection {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profileHeader {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.profileImageContainer {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.profileImageContainer:hover {
+  transform: scale(1.05);
+}
+
+.profileImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profileImagePlaceholder {
+  width: 100%;
+  height: 100%;
+  background-color: #ff8da1;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.profileImageOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.profileImageContainer:hover .profileImageOverlay {
+  opacity: 1;
+}
+
+.profileInfo {
+  flex: 1;
+}
+
+.profileInfo h2 {
+  margin: 0;
+  color: #532e3b;
+  font-size: 1.8rem;
+}
+
+.username {
+  color: #666;
+  margin: 0.5rem 0;
+}
+
+.bio {
+  color: #666;
+  margin: 0.5rem 0;
+  line-height: 1.5;
+}
+
+.birthdateInfo {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.birthdate, .age {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.birthdateLabel, .ageLabel {
+  font-weight: 500;
+  color: #555;
+}
+
+.editProfileButton {
+  background-color: #ff8da1;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.editProfileButton:hover {
+  background-color: #ff6b81;
+  transform: translateY(-2px);
+}
+
+.logoutButton {
+  background: transparent;
+  color: #ffb6c1;
+  border: 1px solid #ffb6c1;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.logoutButton:hover {
+  background: rgba(255, 182, 193, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Edit Profile Form */
+.editProfileForm {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.formGroup label {
+  display: block;
+  color: #532e3b;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.formGroup input, .formGroup textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.formGroup input:focus, .formGroup textarea:focus {
+  outline: none;
+  border-color: #ff8da1;
+}
+
+.errorText {
+  color: #ff6b81;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.formActions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modalContent h2 {
+  color: #532e3b;
+  margin: 0 0 1.5rem 0;
+  font-size: 1.5rem;
+}
+
+.modalButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.cancelButton, .saveButton {
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cancelButton {
+  background-color: #f8f9fa;
+  color: #532e3b;
+  border: 1px solid #ddd;
+}
+
+.cancelButton:hover {
+  background-color: #e9ecef;
+}
+
+.saveButton {
+  background-color: #ff8da1;
+  color: white;
+  border: none;
+}
+
+.saveButton:hover:not(:disabled) {
+  background-color: #ff6b81;
+  transform: translateY(-2px);
+}
+
+.saveButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* div2-div5: Summary Grid */
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.summaryBox {
+  background: linear-gradient(145deg, #ffffff, #fff9fb);
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 25px rgba(255, 182, 193, 0.15);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid rgba(255, 182, 193, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.summaryBox:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(255, 182, 193, 0.2);
+}
+
+.summaryHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #ffd1dc;
+  padding-bottom: 0.75rem;
+}
+
+.summaryHeader h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.viewAllLink {
+  color: #ffb6c1;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.viewAllLink:hover {
+  color: #ffc1cc;
+  text-decoration: underline;
+}
+
+.summaryContent {
+  flex: 1;
+}
+
+.emptyStateText {
+  color: #ffc1cc;
+  font-style: italic;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.summaryList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.summaryItem {
+  padding: 0.75rem;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #ffffff, #fff9fb);
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid rgba(255, 182, 193, 0.2);
+  box-shadow: 0 2px 5px rgba(255, 182, 193, 0.05);
+}
+
+.summaryItem:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(255, 182, 193, 0.15);
+}
+
+.summaryItemTitle {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #4b5563;
+}
+
+/* Goal Progress Bar */
+.progressBar {
+  height: 8px;
+  background-color: #ffd1dc;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.35rem;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #ffb6c1, #ffc1cc);
+  border-radius: 4px;
+}
+
+.progressText {
+  font-size: 0.8rem;
+  color: #ffb6c1;
+}
+
+/* Habit Streak */
+.habitStreak {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.streakCount {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #ffb6c1;
+}
+
+.streakLabel {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+/* Book Details */
+.bookDetails {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+
+.bookAuthor {
+  color: #6b7280;
+}
+
+.bookStatus {
+  color: #ffb6c1;
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+/* Journal Entry */
+.entryDate {
+  font-size: 0.85rem;
+  color: #ffb6c1;
+  margin-bottom: 0.25rem;
+}
+
+.entryPreview {
+  font-size: 0.95rem;
+  color: #4b5563;
+  line-height: 1.4;
+}
+
+/* Bottom Row (div6 & div7) */
+.bottomRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+/* div6: Mood Chart */
+.moodChartContainer {
+  background: linear-gradient(145deg, #ffffff, #fff9fb);
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 25px rgba(255, 182, 193, 0.15);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 182, 193, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.moodChartContainer:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(255, 182, 193, 0.2);
+}
+
+.moodChartContainer h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 1rem 0;
+  border-bottom: 1px solid #ffd1dc;
+  padding-bottom: 0.75rem;
+}
+
+.chartWrapper {
+  height: 200px;
+}
+
+/* div7: Calendar */
+.calendarContainer {
+  background: linear-gradient(145deg, #ffffff, #fff9fb);
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 25px rgba(255, 182, 193, 0.15);
+  border: 1px solid rgba(255, 182, 193, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.calendarContainer:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(255, 182, 193, 0.2);
+}
+
+.calendarContainer h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 1rem 0;
+  border-bottom: 1px solid #ffd1dc;
+  padding-bottom: 0.75rem;
+}
+
+/* Affirmation and Quote Sections */
+.inspirationContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.affirmationBox, .quoteBox {
+  background: linear-gradient(145deg, #ffffff, #fff9fb);
+  border-radius: 20px;
+  padding: 1.8rem;
+  box-shadow: 0 10px 25px rgba(255, 182, 193, 0.15);
+  border: 1px solid rgba(255, 182, 193, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.affirmationBox:hover, .quoteBox:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(255, 182, 193, 0.25);
+}
+
+.affirmationHeader, .quoteHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+  border-bottom: 1px solid #ffd1dc;
+  padding-bottom: 0.75rem;
+}
+
+.affirmationHeader h3, .quoteHeader h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.refreshButton {
+  background: none;
+  border: none;
+  color: #ffb6c1;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: color 0.2s, background-color 0.2s;
+  padding: 5px 12px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.refreshButton:hover {
+  color: #fff;
+  background-color: #ffb6c1;
+}
+
+.affirmationContent, .quoteContent {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0.5rem;
+  position: relative;
+}
+
+.affirmationIcon {
+  color: #ffb6c1;
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+.affirmationText {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #4a4a4a;
+  text-align: center;
+  font-style: italic;
+  margin: 0;
+}
+
+.quoteTextContainer {
+  flex: 1;
+  text-align: center;
+  padding: 0 1.5rem;
+}
+
+.quoteText {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: #4a4a4a;
+  margin-bottom: 0.75rem;
+  font-style: italic;
+}
+
+.quoteAuthor {
+  font-size: 1rem;
+  color: #ffb6c1;
+  margin: 0;
+  text-align: right;
+}
+
+.quoteIconLeft, .quoteIconRight {
+  color: #ffd1dc;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.quoteIconLeft {
+  align-self: flex-start;
+}
+
+.quoteIconRight {
+  align-self: flex-end;
+}
+
+/* Quick Stats Section */
+.quickStats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.statCard {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.statCard:hover {
+  transform: translateY(-5px);
+}
+
+.statCard h3 {
+  color: #532e3b;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+}
+
+.statCard p {
+  color: #ff8da1;
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Affirmation and Quote Cards */
+.affirmationCard,
+.quoteCard {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.affirmationCard h3,
+.quoteCard h3 {
+  color: #532e3b;
+  margin: 0 0 1rem 0;
+  font-size: 1.2rem;
+}
+
+.affirmationCard p,
+.quoteCard p {
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.quoteAuthor {
+  color: #ff8da1;
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+/* Recent Journal Entries */
+.recentEntries {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.recentEntries h3 {
+  color: #532e3b;
+  margin: 0 0 1rem 0;
+  font-size: 1.2rem;
+}
+
+.entriesList {
+  display: grid;
+  gap: 1rem;
+}
+
+.entryCard {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.entryCard:hover {
+  transform: translateX(5px);
+}
+
+.entryCard h4 {
+  color: #532e3b;
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+}
+
+.entryCard p {
+  color: #666;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.noEntries {
+  color: #666;
+  text-align: center;
+  padding: 2rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .profileSection {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .summaryGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .bottomRow {
+    grid-template-columns: 1fr;
+  }
+  
+  .birthdateInfo {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .editProfileButton, .logoutButton {
+    width: 100%;
+    margin-right: 0;
+  }
+  
+  .inspirationContainer {
+    grid-template-columns: 1fr;
+  }
+  
+  .profileHeader {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .profileImageContainer {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .quickStats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .modalContent {
+    width: 95%;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboardContainer {
+    padding: 1rem;
+  }
+  
+  .quickStats {
+    grid-template-columns: 1fr;
+  }
+  
+  .modalButtons {
+    flex-direction: column;
+  }
+  
+  .cancelButton,
+  .saveButton {
+    width: 100%;
+  }
+} 
