@@ -2,6 +2,7 @@
   "name": "my-react-app",
   "version": "0.1.0",
   "private": true,
+  "license": "UNLICENSED",
   "homepage": ".",
   "dependencies": {
     "@dnd-kit/core": "^6.0.8",
