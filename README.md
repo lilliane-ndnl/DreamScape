@@ -82,9 +82,9 @@ Currently, contributions are not being accepted, as this is a personal project.
 
 ## License
 
-Copyright © 2024 Lilliane Nguyen. All rights reserved.
-
-This project is proprietary. All rights belong to Lilliane Nguyen and Lilliane Nguyen only. No part of this application's code may be recreated or reused without explicit written permission from Lilliane Nguyen.
+Copyright © 2024 Lilliane Nguyen.
+This project is proprietary software developed by Lilliane. All rights reserved.
+No part of this application's code may be recreated or reused without explicit written permission from Lilliane Nguyen.
 
 ## Future Enhancements
 
