@@ -1,6 +1,6 @@
 @font-face {
-  font-family: 'CherryBombOne';
-  src: url('./fonts/CherryBombOne-Regular.ttf') format('truetype');
+  font-family: 'PlayfairDisplay';
+  src: url('./fonts/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
 }
 
 @font-face {
@@ -8,13 +8,8 @@
   src: url('./fonts/VT323-Regular.ttf') format('truetype');
 }
 
-@font-face {
-  font-family: 'PlayfairDisplay';
-  src: url('./fonts/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
-}
-
 :root {
-  --font-heading: 'CherryBombOne', cursive;
+  --font-heading: 'PlayfairDisplay', serif;
   --font-input: 'VT323', monospace;
   --font-body: 'PlayfairDisplay', serif;
   
